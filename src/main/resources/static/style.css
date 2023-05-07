@@ -1,0 +1,18 @@
+.lebutton{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background: black;
+    color: white;
+    border-radius: 5px;
+    margin: 30px;
+    font-size: 30px;
+}
+.lebutton:hover{
+    text-decoration: underline;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
