@@ -1,6 +1,6 @@
 package com.example.bilabonathome2.repository;
 
-import com.example.bilabonathome2.model.CarModelInfo;
+import com.example.bilabonathome2.model.CarInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,7 +14,7 @@ public class CarRepo {
     JdbcTemplate jdbcTemplate;
 
 
-    public List<CarModelInfo> getAllCarInfo() {
+    public List<CarInfoDTO> getAllCarInfo() {
      String sql = "SELECT \n" +
              "    cm.car_model_id,\n" +
              "    cm.car_model,\n" +
@@ -27,7 +27,9 @@ public class CarRepo {
              "    cm.car_model_id, cm.car_model\n" +
              "ORDER BY\n" +
              "    cm.car_model_id;\n";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CarModelInfo.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CarInfoDTO.class));
     }
+
+
 
 }
