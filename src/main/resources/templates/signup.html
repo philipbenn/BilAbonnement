@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/v1578666243/favicon_1_npgufd.ico">
+  <title>Signup</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+<section class="login-section">
+<div style="z-index: 1; backdrop-filter: blur(10px)" class="form-box">
+  <form method="post" th:action="@{/signupcustomer}">
+    <h2 class="login-header">Signup</h2>
+    <div class="inputbox">
+      <ion-icon name="person-outline"></ion-icon>
+      <input style="margin-left: 30px;" name="name" type="text" required>
+      <label>Name :</label>
+    </div>
+    <div class="inputbox">
+      <ion-icon name="lock-closed-outline"></ion-icon>
+      <input style="margin-left: 60px;" type="password" name="password" required>
+      <label>Password :</label>
+    </div>
+    <button class="login-button" type="submit">Sign up</button>
+  </form>
+</div>
+</section>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
