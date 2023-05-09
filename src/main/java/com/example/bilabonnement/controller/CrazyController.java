@@ -16,12 +16,12 @@ public class CrazyController {
     CarInfoDTOService carInfoDTOService;
 
 
-
     @GetMapping("/carmanagement")
     String carmanagement(Model model){
         model.addAttribute("carInfoList", carInfoDTOService.getCarInfo());
         return "carmanagement";
     }
+
 
 
 

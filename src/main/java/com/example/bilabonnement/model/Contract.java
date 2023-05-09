@@ -2,9 +2,9 @@ package com.example.bilabonnement.model;
 
 public class Contract {
 
-    Contract(){}
+    public Contract(){}
 
-private int contract_id;
+    private int contract_id;
     private int customer_id;
     private int car_id;
     private int car_lease_period_plan_id;

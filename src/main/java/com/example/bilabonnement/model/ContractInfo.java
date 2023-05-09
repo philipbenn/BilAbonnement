@@ -3,21 +3,21 @@ package com.example.bilabonnement.model;
 public class ContractInfo {
 
     public ContractInfo(){}
-    private int contractId;
-    private int customerId;
-    private String customerName;
-    private int carId;
-    private int carModelId;
-    private String carModel;
+    private int contract_id;
+    private int customer_id;
+    private String customer_name;
+    private int car_id;
+    private int car_model_id;
+    private String car_model;
     private String vognnummer;
-    private int leasePeriodPlanId;
-    private String leaseType;
-    private double leasePrice;
-    private int maxKmPlanId;
-    private int maxKm;
-    private double kmPlanPrice;
-    private String startDate;
-    private String endDate;
+    private int car_lease_period_plan_id;
+    private String lease_type;
+    private double lease_price;
+    private int car_max_km_plan_id;
+    private int max_km;
+    private double km_plan_price;
+    private String start_date;
+    private String end_date;
     private double total_price_per_month;
 
     public double getTotal_price_per_month() {
@@ -28,52 +28,52 @@ public class ContractInfo {
         this.total_price_per_month = total_price_per_month;
     }
 
-    public int getContractId() {
-        return contractId;
+    public int getContract_id() {
+        return contract_id;
     }
 
-    public void setContractId(int contractId) {
-        this.contractId = contractId;
+    public void setContract_id(int contract_id) {
+        this.contract_id = contract_id;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getCustomer_id() {
+        return customer_id;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getCustomer_name() {
+        return customer_name;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
     }
 
-    public int getCarId() {
-        return carId;
+    public int getCar_id() {
+        return car_id;
     }
 
-    public void setCarId(int carId) {
-        this.carId = carId;
+    public void setCar_id(int car_id) {
+        this.car_id = car_id;
     }
 
-    public int getCarModelId() {
-        return carModelId;
+    public int getCar_model_id() {
+        return car_model_id;
     }
 
-    public void setCarModelId(int carModelId) {
-        this.carModelId = carModelId;
+    public void setCar_model_id(int car_model_id) {
+        this.car_model_id = car_model_id;
     }
 
-    public String getCarModel() {
-        return carModel;
+    public String getCar_model() {
+        return car_model;
     }
 
-    public void setCarModel(String carModel) {
-        this.carModel = carModel;
+    public void setCar_model(String car_model) {
+        this.car_model = car_model;
     }
 
     public String getVognnummer() {
@@ -84,68 +84,68 @@ public class ContractInfo {
         this.vognnummer = vognnummer;
     }
 
-    public int getLeasePeriodPlanId() {
-        return leasePeriodPlanId;
+    public int getCar_lease_period_plan_id() {
+        return car_lease_period_plan_id;
     }
 
-    public void setLeasePeriodPlanId(int leasePeriodPlanId) {
-        this.leasePeriodPlanId = leasePeriodPlanId;
+    public void setCar_lease_period_plan_id(int car_lease_period_plan_id) {
+        this.car_lease_period_plan_id = car_lease_period_plan_id;
     }
 
-    public String getLeaseType() {
-        return leaseType;
+    public String getLease_type() {
+        return lease_type;
     }
 
-    public void setLeaseType(String leaseType) {
-        this.leaseType = leaseType;
+    public void setLease_type(String lease_type) {
+        this.lease_type = lease_type;
     }
 
-    public double getLeasePrice() {
-        return leasePrice;
+    public double getLease_price() {
+        return lease_price;
     }
 
-    public void setLeasePrice(double leasePrice) {
-        this.leasePrice = leasePrice;
+    public void setLease_price(double lease_price) {
+        this.lease_price = lease_price;
     }
 
-    public int getMaxKmPlanId() {
-        return maxKmPlanId;
+    public int getCar_max_km_plan_id() {
+        return car_max_km_plan_id;
     }
 
-    public void setMaxKmPlanId(int maxKmPlanId) {
-        this.maxKmPlanId = maxKmPlanId;
+    public void setCar_max_km_plan_id(int car_max_km_plan_id) {
+        this.car_max_km_plan_id = car_max_km_plan_id;
     }
 
-    public int getMaxKm() {
-        return maxKm;
+    public int getMax_km() {
+        return max_km;
     }
 
-    public void setMaxKm(int maxKm) {
-        this.maxKm = maxKm;
+    public void setMax_km(int max_km) {
+        this.max_km = max_km;
     }
 
-    public double getKmPlanPrice() {
-        return kmPlanPrice;
+    public double getKm_plan_price() {
+        return km_plan_price;
     }
 
-    public void setKmPlanPrice(double kmPlanPrice) {
-        this.kmPlanPrice = kmPlanPrice;
+    public void setKm_plan_price(double km_plan_price) {
+        this.km_plan_price = km_plan_price;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getStart_date() {
+        return start_date;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public String getEnd_date() {
+        return end_date;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
     }
 
 
