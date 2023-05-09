@@ -1,6 +1,4 @@
-package com.example.bilabonathome2.model;
-
-import java.time.LocalDate;
+package com.example.bilabonnement.model;
 
 public class ContractInfo {
 

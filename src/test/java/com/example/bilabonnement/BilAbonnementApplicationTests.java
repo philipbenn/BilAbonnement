@@ -1,10 +1,10 @@
-package com.example.bilabonathome2;
+package com.example.bilabonnement;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Bilabonathome2ApplicationTests {
+class BilAbonnementApplicationTests {
 
     @Test
     void contextLoads() {

@@ -1,8 +1,8 @@
-package com.example.bilabonathome2.repository;
+package com.example.bilabonnement.repository;
 
-import com.example.bilabonathome2.model.Car_Lease_Period_Plan;
-import com.example.bilabonathome2.model.Car_Max_Km_Plan;
-import com.example.bilabonathome2.model.Car_Model;
+import com.example.bilabonnement.model.Car_Lease_Period_Plan;
+import com.example.bilabonnement.model.Car_Max_Km_Plan;
+import com.example.bilabonnement.model.Car_Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

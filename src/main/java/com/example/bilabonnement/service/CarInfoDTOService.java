@@ -1,10 +1,10 @@
-package com.example.bilabonathome2.service;
+package com.example.bilabonnement.service;
 
-import com.example.bilabonathome2.model.CarInfoDTO;
-import com.example.bilabonathome2.model.Car_Lease_Period_Plan;
-import com.example.bilabonathome2.model.Car_Max_Km_Plan;
-import com.example.bilabonathome2.model.Car_Model;
-import com.example.bilabonathome2.repository.CarInfoDTORepo;
+import com.example.bilabonnement.model.CarInfoDTO;
+import com.example.bilabonnement.model.Car_Lease_Period_Plan;
+import com.example.bilabonnement.model.Car_Max_Km_Plan;
+import com.example.bilabonnement.model.Car_Model;
+import com.example.bilabonnement.repository.CarInfoDTORepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

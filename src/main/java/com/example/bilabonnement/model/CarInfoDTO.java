@@ -1,4 +1,4 @@
-package com.example.bilabonathome2.model;
+package com.example.bilabonnement.model;
 
 import java.util.List;
 

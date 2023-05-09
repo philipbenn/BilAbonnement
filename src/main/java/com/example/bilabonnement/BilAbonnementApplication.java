@@ -1,13 +1,13 @@
-package com.example.bilabonathome2;
+package com.example.bilabonnement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Bilabonathome2Application {
+public class BilAbonnementApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Bilabonathome2Application.class, args);
+        SpringApplication.run(BilAbonnementApplication.class, args);
     }
 
 }

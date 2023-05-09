@@ -1,6 +1,6 @@
-package com.example.bilabonathome2.repository;
+package com.example.bilabonnement.repository;
 
-import com.example.bilabonathome2.model.ContractInfo;
+import com.example.bilabonnement.model.ContractInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
