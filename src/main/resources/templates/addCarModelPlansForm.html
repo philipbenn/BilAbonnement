@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        html, body{
+            height: 100%;        /*Højden på et element*/
+            margin: 0;           /*Det er hvor meget plads der skal være udenom et element*/
+            padding: 0;
+            width: 100%;           /*bredden på et element*/
+            overflow-x: hidden;    /*Gør at man ikke kan side-scrolle på x-aksen*/
+        }
+    </style>
+</head>
+<body>
+<div style="display: flex; justify-content: space-evenly; height: 80%; width: 100%; border: 2px solid black">
+
+    <div style="border: 2px solid black">
+        <h1>Tilføj kilometer pris</h1>
+
+    <form method="post" th:action="@{/addCarModelKmPlan}">
+        <input name="car_model_id" th:value="${car_model_id}">
+        <input placeholder="Max Kilometer" name="max_km" type="number">
+        <input placeholder="Price Per month" name="km_price_per_month" type="number">
+        <button type="submit">Submit</button>
+    </form>
+
+    <table>
+        <thead>
+            <th>Car model ID</th>
+            <th>Max Km </th>
+            <th>Price per month</th>
+        </thead>
+        <tr th:each="kmPlan : ${kmPlans}">
+            <td th:text="${kmPlan.car_model_id}"></td>
+            <td th:text="${kmPlan.max_km}"></td>
+            <td th:text="${kmPlan.km_price_per_month}"></td>
+        </tr>
+    </table>
+    </div>
+
+    <div style="border: 2px solid black">
+        <h1>Tilføj planer</h1>
+            <form method="post" th:action="@{/addCarLeasePlan}">
+                <input name="car_model_id" th:value="${car_model_id}">
+                <input name="type" type="text">
+                <input name="price_per_month" type="number">
+                <button type="submit">Submit</button>
+            </form>
+        <table>
+            <thead>
+                <th>Car Model Id</th>
+                <th>Lease Plan Type</th>
+                <th>Lease Plan Price</th>
+            </thead>
+            <tr th:each="lease_plan : ${lease_plans}">
+                <td th:text="${lease_plan.car_model_id}"></td>
+                <td th:text="${lease_plan.type}"></td>
+                <td th:text="${lease_plan.price_per_month}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

@@ -7,7 +7,7 @@ public class Car_Max_Km_Plan {
     private int car_max_km_plan_id;
     private int car_model_id;
     private int max_km;
-    private double price_per_month;
+    private double km_price_per_month;
 
     public int getCar_max_km_plan_id() {
         return car_max_km_plan_id;
@@ -33,11 +33,11 @@ public class Car_Max_Km_Plan {
         this.max_km = max_km;
     }
 
-    public double getPrice_per_month() {
-        return price_per_month;
+    public double getKm_price_per_month() {
+        return km_price_per_month;
     }
 
-    public void setPrice_per_month(double price_per_month) {
-        this.price_per_month = price_per_month;
+    public void setKm_price_per_month(double km_price_per_month) {
+        this.km_price_per_month = km_price_per_month;
     }
 }

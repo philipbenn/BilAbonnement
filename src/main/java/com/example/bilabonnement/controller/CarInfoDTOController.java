@@ -25,25 +25,39 @@ public class CarInfoDTOController {
 
     @GetMapping("/addCarModelForm")
     public String addCarModelForm(Model model){
-        int nextCarModelId = 0;
+        int nextCarModelId = carInfoDTOService.maxModelId();
         model.addAttribute("nextCarModelId", nextCarModelId);
-        return "/addcarmodelform";
+        return "/addCarModelForm";
     }
     @PostMapping("/addCarModel")
     public String addCarModel(@RequestParam int nextCarModelId, @RequestParam String car_model){
-        //Repo.addCar
-        return "/addCarModelKmPlansForm/" + nextCarModelId;
+        carInfoDTOService.addCarModel(car_model);
+        nextCarModelId+=1;
+        return "redirect:/addCarModelKmPlansForm/" + nextCarModelId;
     }
     @GetMapping("/addCarModelKmPlansForm/{car_model_id}")
     public String addCarModelKmPlans(@PathVariable int car_model_id, Model model){
-        model.addAttribute(car_model_id);
-        model.addAttribute("kmPlans", "kmPlans");
-        return "";
+        model.addAttribute("car_model_id", car_model_id);
+        model.addAttribute("kmPlans", carInfoDTOService.getCarMaxKmPlans(car_model_id));
+        return "/addCarModelPlansForm";
     }
     @PostMapping("/addCarModelKmPlan")
-    public String addCarModelKmPlan(@RequestParam int car_model_id, @RequestParam int max_km, @RequestParam int price){
-        //repo.addKmPlan
-        return "/addCarModelKmPlanForm/"+ car_model_id;
+    public String addCarModelKmPlan(@RequestParam int car_model_id, @RequestParam int max_km, @RequestParam int km_price_per_month){
+        carInfoDTOService.addNewMaxKmPlan(car_model_id, max_km, km_price_per_month);
+        return "redirect:/addCarModelKmPlansForm/"+ car_model_id;
+    }
+
+    @GetMapping("/addCarLeasePeriodPlanForm/{car_model_id}")
+    public String addCarLeasePeriodPlanForm(@PathVariable int car_model_id, Model model){
+        model.addAttribute("car_model_id", car_model_id);
+        model.addAttribute("lease_plans", carInfoDTOService.getCarLeasePeriodPlans(car_model_id));
+        return "/addCarLeasePeriodPlanForm";
+    }
+
+    @PostMapping("/addCarLeasePlan")
+    public String addCarLeasePlan(@RequestParam int car_model_id, @RequestParam String type, @RequestParam int price_per_month){
+        carInfoDTOService.addCarLeasePlan(car_model_id, type, price_per_month);
+        return "redirect:/addCarModelKmPlansForm/"+ car_model_id;
     }
 
 

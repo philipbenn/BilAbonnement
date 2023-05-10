@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Tilføj planer</h1>
+
+    <form method="post" th:action="@{/addCarLeasePlan}">
+        <input name="car_model_id" th:value="${car_model_id}">
+        <input name="type" type="text">
+        <input name="price_per_month" type="number">
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
