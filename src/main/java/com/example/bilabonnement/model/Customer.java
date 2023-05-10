@@ -4,9 +4,19 @@ package com.example.bilabonnement.model;
 public class Customer {
     private int customer_id;
     private String customer_name;
+    private int number_of_contracts;
     Customer(){
 
     }
+
+    public int getNumber_of_contracts() {
+        return number_of_contracts;
+    }
+
+    public void setNumber_of_contracts(int number_of_contracts) {
+        this.number_of_contracts = number_of_contracts;
+    }
+
     public int getCustomer_id() {
         return customer_id;
     }

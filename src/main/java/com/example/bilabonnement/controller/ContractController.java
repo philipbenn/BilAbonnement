@@ -12,19 +12,9 @@ public class ContractController {
     @Autowired
     ContractService contractService;
 
-
     @GetMapping("/contractoverview")
     public String showContract(Model model){
         model.addAttribute( "getContractInfo", contractService.getAllContractInfo());
         return "/contracts";
     }
-    @GetMapping("/addnewcontract")
-    public String addContract(Model model){
-        model.addAttribute("getCustomers", contractService.getAllCustomer());
-        return "/addcontract";
-    }
-
-
-
-
 }

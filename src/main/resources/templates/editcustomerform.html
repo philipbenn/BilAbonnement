@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/editcustomer}">
+    <input name="customer_id" type="hidden" th:value="${customer_id}">
+    <input type="text" placeholder="Name:" name="customer_name">
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

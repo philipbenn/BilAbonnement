@@ -1,5 +1,6 @@
 package com.example.bilabonnement.repository;
 
+import com.example.bilabonnement.model.Contract;
 import com.example.bilabonnement.model.ContractInfo;
 import com.example.bilabonnement.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +14,12 @@ import java.util.List;
 public class ContractRepo {
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    JdbcTemplate template;
 
 
     public List<ContractInfo> getAllContractInfo() {
         //Find sql query under stored procedeus
         String sql = "CALL get_all_contract_info";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractInfo.class));
-    }
-
-    public List<Customer> getAllCustomer(){
-        String sql = "SELECT * FROM customer";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Customer.class));
+        return template.query(sql, new BeanPropertyRowMapper<>(ContractInfo.class));
     }
 }

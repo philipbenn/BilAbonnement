@@ -1,5 +1,6 @@
 package com.example.bilabonnement.service;
 
+import com.example.bilabonnement.model.Contract;
 import com.example.bilabonnement.model.ContractInfo;
 import com.example.bilabonnement.model.Customer;
 import com.example.bilabonnement.repository.ContractRepo;
@@ -14,14 +15,7 @@ public class ContractService {
     @Autowired
     ContractRepo contractRepo;
 
-
     public List<ContractInfo> getAllContractInfo(){
         return contractRepo.getAllContractInfo();
     }
-
-    public List<Customer> getAllCustomer(){
-        return contractRepo.getAllCustomer();
-    }
-
-
 }
