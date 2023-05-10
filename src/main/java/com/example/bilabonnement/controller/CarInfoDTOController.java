@@ -39,6 +39,7 @@ public class CarInfoDTOController {
     public String addCarModelKmPlans(@PathVariable int car_model_id, Model model){
         model.addAttribute("car_model_id", car_model_id);
         model.addAttribute("kmPlans", carInfoDTOService.getCarMaxKmPlans(car_model_id));
+        model.addAttribute("lease_plans", carInfoDTOService.getCarLeasePeriodPlans(car_model_id));
         return "/addCarModelPlansForm";
     }
     @PostMapping("/addCarModelKmPlan")
@@ -50,7 +51,6 @@ public class CarInfoDTOController {
     @GetMapping("/addCarLeasePeriodPlanForm/{car_model_id}")
     public String addCarLeasePeriodPlanForm(@PathVariable int car_model_id, Model model){
         model.addAttribute("car_model_id", car_model_id);
-        model.addAttribute("lease_plans", carInfoDTOService.getCarLeasePeriodPlans(car_model_id));
         return "/addCarLeasePeriodPlanForm";
     }
 

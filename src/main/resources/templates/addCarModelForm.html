@@ -3,18 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
 </head>
 <body>
+<h1>Create new Car Model</h1>
 
-
-        <h1>Tilføj Ny Bil Model</h1>
-            <form method="post" action="addCarModel">
-                <input name="car_model" placeholder="Bil model navn: Fx: Tesla Model 3">
-                <input name="nextCarModelId" th:value="${nextCarModelId}" type="hidden">
-                <button type="submit">Tilføj Model</button>
-            </form>
-
+<form action="addCarModel" method="post">
+    <input name="car_model" type="text" placeholder="Car Model" required>
+    <input name="nextCarModelId" th:value="${nextCarModelId}" type="hidden">
+    <button type="submit">Add Car Model</button>
+</form>
 
 </body>
 </html>
