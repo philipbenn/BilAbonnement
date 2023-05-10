@@ -3,7 +3,7 @@ package com.example.bilabonnement.model;
 
 public class Customer {
     private int customer_id;
-    private int customer_name;
+    private String customer_name;
     Customer(){
 
     }
@@ -15,11 +15,11 @@ public class Customer {
         this.customer_id = customer_id;
     }
 
-    public int getCustomer_name() {
+    public String getCustomer_name() {
         return customer_name;
     }
 
-    public void setCustomer_name(int customer_name) {
+    public void setCustomer_name(String customer_name) {
         this.customer_name = customer_name;
     }
 }
