@@ -71,19 +71,19 @@
 </head>
 
 <body>
-    <header id="navbar">
-        <span>|</span>
-        <a href="dashboard.html">Dashboard</a>
-        <span>|</span>
-        <a href="carmanagement.html">Bil Håndtering</a>
-        <span>|</span>
-        <a>Værksted</a>
-        <span>|</span>
-        <a>Analyse</a>
-        <span>|</span>
-        <a href="/contractoverview">Kontrakter</a>
-        <span>|</span>
-    </header>
+<header id="navbar">
+    <a>|</a>
+    <a href="/dashboard">Dashboard</a>
+    <a>|</a>
+    <a href="/carmanagement">Bil Håndtering</a>
+    <a>|</a>
+    <a>Værksted</a>
+    <a>|</a>
+    <a>Analyse</a>
+    <a>|</a>
+    <a href="/contractoverview">Kontrakter</a>
+    <a>|</a>
+</header>
 
     <h1 style="text-align: center;">Kunde Oversigt</h1>
 
@@ -104,13 +104,7 @@
                 <td th:text="${customer.customer_id}"></td>
                 <td th:text="${customer.customer_name}"></td>
                 <td>
-                   <!-- <button onclick="window.location.href='/editcustomerform/'" style="margin-bottom: 5px;" class="btn btn-primary">Rediger</button>-->
-
-                    <form th:action="@{/editcustomerform/{id}(id=${customer_id})}" method="post">
-                        <button style="margin-bottom: 5px;" class="btn btn-primary" type="submit">Rediger</button>
-                    </form>
-
-
+                    <a class="btn btn-secondary" th:href="'editcustomerform/' + ${customer.customer_id}">Rediger</a>
 
                     <button class="btn btn-secondary" style="margin-bottom: 5px">Opret ny kontrakt</button>
                 </td>
