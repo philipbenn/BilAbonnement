@@ -47,6 +47,31 @@ public class CarInfoDTORepo {
         return jdbcTemplate.queryForObject(sql, Integer.class, carModelId);
     }
 
+    public void addCarModel(String car_model){
+        String sql = "INSERT INTO car_model (car_model) VALUES (?)";
+        jdbcTemplate.update(sql, car_model);
+    }
+
+    //TODO Metode til at lave en ny max_km_plan til en car_model hvor metoden modtager et car_model_id
+    public void addNewMaxKmPlan(int car_model_id, int max_km, int km_price_per_month){
+        String sql ="INSERT INTO car_max_km_plan (car_model_id, max_km, km_price_per_month) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, car_model_id, max_km, km_price_per_month);
+    }
+
+    //Metode til at finde det nyeste car_model_id
+    public int maxModelId() {
+        String sql = "SELECT MAX(car_model_id) FROM car_model;";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    public void addCarLeasePlan(int car_model_id, String type, int price_per_month){
+        String sql = "INSERT INTO car_lease_period_plan (car_model_id, type, price_per_month)" +
+                "VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, car_model_id, type, price_per_month);
+    }
+
+
+
 
 
 

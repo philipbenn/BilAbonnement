@@ -6,6 +6,7 @@ import com.example.bilabonnement.model.Car_Max_Km_Plan;
 import com.example.bilabonnement.model.Car_Model;
 import com.example.bilabonnement.repository.CarInfoDTORepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -44,5 +45,30 @@ CarInfoDTORepo carInfoDTORepo;
         }
 
         return carInfoList;
+    }
+
+    public void addCarModel(String car_model){
+        carInfoDTORepo.addCarModel(car_model);
+    }
+
+    //TODO Metode til at lave en ny max_km_plan til en car_model hvor metoden modtager et car_model_id
+    public void addNewMaxKmPlan(int car_model_id, int max_km, int km_price_per_month){
+        carInfoDTORepo.addNewMaxKmPlan(car_model_id, max_km, km_price_per_month);
+    }
+
+    //TODO Metode til at finde det nyeste car_model_id
+    public int maxModelId() {
+       return carInfoDTORepo.maxModelId();
+    }
+
+    public List<Car_Max_Km_Plan> getCarMaxKmPlans(int carModelId) {
+        return carInfoDTORepo.getCarMaxKmPlans(carModelId);
+    }
+    public void addCarLeasePlan(int car_model_id, String type, int price_per_month){
+        carInfoDTORepo.addCarLeasePlan(car_model_id, type, price_per_month);
+    }
+
+    public List<Car_Lease_Period_Plan> getCarLeasePeriodPlans(int carModelId) {
+        return carInfoDTORepo.getCarLeasePeriodPlans(carModelId);
     }
 }

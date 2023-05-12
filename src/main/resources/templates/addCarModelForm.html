@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Create new Car Model</h1>
+
+<form action="addCarModel" method="post">
+    <input name="car_model" type="text" placeholder="Car Model" required>
+    <input name="nextCarModelId" th:value="${nextCarModelId}" type="hidden">
+    <button type="submit">Add Car Model</button>
+</form>
+
+</body>
+</html>
