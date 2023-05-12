@@ -71,4 +71,7 @@ CarInfoDTORepo carInfoDTORepo;
     public List<Car_Lease_Period_Plan> getCarLeasePeriodPlans(int carModelId) {
         return carInfoDTORepo.getCarLeasePeriodPlans(carModelId);
     }
+    public void registerCar(int car_model_id, String vognnummer){
+        carInfoDTORepo.registerCar(car_model_id, vognnummer);
+    }
 }

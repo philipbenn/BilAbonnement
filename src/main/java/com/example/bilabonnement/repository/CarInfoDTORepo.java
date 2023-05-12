@@ -69,6 +69,10 @@ public class CarInfoDTORepo {
                 "VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, car_model_id, type, price_per_month);
     }
+    public void registerCar(int car_model_id, String vognnummer){
+        String sql = "INSERT INTO car (car_model_id, vognnummer) VALUES (?, ?)";
+        jdbcTemplate.update(sql, car_model_id, vognnummer);
+    }
 
 
 
