@@ -2,7 +2,16 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-size: 14px;
     font-family: 'Roboto Light', sans-serif;
+}
+
+body,
+html {
+    margin: 0;
+    border: 0;
+    overflow: hidden;
 }
 
 .lebutton{
@@ -43,7 +52,7 @@ a {
     position: relative;
     width: 400px;
     height: 450px;
-    background: transparent;
+    background: #222;
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
     display: flex;
@@ -103,4 +112,21 @@ a {
     color: #fff;
     font-size: 1.2em;
     top: 20px;
+}
+
+.options-td button {
+    margin: 5px;
+}
+
+.table-bordered,
+.table-bordered th,
+.table-bordered td {
+    box-sizing: border-box;
+    border: 8px solid white;
+}
+
+.table-dark tr {
+    border-bottom: 3px solid white;
+    /* Adjust the '4px' value to your desired border thickness */
+    border-style: double;
 }

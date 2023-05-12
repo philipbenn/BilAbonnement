@@ -7,13 +7,13 @@
   <link rel="icon" href="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/v1578666243/favicon_1_npgufd.ico">
   <title>Signup</title>
   <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/navbar.css}">
 </head>
 <body>
 
-<header id="navbar">
-  <h1 style="text-align: center;">Bilabonnoment.dk</h1>
-</header>
-<section class="login-section">
+<header th:replace="navbarfragment :: navbar"></header>
+
+<section style="background-color: #222;" class="login-section">
 <div style="z-index: 1; backdrop-filter: blur(10px)" class="form-box">
   <form method="post" th:action="@{/signupcustomer}">
     <h2 class="login-header">Signup</h2>

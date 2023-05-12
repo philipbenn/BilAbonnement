@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" th:href="@{/navbar.css}" />
+  <title>Navbar Fragment</title>
+</head>
+<body>
+<header id="navbar" th:fragment="navbar">
+  <a>|</a>
+  <a href="/dashboard">Dashboard</a>
+  <a>|</a>
+  <a href="/carmanagement">Bil Håndtering</a>
+  <a>|</a>
+  <a>Værksted</a>
+  <a>|</a>
+  <a>Analyse</a>
+  <a>|</a>
+  <a href="/contractoverview">Kontrakter</a>
+  <a>|</a>
+  <a href="/logout">Log af</a>
+  <a>|</a>
+</header>
+</body>
+</html>
