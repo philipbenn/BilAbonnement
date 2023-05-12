@@ -1,6 +1,5 @@
 package com.example.bilabonnement.controller;
 
-import com.example.bilabonnement.repository.ContractRepo;
 import com.example.bilabonnement.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,14 +12,9 @@ public class ContractController {
     @Autowired
     ContractService contractService;
 
-
-    @GetMapping("/contract")
+    @GetMapping("/contractoverview")
     public String showContract(Model model){
         model.addAttribute( "getContractInfo", contractService.getAllContractInfo());
         return "/contracts";
     }
-
-
-
-
 }

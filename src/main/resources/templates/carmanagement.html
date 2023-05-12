@@ -124,7 +124,7 @@
                     <tbody>
                     <tr th:each="maxKmPlan : ${carInfo.car_max_km_plans}">
                         <td th:text="${maxKmPlan.max_km + ' km'}"></td>
-                        <td th:text="${maxKmPlan.price_per_month + ' $/month'}"></td>
+                        <td th:text="${maxKmPlan.km_price_per_month + ' $/month'}"></td>
                     </tr>
                     </tbody>
                 </table>
