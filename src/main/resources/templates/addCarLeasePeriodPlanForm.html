@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <link rel="icon" href="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/v1578666243/favicon_1_npgufd.ico" class="next-head">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/navbar.css}" />
 </head>
 <body>
+    <header th:replace="navbarfragment :: navbar"></header>
     <h1>Tilføj planer</h1>
 
     <form method="post" th:action="@{/addCarLeasePlan}">

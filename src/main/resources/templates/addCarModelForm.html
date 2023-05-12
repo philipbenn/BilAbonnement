@@ -2,17 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/v1578666243/favicon_1_npgufd.ico" class="next-head">
+    <link rel="icon"
+          href="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/v1578666243/favicon_1_npgufd.ico"
+          class="next-head">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/navbar.css}"/>
 </head>
-<body>
-<h1>Create new Car Model</h1>
+<body style="background: #222; display: block; align-items: center; justify-content: center">
 
-<form action="addCarModel" method="post">
-    <input name="car_model" type="text" placeholder="Car Model" required>
-    <input name="nextCarModelId" th:value="${nextCarModelId}" type="hidden">
-    <button type="submit">Add Car Model</button>
-</form>
+<header th:replace="navbarfragment :: navbar"></header>
+
+<section class="login-section">
+<div class="form-box" style="margin: 50px auto;">
+    <form action="addCarModel" method="post">
+    <h2 class="login-header" style="color: white">Create new Car Model</h2>
+        <div class="inputbox">
+            <ion-icon name="car-sport-outline"></ion-icon>
+            <label>Car model :</label>
+        <input style="margin-left: 50px" name="car_model" type="text" required>
+        <input name="nextCarModelId" th:value="${nextCarModelId}" type="hidden">
+        </div>
+        <button class="login-button" type="submit">Add Car Model</button>
+    </form>
+</div>
+</section>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 
 </body>
 </html>
