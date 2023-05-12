@@ -1,0 +1,26 @@
+#navbar {
+    height: 9vh;
+    width: 100%;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+}
+
+#navbar a {
+
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+#navbar a:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+
+
+    transition: 0.1s;
+}

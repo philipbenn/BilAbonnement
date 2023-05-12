@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/navbar.css}">
 </head>
 <body style="margin: 0; padding: 0;">
+
+<header id="navbar">
+    <h1 style="text-align: center;">Bilabonnoment.dk</h1>
+</header>
 <section class="login-section">
     <div class="form-box">
         <form method="post" th:action="@{/login}">
