@@ -88,6 +88,22 @@
     </div>
 </div>
 
+
+<table id="typecount">
+    <thead>
+    <th>Type</th>
+    <th>Count</th>
+    </thead>
+    <tbody>
+    <tr th:each="contractTypeCount : ${contractTypeCount}">
+        <td th:text="${contractTypeCount.type}"></td>
+        <td th:text="${contractTypeCount.count}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -103,38 +119,29 @@
 
 <script type="text/javascript">
     //pie
-    var ctxP = document.getElementById("pieChart").getContext('2d');
-    var myPieChart = new Chart(ctxP, {
-        type: 'pie',
-        data: {
-            labels: ["Ledige", "Udlejet", "Værksted"],
-            datasets: [{
-                data: [300, 50, 100],
-                backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
-            }]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                position: 'bottom',
-                labels: {
-                    padding: 20,
-                    boxWidth: 10
-                }
-            }
-        }
-    });
+    var table = document.getElementById('typecount');
+    var labels = [];
+    var data = [];
 
-    //bar
+    // Iterate through the table rows (excluding the header row)
+    for (var i = 1; i < table.rows.length; i++) {
+        var row = table.rows[i];
+        var type = row.cells[0].textContent; // Get the value of the "Type" column
+        var count = parseInt(row.cells[1].textContent); // Get the value of the "Count" column and convert it to an integer
+
+        labels.push(type);
+        data.push(count);
+    }
+
+    // Update the labels and data in the Bar Chart configuration
     var ctxB = document.getElementById("barChart").getContext('2d');
     var myBarChart = new Chart(ctxB, {
         type: 'bar',
         data: {
-            labels: ["Limited", "Unlimited"],
+            labels: labels, // Populate the labels array dynamically
             datasets: [{
                 label: '',
-                data: [12, 19],
+                data: data, // Populate the data array dynamically
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -159,6 +166,33 @@
             }
         }
     });
+
+    // Now, let's put some generic data in the pie chart.
+    var ctxP = document.getElementById("pieChart").getContext('2d');
+    var myPieChart = new Chart(ctxP, {
+        type: 'pie',
+        data: {
+            labels: ["Label1", "Label2", "Label3"],
+            datasets: [{
+                data: [10, 20, 30],
+                backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+            }]
+        },
+        options: {
+            responsive: true,
+            legend: {
+                position: 'bottom',
+                labels: {
+                    padding: 20,
+                    boxWidth: 10
+                }
+            }
+        }
+    });
 </script>
+
+
+
 </body>
 </html>

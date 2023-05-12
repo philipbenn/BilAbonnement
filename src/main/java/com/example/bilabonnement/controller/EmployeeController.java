@@ -32,7 +32,7 @@ public class EmployeeController {
         Employee employee = employeeService.logIn(employee_id, password);
         if (employee != null) {
             session.setAttribute("employee", employee);
-            return "dashboard";
+            return "redirect:/dashboard";
         } else {
             model.addAttribute("error", "Invalid id or password");
             return "login";
