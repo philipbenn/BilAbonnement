@@ -42,12 +42,12 @@ public class EmployeeController {
     @PostMapping("/signupcustomer")
     public String customerSignUp(@ModelAttribute Employee employee){
         employeeService.addEmployee(employee);
-        return "carmenu";
+        return "dashboard";
     }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "carmenu";
+        return "startpage";
     }
 }
