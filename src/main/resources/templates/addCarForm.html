@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/navbar.css}" />
 </head>
 <body>
+    <header th:replace="navbarfragment :: navbar"></header>
 
     <form method="post" action="/addNewCar">
         <input name="car_model_id" th:value="${car_model_id}">
