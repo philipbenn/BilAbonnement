@@ -6,7 +6,7 @@ public class Car {
 
     private int car_id;
     private int car_model_id;
-    private String vognummer;
+    private String vognnummer;
 
     public int getCar_id() {
         return car_id;
@@ -24,11 +24,11 @@ public class Car {
         this.car_model_id = car_model_id;
     }
 
-    public String getVognummer() {
-        return vognummer;
+    public String getVognnummer() {
+        return vognnummer;
     }
 
-    public void setVognummer(String vognummer) {
-        this.vognummer = vognummer;
+    public void setVognnummer(String vognnummer) {
+        this.vognnummer = vognnummer;
     }
 }

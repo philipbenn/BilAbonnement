@@ -8,7 +8,16 @@ public class Car_Lease_Period_Plan {
     private int car_lease_period_plan_id;
     private int car_model_id;
 
+    private int nr_of_months;
     private String type;
+
+    public int getNr_of_months() {
+        return nr_of_months;
+    }
+
+    public void setNr_of_months(int nr_of_months) {
+        this.nr_of_months = nr_of_months;
+    }
 
     private double price_per_month;
 

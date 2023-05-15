@@ -14,22 +14,4 @@ public class CarRepo {
     JdbcTemplate jdbcTemplate;
 
 
-    public List<CarInfoDTO> getAllCarInfo() {
-     String sql = "SELECT \n" +
-             "    cm.car_model_id,\n" +
-             "    cm.car_model,\n" +
-             "    COUNT(ca.car_id) AS quantity\n" +
-             "FROM\n" +
-             "    car_model cm\n" +
-             "JOIN\n" +
-             "    car ca ON cm.car_model_id = ca.car_model_id\n" +
-             "GROUP BY\n" +
-             "    cm.car_model_id, cm.car_model\n" +
-             "ORDER BY\n" +
-             "    cm.car_model_id;\n";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CarInfoDTO.class));
-    }
-
-
-
 }

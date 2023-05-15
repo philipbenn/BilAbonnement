@@ -8,7 +8,6 @@ public class Employee {
 
     public Employee() {
     }
-
     public int getEmployee_id() {
         return employee_id;
     }

@@ -61,7 +61,4 @@ public class CarInfoDTOController {
         carInfoDTOService.registerCar(car_model_id, vognnummer);
         return "redirect:/carmanagement";
     }
-
-
-
 }
