@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Contract Form</title>
+</head>
+<body>
+<h1>Add a Contract</h1>
+<form action="/addContractForm2" method="GET">
+
+  <input name="customer_id" th:value="${customer_id}"><br>
+
+  <select id="car_model_id" name="car_model_id">
+    <option th:each="car_model : ${car_model_list}"
+            th:value="${car_model.car_model_id}"
+            th:text="${car_model.car_model}"></option>
+  </select>
+  <br>
+
+  <input type="submit" value="Next">
+</form>
+
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 package com.example.bilabonnement.repository;
 
-import com.example.bilabonnement.model.Employee;
+import com.example.bilabonnement.model.employee.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

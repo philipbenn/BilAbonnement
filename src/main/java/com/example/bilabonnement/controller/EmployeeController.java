@@ -1,6 +1,6 @@
 package com.example.bilabonnement.controller;
 
-import com.example.bilabonnement.model.Employee;
+import com.example.bilabonnement.model.employee.Employee;
 import com.example.bilabonnement.service.EmployeeService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +19,12 @@ public class EmployeeController {
 
     @GetMapping("/loginForm")
     public String showLoginForm() {
-        return "login";
+        return "employee/loginForm";
     }
 
     @GetMapping("/signUpForm")
     public String showSignUpForm() {
-        return "signup";
+        return "signUpForm";
     }
 
     @PostMapping("/login")
@@ -42,12 +42,12 @@ public class EmployeeController {
     @PostMapping("/signupcustomer")
     public String customerSignUp(@ModelAttribute Employee employee){
         employeeService.addEmployee(employee);
-        return "dashboard";
+        return "dashboard/dashboard";
     }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "startpage";
+        return "startpage/startpage";
     }
 }
