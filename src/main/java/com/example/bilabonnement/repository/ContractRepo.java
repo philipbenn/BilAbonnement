@@ -16,7 +16,6 @@ public class ContractRepo {
     @Autowired
     JdbcTemplate template;
 
-
     public List<ContractInfo> getAllContractInfo() {
         //Find sql query under stored procedeus
         String sql = "CALL get_all_contract_info";

@@ -1,9 +1,11 @@
 package com.example.bilabonnement.model;
 
-public class Car_Return_Damage {
+public class Car_Return_DamageDTO {
 
-    public Car_Return_Damage(){}
+    public Car_Return_DamageDTO(){}
 
+    private String vognnummer;
+    private String car_model;
     private int car_return_damage_id;
 
     private int car_return_report_id;
@@ -13,6 +15,22 @@ public class Car_Return_Damage {
     private boolean isFixed;
 
     private double price;
+
+    public String getVognnummer() {
+        return vognnummer;
+    }
+
+    public void setVognnummer(String vognnummer) {
+        this.vognnummer = vognnummer;
+    }
+
+    public String getCar_model() {
+        return car_model;
+    }
+
+    public void setCar_model(String car_model) {
+        this.car_model = car_model;
+    }
 
     public int getCar_return_damage_id() {
         return car_return_damage_id;

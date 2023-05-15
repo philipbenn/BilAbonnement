@@ -3,6 +3,8 @@ body {
     color: #fff;
     font-size: 14px;
     font-weight: 200;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
