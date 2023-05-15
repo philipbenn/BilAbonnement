@@ -11,18 +11,14 @@ import org.springframework.web.bind.annotation.*;
 public class CarInfoDTOController {
     @Autowired
     CarRepo carRepo;
-
     @Autowired
     CarInfoDTOService carInfoDTOService;
-
-
 
     @GetMapping("/carmanagement")
     String carmanagement(Model model){
         model.addAttribute("carInfoList", carInfoDTOService.getCarInfo());
         return "carmanagement";
     }
-
     @GetMapping("/addCarModelForm")
     public String addCarModelForm(Model model){
         int nextCarModelId = carInfoDTOService.maxModelId();
@@ -60,19 +56,11 @@ public class CarInfoDTOController {
         return "redirect:/addCarModelKmPlansForm/"+ car_model_id;
     }
 
-    @GetMapping("/addCarForm/{car_model_id}")
-    public String registerCar(@PathVariable int car_model_id, Model model){
-        model.addAttribute("car_model_id", car_model_id);
-        return "/addCarForm";
-    }
     @PostMapping("/addNewCar")
     public String addNewCar(@RequestParam int car_model_id, @RequestParam String vognnummer){
         carInfoDTOService.registerCar(car_model_id, vognnummer);
         return "redirect:/carmanagement";
     }
-
-
-
 
 
 

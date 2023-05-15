@@ -15,10 +15,13 @@ ContractTypeCountDTORepo contractTypeCountDTORepo;
 
     @GetMapping("/dashboard")
     public String getDashboard(Model model) {
-
-
+model.addAttribute("expiringContracts", contractTypeCountDTORepo.expiringContracts());
+        int nrOfAvailableCars = contractTypeCountDTORepo.countAllCars() - contractTypeCountDTORepo.nrOfCarsInRepair() - contractTypeCountDTORepo.activeContracts();
+model.addAttribute("nrOfAvailableCars", nrOfAvailableCars);
+model.addAttribute("activeContracts" , contractTypeCountDTORepo.activeContracts());
+model.addAttribute("monthlyIncome", contractTypeCountDTORepo.monthlyIncome());
 model.addAttribute("contractTypeCount", contractTypeCountDTORepo.contractTypeCountDTOS());
-
+model.addAttribute("nrOfCarsOfInRepair" , contractTypeCountDTORepo.nrOfCarsInRepair());
         return "dashboard";
     }
 
