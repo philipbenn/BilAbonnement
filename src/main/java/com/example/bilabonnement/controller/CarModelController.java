@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CarModelController {
-
     @Autowired
     CarModelService carModelService;
-
 
     @GetMapping("/carModelsOverview")
     String carmanagement(Model model){
