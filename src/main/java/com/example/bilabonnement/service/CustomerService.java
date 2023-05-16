@@ -1,7 +1,6 @@
 package com.example.bilabonnement.service;
 
-import com.example.bilabonnement.model.Contract;
-import com.example.bilabonnement.model.Customer;
+import com.example.bilabonnement.model.customer.Customer;
 import com.example.bilabonnement.repository.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

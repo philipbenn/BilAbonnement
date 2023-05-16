@@ -13,33 +13,33 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @GetMapping("/createcustomerform")
+    @GetMapping("/addCustomerForm")
     public String showCustomerForm() {
-        return "newcustomer";
+        return "customer/addCustomerForm";
     }
 
-    @PostMapping("/newcustomer")
+    @PostMapping("/newCustomer")
     public String createCustomer(@RequestParam String customer_name) {
         customerService.createCustomer(customer_name);
-        return "redirect:/customeroverview";
+        return "redirect:/customersOverview";
     }
 
-    @GetMapping("/customeroverview")
+    @GetMapping("/customersOverview")
     public String addContract(Model model){
         model.addAttribute("getCustomers", customerService.getAllCustomer());
-        return "customeroverview";
+        return "customer/customersOverview";
     }
 
-    @GetMapping("/editcustomerform/{customer_id}")
+    @GetMapping("/editCustomerForm/{customer_id}")
     public String editCustomerForm(@PathVariable int customer_id, Model model) {
         model.addAttribute("customer_id",customer_id);
-        return "editcustomerform";
+        return "customer/editCustomerForm";
     }
 
-    @PostMapping("/editcustomer")
+    @PostMapping("/editCustomer")
     public String editCustomer(@RequestParam int customer_id, @RequestParam String customer_name) {
         customerService.editCustomer(customer_name, customer_id);
-        return "redirect:/customeroverview";
+        return "redirect:/customersOverview";
     }
 
 

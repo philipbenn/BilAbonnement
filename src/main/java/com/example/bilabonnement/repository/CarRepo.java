@@ -1,6 +1,7 @@
 package com.example.bilabonnement.repository;
 
-import com.example.bilabonnement.model.CarInfoDTO;
+import com.example.bilabonnement.model.car.Car;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,22 +15,20 @@ public class CarRepo {
     JdbcTemplate jdbcTemplate;
 
 
-    public List<CarInfoDTO> getAllCarInfo() {
-     String sql = "SELECT \n" +
-             "    cm.car_model_id,\n" +
-             "    cm.car_model,\n" +
-             "    COUNT(ca.car_id) AS quantity\n" +
-             "FROM\n" +
-             "    car_model cm\n" +
-             "JOIN\n" +
-             "    car ca ON cm.car_model_id = ca.car_model_id\n" +
-             "GROUP BY\n" +
-             "    cm.car_model_id, cm.car_model\n" +
-             "ORDER BY\n" +
-             "    cm.car_model_id;\n";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CarInfoDTO.class));
+    public void registerCar(int car_model_id, String vognnummer){
+        String sql = "INSERT INTO car (car_model_id, vognnummer) VALUES (?, ?)";
+        jdbcTemplate.update(sql, car_model_id, vognnummer);
     }
-
-
+    public List<Car> getCarsByCarModelId(int car_model_id) {
+        String sql = "SELECT car.car_id, car.car_model_id, car.vognnummer\n" +
+                "FROM car\n" +
+                "WHERE car.car_model_id = ? " +
+                "  AND car.car_id NOT IN (\n" +
+                "    SELECT contract.car_id\n" +
+                "    FROM contract\n" +
+                "    WHERE contract.end_date >= CURDATE()\n" +
+                "  )\n";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Car.class), car_model_id);
+    }
 
 }
