@@ -1,8 +1,8 @@
 package com.example.bilabonnement.controller;
 
-import com.example.bilabonnement.repository.CarModelRepo;
-import com.example.bilabonnement.repository.CarRepo;
-import com.example.bilabonnement.repository.ContractRepo;
+import com.example.bilabonnement.service.CarModelService;
+import com.example.bilabonnement.service.CarService;
+import com.example.bilabonnement.service.ContractService;
 import com.example.bilabonnement.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,14 +17,10 @@ public class ContractController {
 
     @Autowired
     ContractService contractService;
-
     @Autowired
-    CarModelRepo carModelRepo;
-
+    CarModelService carModelService;
     @Autowired
-    CarRepo carRepo;
-    @Autowired
-    ContractRepo contractRepo;
+    CarService carService;
 
 
     @GetMapping("/contractsOverview")
@@ -36,7 +32,7 @@ public class ContractController {
     @GetMapping ("/addContractForm1/{customer_id}")
     public String addContractForm(Model model, @PathVariable int customer_id){
        model.addAttribute("customer_id", customer_id);
-       model.addAttribute("car_model_list", contractRepo.getAllCarModels());
+       model.addAttribute("car_model_list", contractService.getAllCarModels());
         return "contract/addContractForm1";
     }
 
@@ -45,7 +41,7 @@ public class ContractController {
                               @RequestParam int car_model_lease_period_plan_id, @RequestParam int car_model_max_km_plan_id,
                               @RequestParam String start_date, @RequestParam int employee_id){
 
-        contractRepo.addContract(car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan_id,
+        contractService.addContract(car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan_id,
                                  start_date, employee_id);
 
         return "redirect:/contractsOverview";
@@ -56,9 +52,9 @@ public class ContractController {
     public String test(Model model, @RequestParam int customer_id, @RequestParam int car_model_id){
         model.addAttribute("car_model_id", car_model_id);
         model.addAttribute("customer_id" , customer_id);
-        model.addAttribute("km_plans", carModelRepo.getCarModelMaxKmPlans(car_model_id));
-        model.addAttribute("lease_plans", carModelRepo.getCarModelLeasePeriodPlans(car_model_id));
-        model.addAttribute("cars", carRepo.getCarsByCarModelId(car_model_id));
+        model.addAttribute("km_plans", carModelService.getCarModelMaxKmPlans(car_model_id));
+        model.addAttribute("lease_plans", carModelService.getCarModelLeasePeriodPlans(car_model_id));
+        model.addAttribute("cars", carService.getCarsByCarModelId(car_model_id));
 
         //TODO calculate end date by adding lease period to start date
         //TODO filter out cars that are already in a contract

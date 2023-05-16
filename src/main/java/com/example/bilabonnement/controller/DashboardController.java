@@ -1,6 +1,6 @@
 package com.example.bilabonnement.controller;
 
-import com.example.bilabonnement.repository.ContractRepo;
+import com.example.bilabonnement.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class DashboardController {
     @Autowired
-    ContractRepo contractRepo;
+    ContractService contractService;
     @GetMapping("/dashboard")
     public String getDashboard(Model model) {
-        model.addAttribute("expiringContracts", contractRepo.expiringContracts());
-        int nrOfAvailableCars = contractRepo.countAllCars() - contractRepo.nrOfCarsInRepair() - contractRepo.activeContracts();
+        model.addAttribute("expiringContracts", contractService.expiringContracts());
+        int nrOfAvailableCars = contractService.countAllCars() - contractService.nrOfCarsInRepair() - contractService.activeContracts();
         model.addAttribute("nrOfAvailableCars", nrOfAvailableCars);
-        model.addAttribute("activeContracts", contractRepo.activeContracts());
-        model.addAttribute("monthlyIncome", contractRepo.monthlyIncome());
-        model.addAttribute("contractTypeCount", contractRepo.contractTypeCountDTOS());
-        model.addAttribute("nrOfCarsOfInRepair", contractRepo.nrOfCarsInRepair());
+        model.addAttribute("activeContracts", contractService.activeContracts());
+        model.addAttribute("monthlyIncome", contractService.monthlyIncome());
+        model.addAttribute("contractTypeCount", contractService.contractTypeCountDTOS());
+        model.addAttribute("nrOfCarsOfInRepair", contractService.nrOfCarsInRepair());
         return "/dashboard/dashboard";
     }
 }
