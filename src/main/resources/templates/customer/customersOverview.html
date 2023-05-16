@@ -9,20 +9,16 @@
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/navbar.css}">
     <title>Kontrakt overblik</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
-<body style="background-color: #222">
+<body>
 
 <header th:replace="navbarfragment :: navbar"></header>
 
-    <h1 style="text-align: center; color: white">Kunde Oversigt</h1>
+    <h1 style="text-align: center; color: white; margin-top: 10px; font-size: x-large">Kunde Oversigt</h1>
 
-    <main style="width: 100vw; height: 75vh; overflow: auto;">
-
-
-        <table class="table table-dark table-bordered">
+    <main>
+        <table class="overview-table">
             <thead>
             <tr>
                 <th>Kunde ID</th>
@@ -38,19 +34,14 @@
                 <td>
 
 
-                    <a class="btn btn-primary" th:href="${'/addContractForm1/' + customer.customer_id}">Opret ny kontrakt</a>
-                    <a class="btn btn-secondary" th:href="'editCustomerForm/' + ${customer.customer_id}">Rediger</a>
-
+                    <a th:href="${'/addContractForm1/' + customer.customer_id}"><button style="background-color: #0d6efd;">Opret ny kontrakt</button></a>
+                    <a th:href="'editCustomerForm/' + ${customer.customer_id}"><button style="background-color: #6c757d;">Rediger</button></a>
                 </td>
             </tr>
-
             </tbody>
         </table>
     </main>
-    <a class="btn btn-primary" href="addCustomerForm">Opret Ny kunde</a>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-            crossorigin="anonymous"></script>
+<a style="background-color: #0d6efd; padding: 6px; border: none; border-radius: 5px;
+ color: white; cursor: pointer;" href="addCustomerForm">Opret Ny kunde</a>
 </body>
-
 </html>
