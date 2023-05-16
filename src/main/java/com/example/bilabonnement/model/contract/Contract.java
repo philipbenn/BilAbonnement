@@ -6,11 +6,20 @@ public class Contract {
 
     private int contract_id;
     private int customer_id;
+    private int employee_id;
     private int car_id;
     private int car_model_lease_period_plan_id;
     private int car_model_max_km_plan;
     private String start_date;
     private String end_date;
+
+    public int getEmployee_id() {
+        return employee_id;
+    }
+
+    public void setEmployee_id(int employee_id) {
+        this.employee_id = employee_id;
+    }
 
     public int getContract_id() {
         return contract_id;

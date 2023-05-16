@@ -3,6 +3,7 @@ package com.example.bilabonnement.repository;
 import com.example.bilabonnement.model.carModel.Car_Model_Lease_Period_Plan;
 import com.example.bilabonnement.model.carModel.Car_Model_Max_Km_Plan;
 import com.example.bilabonnement.model.carModel.Car_Model;
+import com.example.bilabonnement.model.contract.Contract;
 import com.example.bilabonnement.model.contract.ContractDTO;
 import com.example.bilabonnement.model.contract.ContractTypeCount;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,6 +113,20 @@ public class ContractRepo {
                 "ON c.car_model_lease_period_plan_id = clpp.car_model_lease_period_plan_id\n" +
                 "GROUP BY clpp.type;\n";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractTypeCount.class));
+    }
+
+    public List<ContractDTO> getCustomerHistory(int customer_id){
+        String sql = "SELECT  car.car_id, car.car_model_id, car.vognnummer, car_model.car_model, car_model_lease_period_plan.type," +
+                "contract.contract_id, contract.start_date, contract.end_date, contract.employee_id, contract.customer_id\n" +
+                "FROM contract\n" +
+                "JOIN car \n" +
+                "ON contract.car_id = car.car_id\n" +
+                "JOIN car_model\n" +
+                "ON car.car_model_id = car_model.car_model_id\n" +
+                "JOIN car_model_lease_period_plan \n" +
+                "ON car_model_lease_period_plan.car_model_lease_period_plan_id = contract.car_model_lease_period_plan_id\n" +
+                "WHERE customer_id = ? ORDER BY contract_id;";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), customer_id);
     }
 
 }

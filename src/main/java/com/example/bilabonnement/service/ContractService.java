@@ -1,6 +1,7 @@
 package com.example.bilabonnement.service;
 
 import com.example.bilabonnement.model.carModel.Car_Model;
+import com.example.bilabonnement.model.contract.Contract;
 import com.example.bilabonnement.model.contract.ContractDTO;
 import com.example.bilabonnement.model.contract.ContractTypeCount;
 import com.example.bilabonnement.repository.ContractRepo;
@@ -53,5 +54,9 @@ public class ContractService {
 
     public List<ContractDTO> getAllContractInfo(){
         return contractRepo.getAllContractInfo();
+    }
+
+    public List<ContractDTO> getCustomerHistory(int customer_id){
+        return contractRepo.getCustomerHistory(customer_id);
     }
 }

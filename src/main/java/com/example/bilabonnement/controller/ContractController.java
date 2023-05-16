@@ -62,4 +62,10 @@ public class ContractController {
         return "contract/addContractForm2";
     }
 
+    @GetMapping("/watchCustomerHistory/{customer_id}")
+    public String watchCustomerHistory(@PathVariable int customer_id, Model model){
+        model.addAttribute("getCustomerHistory", contractService.getCustomerHistory(customer_id));
+        return "customer/watchSpecificCustomerHistory";
+    }
+
 }

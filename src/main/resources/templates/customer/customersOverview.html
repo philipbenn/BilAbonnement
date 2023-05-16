@@ -39,7 +39,8 @@
 
 
                     <a class="btn btn-primary" th:href="${'/addContractForm1/' + customer.customer_id}">Opret ny kontrakt</a>
-                    <a class="btn btn-secondary" th:href="'editCustomerForm/' + ${customer.customer_id}">Rediger</a>
+                    <a class="btn btn-secondary" th:href="${'editCustomerForm/' + customer.customer_id}">Rediger</a>
+                    <a class="btn btn-info" th:href="${'/watchCustomerHistory/' + customer.customer_id}">Vis info</a>
 
                 </td>
             </tr>

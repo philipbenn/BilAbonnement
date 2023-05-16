@@ -5,6 +5,7 @@ public class ContractDTO {
     public ContractDTO(){}
     private int contract_id;
     private int customer_id;
+    private int employee_id;
     private String customer_name;
     private int car_id;
     private int car_model_id;
@@ -19,6 +20,14 @@ public class ContractDTO {
     private String start_date;
     private String end_date;
     private double total_price_per_month;
+
+    public int getEmployee_id() {
+        return employee_id;
+    }
+
+    public void setEmployee_id(int employee_id) {
+        this.employee_id = employee_id;
+    }
 
     public int getContract_id() {
         return contract_id;
