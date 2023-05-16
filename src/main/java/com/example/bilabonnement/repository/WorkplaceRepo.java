@@ -1,6 +1,6 @@
 package com.example.bilabonnement.repository;
 
-import com.example.bilabonnement.model.Car_Return_Damage;
+
 import com.example.bilabonnement.model.Car_Return_DamageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
