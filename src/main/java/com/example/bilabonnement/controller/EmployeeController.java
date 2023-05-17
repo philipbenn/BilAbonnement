@@ -35,7 +35,7 @@ public class EmployeeController {
             return "redirect:/dashboard";
         } else {
             model.addAttribute("error", "Invalid id or password");
-            return "login";
+            return "employee/loginForm";
         }
     }
 
