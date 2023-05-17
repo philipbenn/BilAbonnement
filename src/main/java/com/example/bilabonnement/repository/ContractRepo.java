@@ -129,4 +129,26 @@ public class ContractRepo {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), customer_id);
     }
 
+    public List<ContractDTO> editContract(int contract_id){
+        String sql = "SELECT c.contract_id, cu.customer_id, cu.customer_name, ca.car_id, cm.car_model_id, cm.car_model, " +
+                "ca.vognnummer, clp.car_model_lease_period_plan_id, clp.type AS lease_type," +
+                " clp.price_per_month AS lease_price," +
+                " ckp.car_model_max_km_plan_id, ckp.max_km, ckp.km_price_per_month AS km_plan_price," +
+                " c.start_date, c.end_date, (clp.price_per_month + ckp.km_price_per_month) AS total_price_per_month " +
+                "FROM contract c " +
+                "JOIN customer cu " +
+                "ON c.customer_id = cu.customer_id " +
+                "JOIN car ca " +
+                "ON c.car_id = ca.car_id " +
+                "JOIN car_model cm " +
+                "ON ca.car_model_id = cm.car_model_id " +
+                "JOIN car_model_lease_period_plan clp " +
+                "ON c.car_model_lease_period_plan_id = clp.car_model_lease_period_plan_id " +
+                "JOIN car_model_max_km_plan ckp " +
+                "ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id " +
+                "WHERE contract_id = ? ORDER BY contract_id;";
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), contract_id);
+    }
+
 }

@@ -55,7 +55,7 @@
                 <td th:text="${contract.end_date}" ></td>
                 <td th:text="${contract.total_price_per_month}"></td>
                 <td>
-                  <a class="btn btn-primary">Rediger</a>
+                  <a class="btn btn-primary"  th:href="${'/editContract/' + contract.contract_id}">Rediger</a>
                   <a class="btn btn-secondary">Afslut aftale</a>
                 </td>
               </tr>

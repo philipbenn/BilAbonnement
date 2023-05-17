@@ -68,4 +68,11 @@ public class ContractController {
         return "customer/watchSpecificCustomerHistory";
     }
 
+
+    @GetMapping("/editContract/{contract_id}")
+    public String editContract(Model model, @PathVariable int contract_id ){
+        model.addAttribute("getContractInfo", contractService.editContract(contract_id));
+        return "contract/editContract";
+    }
+
 }

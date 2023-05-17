@@ -59,4 +59,9 @@ public class ContractService {
     public List<ContractDTO> getCustomerHistory(int customer_id){
         return contractRepo.getCustomerHistory(customer_id);
     }
+
+
+    public List<ContractDTO> editContract(int contract_id){
+        return contractRepo.editContract(contract_id);
+    }
 }
