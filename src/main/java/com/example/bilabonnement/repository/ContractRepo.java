@@ -151,4 +151,9 @@ public class ContractRepo {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), contract_id);
     }
 
+    public void updateStartAndEndDate(int contract_id, String contract_start_date, String contract_end_date){
+        String sql = "UPDATE contract SET start_date = ?, end_date= ? WHERE contract_id = ?";
+        jdbcTemplate.update(sql, contract_start_date, contract_end_date, contract_id);
+    }
+
 }

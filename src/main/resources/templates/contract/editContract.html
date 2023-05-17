@@ -40,9 +40,11 @@
         </tr>
         </thead>
         <tbody th:each="contract : ${getContractInfo}">
-
+        <form action="${/editSpecificContract}" method="post">
         <tr>
-            <td th:text="${contract.contract_id}"></td>
+            <td>
+                <input name="contract_id" type="hidden" th:value="${contract.contract_id}">
+            </td>
             <td th:text="${contract.customer_id}"></td>
             <td th:text="${contract.customer_name}"></td>
             <td th:text="${contract.car_model}"></td>
@@ -51,14 +53,25 @@
             <td th:text="${contract.lease_price}"></td>
             <td th:text="${contract.max_km}"></td>
             <td th:text="${contract.km_plan_price}" ></td>
-            <td th:text="${contract.start_date}" ></td>
-            <td th:text="${contract.end_date}" ></td>
-            <td th:text="${contract.total_price_per_month}"></td>
-            <td>
 
-                <a class="btn btn-secondary">Afslut aftale</a>
+
+            <td>
+               <input type="date" name="contract_start_date" th:value="${contract.start_date}">
             </td>
+
+            <td>
+                <input type="date" name="contract_end_date" th:value="${contract.end_date}">
+            </td>
+
+
+            <td th:text="${contract.total_price_per_month}"></td>
+
+            <td>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </td>
+
         </tr>
+        </form>
 
         </tbody>
     </table>

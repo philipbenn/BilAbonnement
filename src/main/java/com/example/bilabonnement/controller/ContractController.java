@@ -75,4 +75,11 @@ public class ContractController {
         return "contract/editContract";
     }
 
+    @PostMapping("/editSpecificContract")
+    public String editSpecificContract(@RequestParam String contract_start_date, @RequestParam String contract_end_date, @RequestParam int contract_id){
+        contractService.updateStartAndEndDate(contract_id, contract_start_date, contract_end_date);
+        return ("contract/contractsOverview");
+    }
+
+
 }
