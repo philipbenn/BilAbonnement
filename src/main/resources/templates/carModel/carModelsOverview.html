@@ -70,7 +70,8 @@
                 <button style="background-color: #6c757d">Vis registrede biler</button>
 
                 <br>
-                <a th:href="${'addCarModelPlansForm/' + carInfo.car_model.car_model_id}"><button style="background-color: #0d6efd">Rediger Priser</button></a>
+                <a th:href="${'addCarModelPlansForm/' + carInfo.car_model.car_model_id}">
+                    <button style="background-color: #0d6efd">Rediger Priser</button></a>
                 <br>
             </td>
         </tr>
@@ -78,6 +79,7 @@
     </table>
 </main>
 <a href="/addCarModelForm">
-<button style="margin: 2px; padding: 6px; color: white; border-radius: 5px; background-color: #0d6efd">Tilføj ny model</button>
+<button style="margin: 2px; padding: 6px; color: white; border-radius: 5px; cursor: pointer;
+ background-color: #0d6efd">Tilføj ny model</button>
 </a>
 </body>
