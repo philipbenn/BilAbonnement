@@ -15,67 +15,59 @@
         <span th:text="${car_model_id}"> </span>
     </div>
 
-
     <div style="height: 600px; width: 100%; display: flex; align-items: center; justify-content: center">
 
-    <div style="height: 400px; width: 380px; border: 2px solid white; border-radius: 6px; margin-bottom: 110px">
-        <div style="width: 100%; height: 100%; margin-top: 15px">
-        <form action="addContract" method="post">
+       <!-- Her start boksen hvor man indtaster oplysninger-->
+        <div style="height: 400px; width: 380px; border: 2px solid white; border-radius: 6px; margin-bottom: 110px">
+            <div style="width: 100%; height: 100%; margin-top: 15px">
+                <form action="addContract" method="post">
 
-    <!--(car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan_id,
-    start_date, employee_id);
-    -->
+                    <div style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%">
+                        <span style="color: white; margin-left: 150px; margin-top: 10px">Vælg plan</span>
+                        <br>
+                        <select name="car_model_lease_period_plan_id" style="margin-left: 50px; margin-top: 15px">
+                            <option th:each="lease_plan : ${lease_plans}"
+                                    th:text="${'Lease Type: ' + lease_plan.type + '. Nr. of months: ' + lease_plan.nr_of_months}"
+                                    th:value="${lease_plan.car_model_lease_period_plan_id}"></option>
+                        </select>
+                    </div>
 
-<div style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%">
-    <span style="color: white; margin-left: 150px; margin-top: 10px">Vælg plan</span>
-    <br>
-    <select name="car_model_lease_period_plan_id" style="margin-left: 50px; margin-top: 15px">
-        <option th:each="lease_plan : ${lease_plans}"
-                th:text="${'Lease Type: ' + lease_plan.type + '. Nr. of months: ' + lease_plan.nr_of_months}"
-                th:value="${lease_plan.car_model_lease_period_plan_id}"></option>
-    </select>
-</div>
-
-<div style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%">
-    <span style="color: white; margin-left: 135px; margin-top: 10px">Vælg Km Plan</span>
-    <br>
-    <select name="car_model_max_km_plan_id" style="margin-left: 35px; margin-top: 15px">
-        <option th:each="km_plan: ${km_plans}"
-                th:text="${'Km. per month: ' + km_plan.max_km + '. Price per month: ' + km_plan.km_price_per_month}"
-                th:value="${km_plan.car_model_max_km_plan_id}"></option>
-    </select>
-</div>
+                    <div style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%">
+                        <span style="color: white; margin-left: 135px; margin-top: 10px">Vælg Km Plan</span>
+                        <br>
+                        <select name="car_model_max_km_plan_id" style="margin-left: 35px; margin-top: 15px">
+                            <option th:each="km_plan: ${km_plans}"
+                                    th:text="${'Km. per month: ' + km_plan.max_km + '. Price per month: ' + km_plan.km_price_per_month}"
+                                    th:value="${km_plan.car_model_max_km_plan_id}"></option>
+                        </select>
+                    </div>
 
 
-<div style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%">
-    <span style="color: white; margin-left: 120px">Vælg vognnummer</span>
-    <br>
-            <select name="car_id" style="margin-left: 98px; margin-top: 15px">
-        <option th:each="car : ${cars}"
-                th:text="${'Vognnummer: ' + car.vognnummer}"
-                th:value="${car.car_id}"></option>
-    </select>
-</div>
+                    <div style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%">
+                        <span style="color: white; margin-left: 120px">Vælg vognnummer</span>
+                        <br>
+                        <select name="car_id" style="margin-left: 98px; margin-top: 15px">
+                            <option th:each="car : ${cars}"
+                                    th:text="${'Vognnummer: ' + car.vognnummer}"
+                                    th:value="${car.car_id}"></option>
+                        </select>
+                    </div>
 
-    <input name="customer_id" th:value="${customer_id}" type="hidden"/>
+                    <input name="customer_id" th:value="${customer_id}" type="hidden"/>
 
-            <div style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%">
-                <span style="color: white; margin-left: 140px">Vælg start dato</span>
-                <br>
-            <input name="start_date" type="date" style="margin-left: 125px; margin-top: 15px">
+                    <div style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%">
+                        <span style="color: white; margin-left: 140px">Vælg start dato</span>
+                        <br>
+                        <input name="start_date" type="date" style="margin-left: 125px; margin-top: 15px">
+                    </div>
+
+                    <input name="employee_id" th:value="${session.employee.employee_id}" type="hidden"/>
+                    <div style="display: flex; align-items: center; justify-content: center; height: 70px; width: 100%">
+                        <input type="submit" value="Tilføj kontrakt" class="btn-submit">
+                    </div>
+                </form>
             </div>
-
-    <input name="employee_id" th:value="${session.employee.employee_id}" type="hidden"/>
-            <div style="display: flex; align-items: center; justify-content: center; height: 70px; width: 100%">
-    <input type="submit" value="Tilføj kontrakt" style="background: dodgerblue; color: white; border-radius: 6px; height: 35px; width: 110px">
-            </div>
-
-
-
-</form>
-
         </div>
-    </div>
     </div>
 </div>
 

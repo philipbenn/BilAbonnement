@@ -34,14 +34,13 @@
                 <td>
 
 
-                    <a th:href="${'/addContractForm1/' + customer.customer_id}"><button style="background-color: #0d6efd;">Opret ny kontrakt</button></a>
+                    <a th:href="${'/addContractForm1/' + customer.customer_id}"><button style="background-color: #0d6efd">Opret ny kontrakt</button></a>
                     <a th:href="'editCustomerForm/' + ${customer.customer_id}"><button style="background-color: #6c757d;">Rediger</button></a>
                 </td>
             </tr>
             </tbody>
         </table>
     </main>
-<a style="background-color: #0d6efd; padding: 6px; border: none; border-radius: 5px;
- color: white; cursor: pointer;" href="addCustomerForm">Opret Ny kunde</a>
+<a href="addCustomerForm"><button class="btn-submit">Opret Ny kunde</button></a>
 </body>
 </html>
