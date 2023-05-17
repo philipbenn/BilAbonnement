@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/v1578666243/favicon_1_npgufd.ico" class="next-head">
+    <link rel="icon"
+          href="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/v1578666243/favicon_1_npgufd.ico"
+          class="next-head">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/navbar.css}">
@@ -16,13 +18,13 @@
 
 <header th:replace="navbarfragment :: navbar"></header>
 
-    <main style="height: 81vh;">
-        <div id="scrollDiv" style="height: 81vh; overflow: auto;">
-            <h1 class="title">Kontrakter</h1>
+<main style="height: 81vh;">
+    <div id="scrollDiv" style="height: 81vh; overflow: auto;">
+        <h1 class="title">Kontrakter</h1>
 
-            <table style="width: 80vw;" class="overview-table">
+        <table style="width: 80vw;" class="overview-table">
             <thead>
-              <tr>
+            <tr>
                 <th>Kontrakt ID</th>
                 <th>Kunde ID</th>
                 <th>Kunde Navn</th>
@@ -36,11 +38,11 @@
                 <th>Slut Dato</th>
                 <th>Total Pris Pr. måned</th>
                 <th>Handlinger</th>
-              </tr>
+            </tr>
             </thead>
             <tbody th:each="contract : ${getContractInfo}">
 
-              <tr>
+            <tr>
                 <td th:text="${contract.contract_id}"></td>
                 <td th:text="${contract.customer_id}"></td>
                 <td th:text="${contract.customer_name}"></td>
@@ -49,19 +51,21 @@
                 <td th:text="${contract.lease_type}"></td>
                 <td th:text="${contract.lease_price}"></td>
                 <td th:text="${contract.max_km}"></td>
-                <td th:text="${contract.km_plan_price}" ></td>
-                <td th:text="${contract.start_date}" ></td>
-                <td th:text="${contract.end_date}" ></td>
+                <td th:text="${contract.km_plan_price}"></td>
+                <td th:text="${contract.start_date}"></td>
+                <td th:text="${contract.end_date}"></td>
                 <td th:text="${contract.total_price_per_month}"></td>
                 <td>
-                  <a><button style="background-color: #0d6efd; margin-bottom: 3px">Rediger</button></a>
+                    <a><button style="background-color: #0d6efd; margin-bottom: 3px">Rediger</button></a>
                     <a><button style="background-color: #6c757d;">Afslut aftale</button></a>
                 </td>
-              </tr>
+            </tr>
             </tbody>
-          </table>
-        </div>
-    </main>
-<a style="height: 15px; width: 25px; padding: 10px; background-color: #0d6efd; color: white; border-radius: 5px" href="customersOverview">Tilføj ny kontrakt</a>
+        </table>
+    </div>
+</main>
+<a style="height: 15px; width: 25px; padding: 10px; background-color: #0d6efd; color: white; border-radius: 5px"
+   href="customersOverview">Tilføj ny kontrakt</a>
 </body>
+
 </html>

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <link rel="stylesheet" th:href="@{/navbar.css}" />
   <title>Navbar Fragment</title>
 </head>
+
 <body>
 <header id="navbar" th:fragment="navbar">
   <a>|</a>
@@ -18,7 +20,9 @@
   <a href="/customersOverview">Kunde Oversigt</a>
   <a>|</a>
   <a href="/logout">Log af</a>
-  <a id="eName" style="background-color: #0d6efd; color: white; border-radius: 10px; cursor: default;" th:text="${session.employee.name}"></a>
+  <a id="eName" style="background-color: #0d6efd; color: white; border-radius: 10px; cursor: default;"
+     th:text="${session.employee.name}"></a>
 </header>
 </body>
+
 </html>

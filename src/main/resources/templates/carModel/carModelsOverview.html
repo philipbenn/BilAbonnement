@@ -7,7 +7,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/navbar.css}">
-    <link rel="icon" href="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/v1578666243/favicon_1_npgufd.ico" class="next-head">
+    <link rel="icon"
+          href="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/v1578666243/favicon_1_npgufd.ico"
+          class="next-head">
     <title>Bil håndtering</title>
 </head>
 
@@ -64,7 +66,7 @@
 
             <td class="options-td">
                 <a th:href="${'/addCarForm/'+ carInfo.car_model.car_model_id}">
-                <button style="background-color: #0d6efd">Registrer Bil</button>
+                    <button style="background-color: #0d6efd">Registrer Bil</button>
                 </a>
                 <br>
 
@@ -80,6 +82,6 @@
     </table>
 </main>
 <a href="/addCarModelForm">
-<button class="btn-submit">Tilføj ny model</button>
+    <button class="btn-submit">Tilføj ny model</button>
 </a>
 </body>
