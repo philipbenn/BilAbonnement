@@ -15,7 +15,7 @@
 
 <header th:replace="navbarfragment :: navbar"></header>
 
-    <h1 style="text-align: center; color: white; margin-top: 10px; font-size: x-large">Kunde Oversigt</h1>
+    <h1 class="title">Kunde Oversigt</h1>
 
     <main>
         <table class="overview-table">
@@ -36,6 +36,7 @@
 
                     <a th:href="${'/addContractForm1/' + customer.customer_id}"><button style="background-color: #0d6efd">Opret ny kontrakt</button></a>
                     <a th:href="'editCustomerForm/' + ${customer.customer_id}"><button style="background-color: #6c757d;">Rediger</button></a>
+                    <a th:href="${'/watchCustomerHistory/' + customer.customer_id}"><button class="btn-submit">Vis info</button></a>
                 </td>
             </tr>
             </tbody>

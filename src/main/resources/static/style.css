@@ -211,6 +211,13 @@ a {
     filter: brightness(80%);
 }
 
+.title {
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+    font-size: x-large
+}
+
 
 
 
