@@ -49,7 +49,9 @@ public class CarReturnReportController {
     }
 
     @PostMapping("/editDamageReport")
-    public String editDamageReport(@RequestParam int carReturnDamageId, @RequestParam int carReturnReportId, @RequestParam String damage_description, @RequestParam int is_fixed, @RequestParam double price) {
+    public String editDamageReport(@RequestParam int carReturnDamageId, @RequestParam int carReturnReportId,
+                                   @RequestParam String damage_description, @RequestParam int is_fixed,
+                                   @RequestParam double price) {
 
         Car_Return_Damage carReturnDamage = new Car_Return_Damage();
 

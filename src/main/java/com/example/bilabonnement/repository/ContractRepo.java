@@ -136,7 +136,7 @@ public class ContractRepo {
     public int activeContracts(){
         String sql = "SELECT COUNT(*)\n" +
                 "FROM contract\n" +
-                "WHERE CURDATE() BETWEEN start_date AND end_date;\n";
+                "WHERE CURDATE() BETWEEN start_date AND end_date-1;\n";
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
     public int nrOfCarsInRepair(){

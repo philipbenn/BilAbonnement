@@ -65,7 +65,7 @@ public class ContractController {
         contractService.addContract(car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan_id,
                                  start_date, employee_id);
 
-        return "redirect:/contractsOverview";
+        return "redirect:/contractsOverview/active";
     }
 
 

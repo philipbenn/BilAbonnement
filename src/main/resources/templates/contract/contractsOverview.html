@@ -64,7 +64,7 @@
             <td>
                 <a th:href="${'/editContract/' + contract.contract_id}"><button style="background-color: #0d6efd;
                  margin-bottom: 3px">Rediger</button></a>
-                <form action="endContract" method="post">
+                <form action="/endContract" method="post">
                     <input name="contract_id" th:value="${contract.contract_id}" type="hidden">
                     <input name="car_id" th:value="${contract.car_id}" type="hidden">
                     <a>
@@ -80,7 +80,6 @@
 </main>
 
 <a style="height: 15px; width: 25px; padding: 10px; background-color: #0d6efd; color: white; border-radius: 5px"
-   href="customersOverview">Tilføj ny kontrakt</a>
-
+   href="/customersOverview">Tilføj ny kontrakt</a>
 </body>
 </html>
