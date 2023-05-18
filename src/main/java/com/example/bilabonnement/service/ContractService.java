@@ -78,4 +78,12 @@ public class ContractService {
     public void updateStartAndEndDate(int contract_id, String contract_start_date, String contract_end_date){
         contractRepo.updateStartAndEndDate(contract_id, contract_start_date, contract_end_date);
     }
+
+    public List<ContractDTO> getEndedContracts() {
+       return contractRepo.getEndedContracts();
+    }
+
+    public List<ContractDTO> getFutureContracts(){
+        return contractRepo.getFutureContracts();
+    }
 }

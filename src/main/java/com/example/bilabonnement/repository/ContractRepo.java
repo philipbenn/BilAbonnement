@@ -202,5 +202,79 @@ public class ContractRepo {
         String sql = "UPDATE contract SET start_date = ?, end_date= ? WHERE contract_id = ?";
         jdbcTemplate.update(sql, contract_start_date, contract_end_date, contract_id);
     }
+    public List<ContractDTO> getEndedContracts() {
+        //Find sql query under stored procedures
+        String sql = "SELECT\n" +
+                "    c.contract_id,\n" +
+                "    cu.customer_id,\n" +
+                "    cu.customer_name,\n" +
+                "    ca.car_id,\n" +
+                "    cm.car_model_id,\n" +
+                "    cm.car_model,\n" +
+                "    ca.vognnummer,\n" +
+                "    clp.car_model_lease_period_plan_id,\n" +
+                "    clp.type AS lease_type,\n" +
+                "    clp.price_per_month AS lease_price,\n" +
+                "    ckp.car_model_max_km_plan_id,\n" +
+                "    ckp.max_km,\n" +
+                "    ckp.km_price_per_month AS km_plan_price,\n" +
+                "    c.start_date,\n" +
+                "    c.end_date,\n" +
+                "    (clp.price_per_month + ckp.km_price_per_month) AS total_price_per_month\n" +
+                "FROM\n" +
+                "    contract c\n" +
+                "JOIN\n" +
+                "    customer cu ON c.customer_id = cu.customer_id\n" +
+                "JOIN\n" +
+                "    car ca ON c.car_id = ca.car_id\n" +
+                "JOIN\n" +
+                "    car_model cm ON ca.car_model_id = cm.car_model_id\n" +
+                "JOIN\n" +
+                "    car_model_lease_period_plan clp ON c.car_model_lease_period_plan_id = clp.car_model_lease_period_plan_id\n" +
+                "JOIN\n" +
+                "    car_model_max_km_plan ckp ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id\n" +
+                "    WHERE end_date <= current_date()\n" +
+                "    ORDER BY end_date;";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
+    }
+
+    public List<ContractDTO> getFutureContracts(){
+        String sql = "SELECT\n" +
+                "    c.contract_id,\n" +
+                "    cu.customer_id,\n" +
+                "    cu.customer_name,\n" +
+                "    ca.car_id,\n" +
+                "    cm.car_model_id,\n" +
+                "    cm.car_model,\n" +
+                "    ca.vognnummer,\n" +
+                "    clp.car_model_lease_period_plan_id,\n" +
+                "    clp.type AS lease_type,\n" +
+                "    clp.price_per_month AS lease_price,\n" +
+                "    ckp.car_model_max_km_plan_id,\n" +
+                "    ckp.max_km,\n" +
+                "    ckp.km_price_per_month AS km_plan_price,\n" +
+                "    c.start_date,\n" +
+                "    c.end_date,\n" +
+                "    (clp.price_per_month + ckp.km_price_per_month) AS total_price_per_month\n" +
+                "FROM\n" +
+                "    contract c\n" +
+                "JOIN\n" +
+                "    customer cu ON c.customer_id = cu.customer_id\n" +
+                "JOIN\n" +
+                "    car ca ON c.car_id = ca.car_id\n" +
+                "JOIN\n" +
+                "    car_model cm ON ca.car_model_id = cm.car_model_id\n" +
+                "JOIN\n" +
+                "    car_model_lease_period_plan clp ON c.car_model_lease_period_plan_id = clp.car_model_lease_period_plan_id\n" +
+                "JOIN\n" +
+                "    car_model_max_km_plan ckp ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id\n" +
+                "    WHERE start_date > current_date()\n" +
+                "    ORDER BY start_date;";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
+    }
+
+
+
+
 
 }

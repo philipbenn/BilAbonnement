@@ -27,11 +27,26 @@ public class ContractController {
     CarReturnReportRepo carReturnReportRepo;
 
 
-    @GetMapping("/contractsOverview")
-    public String showContract(Model model){
+    @GetMapping("/contractsOverview/active")
+    public String showActiveContracts(Model model){
         String info = "AKTIVE KONTRAKTER";
         model.addAttribute("info", info);
         model.addAttribute( "getContractInfo", contractService.getActiveContracts());
+        return "/contract/contractsOverview";
+    }
+
+    @GetMapping("/contractsOverview/ended")
+    public String showEndedContracts(Model model){
+        String info = "UDLØBEDE KONTRAKTER";
+        model.addAttribute("info", info);
+        model.addAttribute( "getContractInfo", contractService.getEndedContracts());
+        return "/contract/contractsOverview";
+    }
+    @GetMapping("/contractsOverview/future")
+    public String showFutureContracts(Model model){
+        String info = "FREMTIDIGE KONTRAKTER";
+        model.addAttribute("info", info);
+        model.addAttribute( "getContractInfo", contractService.getFutureContracts());
         return "/contract/contractsOverview";
     }
 
