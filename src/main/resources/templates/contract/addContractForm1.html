@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Add Contract Form</title>
+    <title>Kontrakt</title>
     <link rel="stylesheet" th:href="@{/navbar.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
 </head>
@@ -13,14 +13,14 @@
     <div style="height: 350px; width: 380px; border: 2px solid white; border-radius: 6px; margin-bottom: 180px">
 
         <div style="width: 100%; height: 70px; display: flex; align-items: center; justify-content: center">
-            <span style="color: white; font-size: 28px">Add a Contract</span>
+            <span style="color: white; font-size: 28px">Tilføj Kontrakt</span>
         </div>
 
         <form action="/addContractForm2" method="GET">
             <input name="customer_id" th:value="${customer_id}" type="hidden">
 
             <div style="width: 100%; height: 45px; display: flex; align-items: center; justify-content: center">
-                <span style="color: white; margin-left: 10px">Choose Car Model</span>
+                <span style="color: white; margin-left: 10px">Vælg Bil Model</span>
             </div>
 
             <div style="width: 100%; height: 45px; display: flex; align-items: center; justify-content: center">
