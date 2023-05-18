@@ -150,7 +150,7 @@ public class ContractRepo {
                 "FROM contract AS c\n" +
                 "JOIN car_model_lease_period_plan AS cpp ON c.car_model_lease_period_plan_id = cpp.car_model_lease_period_plan_id\n" +
                 "JOIN car_model_max_km_plan AS cmkp ON c.car_model_max_km_plan = cmkp.car_model_max_km_plan_id\n" +
-                "WHERE c.start_date <= '2023-05-12' AND (c.end_date > '2023-05-12' OR c.end_date IS NULL)\n";
+                "WHERE c.start_date <= CURDATE() AND (c.end_date > CURDATE() OR c.end_date IS NULL)\n";
         return jdbcTemplate.queryForObject(sql, Double.class);
     }
     public List<ContractTypeCount> contractTypeCountDTOS() {

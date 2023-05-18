@@ -154,9 +154,11 @@ a {
 
 .overview-table th {
     background-color: grey;
+    color: white;
 }
 
 .overview-table th, td, tr {
+
     border: 1px solid black;
     border-left: none; /* Remove the left vertical border */
     border-right: none; /* Remove the right vertical border */
