@@ -43,7 +43,7 @@
         <form action="${/editSpecificContract}" method="post">
         <tr>
             <td>
-                <input name="contract_id" type="hidden" th:value="${contract.contract_id}">
+                <input name="contract_id" readonly th:value="${contract.contract_id}">
             </td>
             <td th:text="${contract.customer_id}"></td>
             <td th:text="${contract.customer_name}"></td>
