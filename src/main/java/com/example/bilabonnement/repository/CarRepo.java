@@ -31,4 +31,9 @@ public class CarRepo {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Car.class), car_model_id);
     }
 
+    public Car getCar (int car_id){
+        String sql = "SELECT * from car where car_id = ?";
+        return  jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(Car.class),car_id);
+    }
+
 }

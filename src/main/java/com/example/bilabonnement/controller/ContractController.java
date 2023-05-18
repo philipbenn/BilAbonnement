@@ -1,5 +1,7 @@
 package com.example.bilabonnement.controller;
 
+import com.example.bilabonnement.model.carReturnReport.Car_Return_Damage;
+import com.example.bilabonnement.repository.CarReturnReportRepo;
 import com.example.bilabonnement.service.CarModelService;
 import com.example.bilabonnement.service.CarService;
 import com.example.bilabonnement.service.ContractService;
@@ -21,7 +23,8 @@ public class ContractController {
     CarModelService carModelService;
     @Autowired
     CarService carService;
-
+    @Autowired
+    CarReturnReportRepo carReturnReportRepo;
 
     @GetMapping("/contractsOverview")
     public String showContract(Model model){
@@ -62,10 +65,22 @@ public class ContractController {
         return "contract/addContractForm2";
     }
 
-    @GetMapping("/watchCustomerHistory/{customer_id}")
-    public String watchCustomerHistory(@PathVariable int customer_id, Model model){
-        model.addAttribute("getCustomerHistory", contractService.getCustomerHistory(customer_id));
-        return "customer/watchSpecificCustomerHistory";
-    }
+    @PostMapping ("/endContract")
+    public String endContract(@RequestParam int contract_id, @RequestParam int car_id){
 
+
+        //Set end date of contract to today
+        contractService.setEndDateToToday(contract_id);
+        //Create new CarReturnDamageReport with this contract_id
+        carReturnReportRepo.addCarReturnReport(contract_id, car_id);
+        //Add an empty CarReturnDamage to the CarReturnDamageReport
+        Car_Return_Damage car_return_damage = new Car_Return_Damage();
+        car_return_damage.setDamage_description("Test damage. Please edit.");
+        car_return_damage.setCar_return_report_id(carReturnReportRepo.getMaxCarReturnReportId());
+        car_return_damage.setIsFixed(0);
+        car_return_damage.setPrice(0);
+        carReturnReportRepo.addCarReturnDamage(car_return_damage);
+        //Open the CarReturnDamageReport in the browser
+        return "redirect:/OpenDamageReport/" + carReturnReportRepo.getMaxCarReturnReportId();
+    }
 }
