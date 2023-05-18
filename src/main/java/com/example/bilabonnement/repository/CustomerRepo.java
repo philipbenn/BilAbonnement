@@ -28,4 +28,9 @@ public class CustomerRepo {
         String sql = "UPDATE customer SET customer_name = ? WHERE customer_id = ?";
         template.update(sql, customer_name, customer_id);
     }
+
+    public Customer getCustomer(int customer_id) {
+        String sql = "SELECT * FROM customer WHERE customer_id = ?";
+        return template.queryForObject(sql, new BeanPropertyRowMapper<>(Customer.class), customer_id);
+    }
 }

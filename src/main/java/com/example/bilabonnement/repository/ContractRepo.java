@@ -114,4 +114,8 @@ public class ContractRepo {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractTypeCount.class));
     }
 
+    public void setEndDateToToday(int contract_id){
+        String sql = "UPDATE contract SET end_date = CURDATE() WHERE contract_id = ?";
+        jdbcTemplate.update(sql, contract_id);
+    }
 }
