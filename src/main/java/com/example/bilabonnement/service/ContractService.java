@@ -62,6 +62,10 @@ public class ContractService {
                 car_model_max_km_plan, start_date, employee_id);
     }
 
+    public void updateEndDate(){
+        contractRepo.updateEndDate();
+    }
+
     // Update methods
     public void setEndDateToToday(int contract_id){
         contractRepo.setEndDateToToday(contract_id);

@@ -19,41 +19,40 @@ public class ContractRepo {
     public List<ContractDTO> getActiveContracts() {
         //Find sql query under stored procedures
         String sql = """
-                SELECT
-                    c.contract_id,
-                    cu.customer_id,
-                    cu.customer_name,
-                    ca.car_id,
-                    cm.car_model_id,
-                    cm.car_model_name,
-                    ca.vognnummer,
-                    clp.car_model_lease_period_plan_id,
-                    clp.type AS lease_type,
-                    clp.price_per_month AS lease_price,
-                    ckp.car_model_max_km_plan_id,
-                    ckp.max_km,
-                    ckp.km_price_per_month AS km_plan_price,
-                    c.start_date,
-                    c.end_date,
-                    (clp.price_per_month + ckp.km_price_per_month) AS total_price_per_month
-                FROM
-                    contract c
-                   \s
-                JOIN
-                    customer cu ON c.customer_id = cu.customer_id
-                JOIN
-                    car ca ON c.car_id = ca.car_id
-                JOIN
-                    car_model cm ON ca.car_model_id = cm.car_model_id
-                JOIN
-                    car_model_lease_period_plan clp ON c.car_model_lease_period_plan_id = clp.car_model_lease_period_plan_id
-                JOIN
-                    car_model_max_km_plan ckp ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id
-                   \s
-                    WHERE NOW() + INTERVAL 1 HOUR BETWEEN start_date AND end_date-1
-                   \s
-                    ORDER BY end_date
-                   \s
+                    SELECT
+                        c.contract_id,
+                        cu.customer_id,
+                        cu.customer_name,
+                        ca.car_id,
+                        cm.car_model_id,
+                        cm.car_model_name,
+                        ca.vognnummer,
+                        clp.car_model_lease_period_plan_id,
+                        clp.type AS lease_type,
+                        clp.price_per_month AS lease_price,
+                        ckp.car_model_max_km_plan_id,
+                        ckp.max_km,
+                        ckp.km_price_per_month AS km_plan_price,
+                        c.start_date,
+                        c.end_date,
+                        (clp.price_per_month + ckp.km_price_per_month) AS total_price_per_month
+                    FROM
+                        contract c
+                    JOIN
+                        customer cu ON c.customer_id = cu.customer_id
+                    JOIN
+                        car ca ON c.car_id = ca.car_id
+                    JOIN
+                        car_model cm ON ca.car_model_id = cm.car_model_id
+                    JOIN
+                        car_model_lease_period_plan clp ON c.car_model_lease_period_plan_id = clp.car_model_lease_period_plan_id
+                    JOIN
+                        car_model_max_km_plan ckp ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id
+                       
+                        WHERE NOW() + INTERVAL 1 HOUR BETWEEN start_date AND end_date
+                       
+                        ORDER BY end_date
+                       
                 """
                 ;
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
@@ -254,7 +253,7 @@ public class ContractRepo {
         String sql = """
                 SELECT COUNT(*)
                 FROM contract
-                WHERE NOW() + INTERVAL 1 HOUR BETWEEN start_date AND end_date-1;
+                WHERE NOW() + INTERVAL 1 HOUR BETWEEN start_date AND end_date;
                 """;
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }

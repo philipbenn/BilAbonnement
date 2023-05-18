@@ -32,7 +32,7 @@ public class CarRepo {
                 SELECT 1
                 FROM contract
                 WHERE contract.car_id = car.car_id
-                AND NOW() + INTERVAL 1 HOUR BETWEEN contract.start_date AND contract.end_date-1
+                AND NOW() + INTERVAL 1 HOUR BETWEEN contract.start_date AND contract.end_date
             );
             """;
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Car.class), car_model_id);
