@@ -30,9 +30,9 @@ public class ContractService {
         contractRepo.addContract(car_id, customer_id, car_model_lease_period_plan_id,
                                  car_model_max_km_plan, start_date, employee_id);
     }
-    public void setEndDateToToday(int contract_id){
-        contractRepo.setEndDateToToday(contract_id);
-    }
+  //  public void setEndDateToToday(int contract_id){
+    //    contractRepo.setEndDateToToday(contract_id);
+    //}
     public int countAllCars(){
          return contractRepo.countAllCars();
     }
@@ -61,7 +61,9 @@ public class ContractService {
     public List<ContractDTO> getCustomerHistory(int customer_id){
         return contractRepo.getCustomerHistory(customer_id);
     }
-
+    public void setEndDateToToday(int contract_id){
+        contractRepo.setEndDateToToday(contract_id);
+    }
 
     public List<ContractDTO> editContract(int contract_id){
         return contractRepo.editContract(contract_id);

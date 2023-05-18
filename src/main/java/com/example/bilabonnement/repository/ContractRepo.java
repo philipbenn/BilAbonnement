@@ -25,6 +25,12 @@ public class ContractRepo {
         String sql = "CALL get_all_contract_info";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
     }
+
+    public void setEndDateToToday(int contract_id){
+        String sql = "UPDATE contract SET end_date = CURDATE() WHERE contract_id = ?";
+        jdbcTemplate.update(sql, contract_id);
+    }
+
     public List<Car_Model> getAllCarModels() {
         String sql = "SELECT * FROM car_model";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Car_Model.class));
