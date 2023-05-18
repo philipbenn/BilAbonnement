@@ -40,7 +40,7 @@
         </tr>
         </thead>
         <tbody th:each="contract : ${getContractInfo}">
-        <form action="${/editSpecificContract}" method="post">
+        <form action="/editSpecificContract" method="post">
         <tr>
             <td>
                 <input name="contract_id" readonly th:value="${contract.contract_id}">
