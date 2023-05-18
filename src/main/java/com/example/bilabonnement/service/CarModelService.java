@@ -14,10 +14,12 @@ import java.util.List;
 public class CarModelService {
 @Autowired
 CarModelRepo carModelRepo;
-     public List<CarModelDTO> getCarInfo() {
-     List<Car_Model> carModels = carModelRepo.getCarModels();
 
-     List<CarModelDTO> carInfoList = new ArrayList<>();
+    // Lists
+    public List<CarModelDTO> getCarInfo() {
+        List<Car_Model> carModels = carModelRepo.getCarModels();
+
+        List<CarModelDTO> carInfoList = new ArrayList<>();
 
         for (Car_Model carModel : carModels) {
             CarModelDTO carInfo = new CarModelDTO();
@@ -42,37 +44,41 @@ CarModelRepo carModelRepo;
 
             carInfoList.add(carInfo);
         }
-
         return carInfoList;
     }
 
-    public void addCarModel(String car_model){
-        carModelRepo.addCarModel(car_model);
-    }
 
-
-    public void addNewCarModelMaxKmPlan(int car_model_id, int max_km, int km_price_per_month){
-        carModelRepo.addCarModelMaxKmPlan(car_model_id, max_km, km_price_per_month);
-    }
-
-    //TODO Metode til at finde det nyeste car_model_id
-    public int maxModelId() {
-       return carModelRepo.maxModelId();
+    public List<Car_Model> getCarModels() {
+     return carModelRepo.getCarModels();
     }
 
     public List<Car_Model_Max_Km_Plan> getCarModelMaxKmPlans(int carModelId) {
         return carModelRepo.getCarModelMaxKmPlans(carModelId);
     }
-    public void addCarModelLeasePlan(int car_model_id, String type, int price_per_month, int nrOfMonths){
-        carModelRepo.addCarModelLeasePlan(car_model_id, type, price_per_month, nrOfMonths);
-    }
-
     public List<Car_Model_Lease_Period_Plan> getCarModelLeasePeriodPlans(int carModelId) {
         return carModelRepo.getCarModelLeasePeriodPlans(carModelId);
     }
 
+    // Insert methods
+    public void addCarModel(String car_model){
+        carModelRepo.addCarModel(car_model);
+    }
+
+    public void addNewCarModelMaxKmPlan(int car_model_id, int max_km, int km_price_per_month){
+        carModelRepo.addCarModelMaxKmPlan(car_model_id, max_km, km_price_per_month);
+    }
+    public void addCarModelLeasePlan(int car_model_id, String type, int price_per_month, int nrOfMonths){
+        carModelRepo.addCarModelLeasePlan(car_model_id, type, price_per_month, nrOfMonths);
+    }
+
+    // Key values
+    public int maxModelId() {
+       return carModelRepo.maxModelId();
+    }
+
+
+    // Get methods
     public Car_Model getCarModel(int car_model_id){
         return carModelRepo.getCarModel(car_model_id);
     }
-
 }

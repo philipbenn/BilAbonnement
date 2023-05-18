@@ -1,8 +1,8 @@
 package com.example.bilabonnement.controller;
 
 import com.example.bilabonnement.model.carReturnReport.Car_Return_Damage;
-import com.example.bilabonnement.model.carReturnReport.Car_Return_Report;
 
+import com.example.bilabonnement.model.carReturnReport.Car_Return_Report_DTO;
 import com.example.bilabonnement.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,40 +18,55 @@ import java.util.List;
 public class CarReturnReportController {
     @Autowired
     CarReturnReportRepo carReturnReportRepo;
-    @Autowired
-    CarRepo carRepo;
-    @Autowired
-    CarModelRepo carModelRepo;
-    @Autowired
-    CustomerRepo customerRepo;
 
-    @Autowired
-    ContractRepo contractRepo;
+    // Views
+    @GetMapping("/carReturnReports/pending")
+    String pendingCarReturnReports(Model model) {
 
-    @GetMapping("/OpenDamageReport/{id}")
+        String info = "SKADESRAPPORTER DER SKAL BEHANDLES";
+
+        List<Car_Return_Report_DTO> carReturnReports = carReturnReportRepo.getAllPendingCarReturnReports();
+
+
+        model.addAttribute("info", info);
+        model.addAttribute("carReturnReports", carReturnReports);
+        return "/carReturnReport/carReturnReports";
+    }
+
+    @GetMapping("/carReturnReports/closed")
+    String closedCarReturnReports(Model model) {
+
+        String info = "AFSLUTTEDE SKADESRAPPORTER";
+
+        List<Car_Return_Report_DTO> carReturnReports = carReturnReportRepo.getAllClosedCarReturnReports();
+
+
+        model.addAttribute("info", info);
+        model.addAttribute("carReturnReports", carReturnReports);
+        return "/carReturnReport/carReturnReports";
+    }
+    @GetMapping("/openDamageReport/{id}")
     public String editDamageReport(@PathVariable int id, Model model) {
 
         model.addAttribute("id", id);
         List<Car_Return_Damage> carReturnDamages = carReturnReportRepo.carReturnDamageFromReport(id);
-        Car_Return_Report carReturnReport = carReturnReportRepo.getCarReturnReport(id);
 
         model.addAttribute("carReturnDamages", carReturnDamages);
 
-        double totalprice = 0;
+        double totalPrice = 0;
 
-        for (int i = 0; i < carReturnDamages.size(); i++) {
-            totalprice += carReturnDamages.get(i).getPrice();
+        for (Car_Return_Damage carReturnDamage : carReturnDamages) {
+            totalPrice += carReturnDamage.getPrice();
         }
 
-        model.addAttribute("totalprice", totalprice);
+        model.addAttribute("totalPrice", totalPrice);
 
         return "/carReturnReport/editDamageReport";
     }
 
+    // Post Methods
     @PostMapping("/editDamageReport")
-    public String editDamageReport(@RequestParam int carReturnDamageId, @RequestParam int carReturnReportId,
-                                   @RequestParam String damage_description, @RequestParam int is_fixed,
-                                   @RequestParam double price) {
+    public String editDamageReport(@RequestParam int carReturnDamageId, @RequestParam int carReturnReportId, @RequestParam String damage_description, @RequestParam int is_fixed, @RequestParam double price) {
 
         Car_Return_Damage carReturnDamage = new Car_Return_Damage();
 
@@ -63,9 +78,8 @@ public class CarReturnReportController {
 
         carReturnReportRepo.editCarReturnDamage(carReturnDamage);
 
-        return "redirect:/OpenDamageReport/" + carReturnReportId;
+        return "redirect:/openDamageReport/" + carReturnReportId;
     }
-
     @PostMapping("/addCarReturnDamage")
     String addCarReturnDamage(@RequestParam int car_return_report_id) {
 
@@ -76,18 +90,8 @@ public class CarReturnReportController {
 
         carReturnReportRepo.addCarReturnDamage(carReturnDamage);
 
-        return "redirect:/OpenDamageReport/" + car_return_report_id;
+        return "redirect:/openDamageReport/" + car_return_report_id;
 
-    }
-
-    @GetMapping("/carReturnReports")
-    String carReturnReports(Model model) {
-
-        List<Car_Return_Report> carReturnReports = carReturnReportRepo.getAllCarReturnReports();
-
-        model.addAttribute("carReturnReports", carReturnReports);
-
-        return "/carReturnReport/carReturnReports";
     }
 
 }

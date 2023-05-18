@@ -13,17 +13,22 @@ public class CustomerService {
     @Autowired
     CustomerRepo customerRepo;
 
-    public void createCustomer(String customer_name) {
-        customerRepo.createCustomer(customer_name);
-    }
-
+    // Lists
     public List<Customer> getAllCustomer(){
         return customerRepo.getAllCustomer();
     }
 
+    // Insert methods
+    public void createCustomer(String customer_name) {
+        customerRepo.createCustomer(customer_name);
+    }
+
+    // Update methods
     public void editCustomer(String customer_name, int customer_id) {
         customerRepo.editCustomer(customer_name, customer_id);
     }
+
+    // Get methods
     public Customer getCustomer(int customer_id){
         return customerRepo.getCustomer(customer_id);
     }

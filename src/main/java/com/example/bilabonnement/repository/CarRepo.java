@@ -13,27 +13,30 @@ import java.util.List;
 public class CarRepo {
     @Autowired
     JdbcTemplate jdbcTemplate;
-
-
     public void registerCar(int car_model_id, String vognnummer){
         String sql = "INSERT INTO car (car_model_id, vognnummer) VALUES (?, ?)";
         jdbcTemplate.update(sql, car_model_id, vognnummer);
     }
-    public List<Car> getCarsByCarModelId(int car_model_id) {
-        String sql = "SELECT car.car_id, car.car_model_id, car.vognnummer\n" +
-                "FROM car\n" +
-                "WHERE car.car_model_id = ? " +
-                "  AND car.car_id NOT IN (\n" +
-                "    SELECT contract.car_id\n" +
-                "    FROM contract\n" +
-                "    WHERE contract.end_date >= CURDATE()\n" +
-                "  )\n";
+    public List<Car> getAvailableCars(int car_model_id) {
+        String sql = """
+            SELECT car.car_id, car.car_model_id, car.vognnummer
+            FROM car
+            WHERE car.car_model_id = ? AND NOT EXISTS (
+                SELECT 1
+                FROM car_return_damage
+                JOIN car_return_report
+                ON car_return_damage.car_return_report_id = car_return_report.car_return_report_id
+                WHERE car_return_report.car_id = car.car_id
+                AND car_return_damage.isFixed = 0
+            ) AND NOT EXISTS (
+                SELECT 1
+                FROM contract
+                WHERE contract.car_id = car.car_id
+                AND CURDATE() BETWEEN contract.start_date AND contract.end_date-1
+            );
+            """;
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Car.class), car_model_id);
     }
 
-    public Car getCar (int car_id){
-        String sql = "SELECT * from car where car_id = ?";
-        return  jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(Car.class),car_id);
-    }
 
 }

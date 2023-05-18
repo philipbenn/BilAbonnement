@@ -10,14 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DashboardController {
     @Autowired
     ContractService contractService;
+
     @GetMapping("/dashboard")
     public String getDashboard(Model model) {
         model.addAttribute("expiringContracts", contractService.expiringContracts());
+        // total number of cars - number of cars in repair - number of active contracts = number of available cars
         int nrOfAvailableCars = contractService.countAllCars() - contractService.nrOfCarsInRepair() - contractService.activeContracts();
         model.addAttribute("nrOfAvailableCars", nrOfAvailableCars);
         model.addAttribute("activeContracts", contractService.activeContracts());
         model.addAttribute("monthlyIncome", contractService.monthlyIncome());
-        model.addAttribute("contractTypeCount", contractService.contractTypeCountDTOS());
+        model.addAttribute("contractTypeCounts", contractService.contractTypeCountDTOS());
         model.addAttribute("nrOfCarsOfInRepair", contractService.nrOfCarsInRepair());
         return "/dashboard/dashboard";
     }

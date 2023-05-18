@@ -11,8 +11,9 @@ public class CarModelController {
     @Autowired
     CarModelService carModelService;
 
+    // Views
     @GetMapping("/carModelsOverview")
-    String carmanagement(Model model){
+    String carModelsOverview(Model model){
         model.addAttribute("carInfoList", carModelService.getCarInfo());
         return "carModel/carModelsOverview";
     }
@@ -21,12 +22,6 @@ public class CarModelController {
         int nextCarModelId = carModelService.maxModelId();
         model.addAttribute("nextCarModelId", nextCarModelId);
         return "carModel/addCarModelForm";
-    }
-    @PostMapping("/addCarModel")
-    public String addCarModel(@RequestParam int nextCarModelId, @RequestParam String car_model){
-        carModelService.addCarModel(car_model);
-        nextCarModelId+=1;
-        return "redirect:/addCarModelPlansForm/" + nextCarModelId;
     }
     @GetMapping("/addCarModelPlansForm/{car_model_id}")
     public String addCarModelKmPlans(@PathVariable int car_model_id, Model model){
@@ -37,12 +32,19 @@ public class CarModelController {
         model.addAttribute("lease_plans", carModelService.getCarModelLeasePeriodPlans(car_model_id));
         return "carModel/addCarModelPlansForm";
     }
+
+    // Post Methods
     @PostMapping("/addCarModelKmPlan")
     public String addCarModelKmPlan(@RequestParam int car_model_id, @RequestParam int max_km, @RequestParam int km_price_per_month){
         carModelService.addNewCarModelMaxKmPlan(car_model_id, max_km, km_price_per_month);
         return "redirect:/addCarModelPlansForm/"+ car_model_id;
     }
-
+    @PostMapping("/addCarModel")
+    public String addCarModel(@RequestParam int nextCarModelId, @RequestParam String car_model){
+        carModelService.addCarModel(car_model);
+        nextCarModelId+=1;
+        return "redirect:/addCarModelPlansForm/" + nextCarModelId;
+    }
     @PostMapping("/addCarLeasePlan")
     public String addCarLeasePlan(@RequestParam int car_model_id, @RequestParam String type, @RequestParam int price_per_month, @RequestParam int nrOfMonths){
         carModelService.addCarModelLeasePlan(car_model_id, type, price_per_month, nrOfMonths);

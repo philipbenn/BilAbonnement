@@ -13,20 +13,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class EmployeeController {
-
     @Autowired
     EmployeeService employeeService;
 
+    // Views
     @GetMapping("/loginForm")
     public String showLoginForm() {
         return "employee/loginForm";
     }
-
     @GetMapping("/signUpForm")
     public String showSignUpForm() {
-        return "signUpForm";
+        return "employee/signUpForm";
     }
 
+
+    // Post Methods
     @PostMapping("/login")
     public String logIn(@RequestParam int employee_id, @RequestParam String password, HttpSession session, Model model) {
         Employee employee = employeeService.logIn(employee_id, password);
@@ -38,16 +39,17 @@ public class EmployeeController {
             return "employee/loginForm";
         }
     }
-
-    @PostMapping("/signupcustomer")
+    @PostMapping("/signUpCustomer")
     public String customerSignUp(@ModelAttribute Employee employee){
         employeeService.addEmployee(employee);
         return "dashboard/dashboard";
     }
 
+
+    // Invaliderer session og returnerer til startside
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "startpage/startpage";
+        return "startPage/startPage";
     }
 }

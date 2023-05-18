@@ -9,7 +9,7 @@ public class ContractDTO {
     private String customer_name;
     private int car_id;
     private int car_model_id;
-    private String car_model;
+    private String car_model_name;
     private String vognnummer;
     private int car_model_lease_period_plan_id;
     private String lease_type;
@@ -69,12 +69,12 @@ public class ContractDTO {
         this.car_model_id = car_model_id;
     }
 
-    public String getCar_model() {
-        return car_model;
+    public String getCar_model_name() {
+        return car_model_name;
     }
 
-    public void setCar_model(String car_model) {
-        this.car_model = car_model;
+    public void setCar_model_name(String car_model_name) {
+        this.car_model_name = car_model_name;
     }
 
     public String getVognnummer() {

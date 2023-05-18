@@ -15,18 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ContractController {
-
     @Autowired
     ContractService contractService;
     @Autowired
     CarModelService carModelService;
     @Autowired
     CarService carService;
-
     @Autowired
     CarReturnReportRepo carReturnReportRepo;
 
-
+    // Contract Overviews
     @GetMapping("/contractsOverview/active")
     public String showActiveContracts(Model model){
         String info = "AKTIVE KONTRAKTER";
@@ -34,7 +32,6 @@ public class ContractController {
         model.addAttribute( "getContractInfo", contractService.getActiveContracts());
         return "/contract/contractsOverview";
     }
-
     @GetMapping("/contractsOverview/ended")
     public String showEndedContracts(Model model){
         String info = "UDLØBEDE KONTRAKTER";
@@ -50,25 +47,14 @@ public class ContractController {
         return "/contract/contractsOverview";
     }
 
+
+    // Add Contract Forms
     @GetMapping ("/addContractForm1/{customer_id}")
     public String addContractForm(Model model, @PathVariable int customer_id){
        model.addAttribute("customer_id", customer_id);
-       model.addAttribute("car_model_list", contractService.getAllCarModels());
+       model.addAttribute("car_model_list", carModelService.getCarModels());
         return "contract/addContractForm1";
     }
-
-    @PostMapping("/addContract")
-    public String addContract(@RequestParam int customer_id, @RequestParam int car_id,
-                              @RequestParam int car_model_lease_period_plan_id, @RequestParam int car_model_max_km_plan_id,
-                              @RequestParam String start_date, @RequestParam int employee_id){
-
-        contractService.addContract(car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan_id,
-                                 start_date, employee_id);
-
-        return "redirect:/contractsOverview/active";
-    }
-
-
     @GetMapping ("/addContractForm2")
     public String test(Model model, @RequestParam int customer_id, @RequestParam int car_model_id){
         model.addAttribute("car_model_id", car_model_id);
@@ -83,25 +69,26 @@ public class ContractController {
         return "contract/addContractForm2";
     }
 
-    @GetMapping("/watchCustomerHistory/{customer_id}")
-    public String watchCustomerHistory(@PathVariable int customer_id, Model model){
-        model.addAttribute("getCustomerHistory", contractService.getCustomerHistory(customer_id));
-        return "customer/watchSpecificCustomerHistory";
-    }
-
-
-    @GetMapping("/editContract/{contract_id}")
+    // Edit Contract Form
+    @GetMapping("/editContractForm/{contract_id}")
     public String editContract(Model model, @PathVariable int contract_id ){
         model.addAttribute("getContractInfo", contractService.editContract(contract_id));
         return "contract/editContract";
     }
 
-    @PostMapping("/editSpecificContract")
+    // Customer Contract History
+    @GetMapping("/customerContractHistory/{customer_id}")
+    public String watchCustomerHistory(@PathVariable int customer_id, Model model){
+        model.addAttribute("getCustomerHistory", contractService.getCustomerHistory(customer_id));
+        return "customer/watchSpecificCustomerHistory";
+    }
+
+    // Post Methods
+    @PostMapping("/editContract")
     public String editSpecificContract(@RequestParam String contract_start_date, @RequestParam String contract_end_date, @RequestParam int contract_id){
         contractService.updateStartAndEndDate(contract_id, contract_start_date, contract_end_date);
         return ("redirect:/editContract/" + contract_id);
     }
-
     @PostMapping ("/endContract")
     public String endContract(@RequestParam int contract_id, @RequestParam int car_id){
 
@@ -118,7 +105,15 @@ public class ContractController {
         car_return_damage.setPrice(0);
         carReturnReportRepo.addCarReturnDamage(car_return_damage);
         //Open the CarReturnDamageReport in the browser
-        return "redirect:/OpenDamageReport/" + carReturnReportRepo.getMaxCarReturnReportId();
+        return "redirect:/openDamageReport/" + carReturnReportRepo.getMaxCarReturnReportId();
+    }
+    @PostMapping("/addContract")
+    public String addContract(@RequestParam int customer_id, @RequestParam int car_id, @RequestParam int car_model_lease_period_plan_id, @RequestParam int car_model_max_km_plan_id, @RequestParam String start_date, @RequestParam int employee_id){
+
+        contractService.addContract(car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan_id,
+                start_date, employee_id);
+
+        return "redirect:/contractsOverview/active";
     }
 
 }

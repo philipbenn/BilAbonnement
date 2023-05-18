@@ -17,12 +17,13 @@
 
 <section class="login-section">
     <div class="form-box" style="margin: 50px auto;">
-        <form action="addCarModel" method="post">
+        <form action="/addCarModel" method="post">
             <h2 class="login-header" style="color: white">Tilføj Bil Model</h2>
-            <div class="inputbox">
+            <div class="inputBox">
                 <ion-icon name="car-sport-outline"></ion-icon>
-                <label>Car model :</label>
-                <input style="margin-left: 50px" name="car_model" type="text" required>
+                <label>Car model :
+                    <input style="margin-left: 50px" name="car_model" type="text" required>
+                </label>
                 <input name="nextCarModelId" th:value="${nextCarModelId}" type="hidden">
             </div>
             <button class="login-button" type="submit">Submit</button>

@@ -5,7 +5,7 @@ public class Car_Model {
 public Car_Model(){}
 
     private int car_model_id;
-    private String car_model;
+    private String car_model_name;
 
     public int getCar_model_id() {
         return car_model_id;
@@ -15,11 +15,11 @@ public Car_Model(){}
         this.car_model_id = car_model_id;
     }
 
-    public String getCar_model() {
-        return car_model;
+    public String getCar_model_name() {
+        return car_model_name;
     }
 
-    public void setCar_model(String car_model) {
-        this.car_model = car_model;
+    public void setCar_model_name(String car_model_name) {
+        this.car_model_name = car_model_name;
     }
 }

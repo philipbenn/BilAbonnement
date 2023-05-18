@@ -39,7 +39,7 @@
                             style="background-color: #0d6efd">Opret ny kontrakt</button></a>
                     <a th:href="'editCustomerForm/' + ${customer.customer_id}"><button
                             style="background-color: #6c757d;">Rediger</button></a>
-                    <a th:href="${'/watchCustomerHistory/' + customer.customer_id}"><button style="background-color: green">Vis
+                    <a th:href="${'/customerContractHistory/' + customer.customer_id}"><button style="background-color: green">Vis
                         info</button></a>
 
                 </td>
@@ -48,7 +48,7 @@
             </tbody>
         </table>
     </main>
-        <a href="addCustomerForm"><button class="btn-submit">Opret Ny kunde</button></a>
+        <a href="/addCustomerForm"><button class="btn-submit">Opret Ny kunde</button></a>
 
 </body>
 

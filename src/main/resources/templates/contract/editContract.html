@@ -37,14 +37,14 @@
         </tr>
         </thead>
         <tbody th:each="contract : ${getContractInfo}">
-        <form action="/editSpecificContract" method="post">
+        <form action="/editContract" method="post">
         <tr>
             <td>
                 <input name="contract_id" readonly th:value="${contract.contract_id}">
             </td>
             <td th:text="${contract.customer_id}"></td>
             <td th:text="${contract.customer_name}"></td>
-            <td th:text="${contract.car_model}"></td>
+            <td th:text="${contract.car_model_name}"></td>
             <td th:text="${contract.vognnummer}"></td>
             <td th:text="${contract.lease_type}"></td>
             <td th:text="${contract.lease_price}"></td>

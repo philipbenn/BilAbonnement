@@ -6,6 +6,7 @@
     <title>Kontrakt</title>
     <link rel="stylesheet" th:href="@{/navbar.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <style>*{color: black}</style>
 </head>
 
 <body>
@@ -22,11 +23,10 @@
         <!-- Her start boksen hvor man indtaster oplysninger-->
         <div style="height: 400px; width: 380px; border: 1px solid white; border-radius: 6px; margin-bottom: 110px">
             <div style="width: 100%; height: 100%; margin-top: 15px">
-                <form action="addContract" method="post">
+                <form action="/addContract" method="post">
 
-                    <div
-                            style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%">
-                        <span style="color: white; margin-left: 150px; margin-top: 10px">Vælg plan</span>
+                    <div style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%">
+                        <span style="margin-left: 150px; margin-top: 10px">Vælg plan</span>
                         <br>
                         <select name="car_model_lease_period_plan_id" style="margin-left: 50px; margin-top: 15px">
                             <option th:each="lease_plan : ${lease_plans}"
@@ -37,7 +37,7 @@
 
                     <div
                             style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%">
-                        <span style="color: white; margin-left: 135px; margin-top: 10px">Vælg Km Plan</span>
+                        <span style="color: black; margin-left: 135px; margin-top: 10px">Vælg Km Plan</span>
                         <br>
                         <select name="car_model_max_km_plan_id" style="margin-left: 35px; margin-top: 15px">
                             <option th:each="km_plan: ${km_plans}"
@@ -49,8 +49,9 @@
 
                     <div
                             style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%">
-                        <span style="color: white; margin-left: 120px">Vælg vognnummer</span>
+                        <span style="color: black; margin-left: 120px">Vælg vognnummer</span>
                         <br>
+                        <span>Vælg bil (hvis drop-down er tom er der ingen biler ledige', se hvilke biler der er på lager ved at kigge i bil oversigt)</span>
                         <select name="car_id" style="margin-left: 98px; margin-top: 15px">
                             <option th:each="car : ${cars}" th:text="${'Vognnummer: ' + car.vognnummer}"
                                     th:value="${car.car_id}"></option>
@@ -60,8 +61,8 @@
                     <input name="customer_id" th:value="${customer_id}" type="hidden" />
 
                     <div
-                            style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%">
-                        <span style="color: white; margin-left: 140px">Vælg start dato</span>
+                            style="display: block; align-items: center; justify-content: center; height: 70px; width: 100%; margin: 5px;">
+                        <span style="color: black; margin-left: 140px">Vælg start dato</span>
                         <br>
                         <input name="start_date" type="date" style="margin-left: 125px; margin-top: 15px">
                     </div>

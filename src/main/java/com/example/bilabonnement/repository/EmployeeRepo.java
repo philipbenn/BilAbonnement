@@ -12,20 +12,18 @@ import org.springframework.stereotype.Repository;
 public class EmployeeRepo {
     @Autowired
     JdbcTemplate template;
-
     public Employee logIn(int employee_id, String password) {
         String sql = "SELECT * FROM employee WHERE employee_id = ? AND password = ?";
         try {
             RowMapper<Employee> rowMapper = new BeanPropertyRowMapper<>(Employee.class);
-            Employee employee = template.queryForObject(sql,rowMapper, employee_id, password);
-            return employee;
+            return template.queryForObject(sql,rowMapper, employee_id, password);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
-
     public void addEmployee(Employee employee){
         String sql = "INSERT INTO employee (name, password) VALUES (?, ?)";
         template.update(sql, employee.getName(), employee.getPassword());
     }
+
 }
