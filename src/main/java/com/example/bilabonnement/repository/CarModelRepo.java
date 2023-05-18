@@ -41,7 +41,7 @@ public class CarModelRepo {
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
     public int getCarsLeasedOutCount(int carModelId) {
-        String sql = "SELECT COUNT(*) FROM contract INNER JOIN car ON contract.car_id = car.car_id INNER JOIN car_model ON car.car_model_id = car_model.car_model_id WHERE car_model.car_model_id = ? AND contract.end_date > NOW()";
+        String sql = "SELECT COUNT(*) FROM contract JOIN car ON contract.car_id = car.car_id INNER JOIN car_model ON car.car_model_id = car_model.car_model_id WHERE car_model.car_model_id = ? AND NOW() + INTERVAL 1 HOUR BETWEEN start_date AND end_date-1";
         return jdbcTemplate.queryForObject(sql, Integer.class, carModelId);
     }
     public int getAllCarsCount(int carModelId) {

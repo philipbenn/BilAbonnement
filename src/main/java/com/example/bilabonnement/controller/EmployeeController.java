@@ -46,6 +46,7 @@ public class EmployeeController {
     }
 
 
+
     // Invaliderer session og returnerer til startside
     @GetMapping("/logout")
     public String logout(HttpSession session) {

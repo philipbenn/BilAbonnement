@@ -50,7 +50,7 @@ public class ContractRepo {
                 JOIN
                     car_model_max_km_plan ckp ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id
                    \s
-                    WHERE CURDATE() BETWEEN start_date AND end_date-1
+                    WHERE NOW() + INTERVAL 1 HOUR BETWEEN start_date AND end_date-1
                    \s
                     ORDER BY end_date
                    \s
@@ -90,7 +90,7 @@ public class ContractRepo {
                     car_model_lease_period_plan clp ON c.car_model_lease_period_plan_id = clp.car_model_lease_period_plan_id
                 JOIN
                     car_model_max_km_plan ckp ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id
-                    WHERE end_date <= current_date()
+                    WHERE end_date <= NOW() + INTERVAL 1 HOUR
                     ORDER BY end_date;""";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
     }
@@ -125,7 +125,7 @@ public class ContractRepo {
                     car_model_lease_period_plan clp ON c.car_model_lease_period_plan_id = clp.car_model_lease_period_plan_id
                 JOIN
                     car_model_max_km_plan ckp ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id
-                    WHERE start_date > current_date()
+                    WHERE start_date > NOW() + INTERVAL 1 HOUR
                     ORDER BY start_date;""";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
     }
@@ -186,7 +186,7 @@ public class ContractRepo {
                 JOIN\s
                     car_model_max_km_plan ON contract.car_model_max_km_plan = car_model_max_km_plan.car_model_max_km_plan_id
                 WHERE\s
-                    contract.start_date >= CURDATE() AND contract.end_date > CURDATE()
+                    contract.start_date >= NOW() + INTERVAL 1 HOUR AND contract.end_date > NOW() + INTERVAL 1 HOUR
                 ORDER BY\s
                     contract.end_date LIMIT 8;
                 """;
@@ -208,7 +208,7 @@ public class ContractRepo {
 
     // Update methods
     public void setEndDateToToday(int contract_id){
-        String sql = "UPDATE contract SET end_date = CURDATE() WHERE contract_id = ?";
+        String sql = "UPDATE contract SET end_date = NOW() + INTERVAL 1 HOUR WHERE contract_id = ?";
         jdbcTemplate.update(sql, contract_id);
     }
     public void updateEndDate(){
@@ -238,7 +238,7 @@ public class ContractRepo {
                 FROM contract AS c
                 JOIN car_model_lease_period_plan AS cpp ON c.car_model_lease_period_plan_id = cpp.car_model_lease_period_plan_id
                 JOIN car_model_max_km_plan AS cmkp ON c.car_model_max_km_plan = cmkp.car_model_max_km_plan_id
-                WHERE c.start_date <= CURDATE() AND (c.end_date > CURDATE())
+                WHERE c.start_date <= NOW() + INTERVAL 1 HOUR AND (c.end_date > NOW() + INTERVAL 1 HOUR)
                 """;
         return jdbcTemplate.queryForObject(sql, Double.class);
     }
@@ -254,7 +254,7 @@ public class ContractRepo {
         String sql = """
                 SELECT COUNT(*)
                 FROM contract
-                WHERE CURDATE() BETWEEN start_date AND end_date-1;
+                WHERE NOW() + INTERVAL 1 HOUR BETWEEN start_date AND end_date-1;
                 """;
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
