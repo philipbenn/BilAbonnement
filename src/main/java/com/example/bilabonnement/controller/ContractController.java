@@ -29,7 +29,9 @@ public class ContractController {
 
     @GetMapping("/contractsOverview")
     public String showContract(Model model){
-        model.addAttribute( "getContractInfo", contractService.getAllContractInfo());
+        String info = "AKTIVE KONTRAKTER";
+        model.addAttribute("info", info);
+        model.addAttribute( "getContractInfo", contractService.getActiveContracts());
         return "/contract/contractsOverview";
     }
 

@@ -17,6 +17,12 @@ public class ContractService {
     @Autowired
     ContractRepo contractRepo;
 
+
+    public List<ContractDTO> getActiveContracts() {
+        return contractRepo.getActiveContracts();
+    }
+
+
     public List<Car_Model> getAllCarModels() {
   return contractRepo.getAllCarModels();
     }

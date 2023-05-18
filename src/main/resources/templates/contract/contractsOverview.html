@@ -20,7 +20,13 @@
 
     <main style="height: 81vh;">
         <div id="scrollDiv" style="height: 81vh; overflow: auto;">
-            <h1 class="title">Kontrakter</h1>
+            <h1 style="text-align: center; margin-bottom: 5px;" th:text="${info}" class="title"></h1>
+
+            <div style="width: 100%; display: flex; justify-content: center; margin-bottom: 5px;">
+            <a style="color: white; background: darkcyan; margin: 2px; padding: 10px; border-radius: 5px;">Vis udløbede kontrakter</a>
+            <a style="color: white; background: darkcyan; margin: 2px; padding: 10px; border-radius: 5px;">Vis fremtidige kontrakter</a>
+            <a style="color: white; background: darkcyan; margin: 2px; padding: 10px; border-radius: 5px;">Vis Aktive Kontrakter</a>
+            </div>
 
     <table style="width: 80vw;" class="overview-table">
         <thead>
@@ -77,5 +83,4 @@
    href="customersOverview">Tilføj ny kontrakt</a>
 
 </body>
-
 </html>
