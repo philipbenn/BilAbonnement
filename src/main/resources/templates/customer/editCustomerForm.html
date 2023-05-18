@@ -6,14 +6,20 @@
     <link rel="icon"
           href="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/v1578666243/favicon_1_npgufd.ico"
           class="next-head">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/navbar.css}">
+    <title>Rediger Kunde</title>
 </head>
 
+<header th:replace="navbarfragment :: navbar"></header>
+
 <body>
-<form method="post" th:action="@{/editCustomer}">
+
+<h1 class="title">Rediger Kunde</h1>
+<form style="display: flex; justify-content: center; margin-top: 200px;" method="post" th:action="@{/editCustomer}">
     <input name="customer_id" type="hidden" th:value="${customer_id}">
     <input name="customer_name" type="text" th:value="${customer_name}">
-    <button type="submit">Submit</button>
+    <button class="btn-submit" type="submit">Submit</button>
 </form>
 
 </body>

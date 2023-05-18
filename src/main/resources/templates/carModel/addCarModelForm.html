@@ -18,20 +18,19 @@
 <section class="login-section">
     <div class="form-box" style="margin: 50px auto;">
         <form action="addCarModel" method="post">
-            <h2 class="login-header" style="color: white">Create new Car Model</h2>
+            <h2 class="login-header" style="color: white">Tilføj Bil Model</h2>
             <div class="inputbox">
                 <ion-icon name="car-sport-outline"></ion-icon>
                 <label>Car model :</label>
                 <input style="margin-left: 50px" name="car_model" type="text" required>
                 <input name="nextCarModelId" th:value="${nextCarModelId}" type="hidden">
             </div>
-            <button class="login-button" type="submit">Add Car Model</button>
+            <button class="login-button" type="submit">Submit</button>
         </form>
     </div>
 </section>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
 
 </body>
 
