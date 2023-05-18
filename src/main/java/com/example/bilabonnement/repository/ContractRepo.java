@@ -3,6 +3,7 @@ package com.example.bilabonnement.repository;
 import com.example.bilabonnement.model.carModel.Car_Model_Lease_Period_Plan;
 import com.example.bilabonnement.model.carModel.Car_Model_Max_Km_Plan;
 import com.example.bilabonnement.model.carModel.Car_Model;
+import com.example.bilabonnement.model.contract.Contract;
 import com.example.bilabonnement.model.contract.ContractDTO;
 import com.example.bilabonnement.model.contract.ContractTypeCount;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +78,7 @@ public class ContractRepo {
                 "WHERE \n" +
                 "    contract.start_date >= CURDATE() AND contract.end_date > CURDATE()\n" +
                 "ORDER BY \n" +
-                "    contract.end_date ASC LIMIT 4;\n";
+                "    contract.end_date ASC;\n";
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
     }
@@ -114,8 +115,45 @@ public class ContractRepo {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractTypeCount.class));
     }
 
-    public void setEndDateToToday(int contract_id){
-        String sql = "UPDATE contract SET end_date = CURDATE() WHERE contract_id = ?";
-        jdbcTemplate.update(sql, contract_id);
+    public List<ContractDTO> getCustomerHistory(int customer_id){
+        String sql = "SELECT  car.car_id, car.car_model_id, car.vognnummer, car_model.car_model, car_model_lease_period_plan.type," +
+                "contract.contract_id, contract.start_date, contract.end_date, contract.employee_id, contract.customer_id\n" +
+                "FROM contract\n" +
+                "JOIN car \n" +
+                "ON contract.car_id = car.car_id\n" +
+                "JOIN car_model\n" +
+                "ON car.car_model_id = car_model.car_model_id\n" +
+                "JOIN car_model_lease_period_plan \n" +
+                "ON car_model_lease_period_plan.car_model_lease_period_plan_id = contract.car_model_lease_period_plan_id\n" +
+                "WHERE customer_id = ? ORDER BY contract_id;";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), customer_id);
     }
+
+    public List<ContractDTO> editContract(int contract_id){
+        String sql = "SELECT c.contract_id, cu.customer_id, cu.customer_name, ca.car_id, cm.car_model_id, cm.car_model, " +
+                "ca.vognnummer, clp.car_model_lease_period_plan_id, clp.type AS lease_type," +
+                " clp.price_per_month AS lease_price," +
+                " ckp.car_model_max_km_plan_id, ckp.max_km, ckp.km_price_per_month AS km_plan_price," +
+                " c.start_date, c.end_date, (clp.price_per_month + ckp.km_price_per_month) AS total_price_per_month " +
+                "FROM contract c " +
+                "JOIN customer cu " +
+                "ON c.customer_id = cu.customer_id " +
+                "JOIN car ca " +
+                "ON c.car_id = ca.car_id " +
+                "JOIN car_model cm " +
+                "ON ca.car_model_id = cm.car_model_id " +
+                "JOIN car_model_lease_period_plan clp " +
+                "ON c.car_model_lease_period_plan_id = clp.car_model_lease_period_plan_id " +
+                "JOIN car_model_max_km_plan ckp " +
+                "ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id " +
+                "WHERE contract_id = ? ORDER BY contract_id;";
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), contract_id);
+    }
+
+    public void updateStartAndEndDate(int contract_id, String contract_start_date, String contract_end_date){
+        String sql = "UPDATE contract SET start_date = ?, end_date= ? WHERE contract_id = ?";
+        jdbcTemplate.update(sql, contract_start_date, contract_end_date, contract_id);
+    }
+
 }

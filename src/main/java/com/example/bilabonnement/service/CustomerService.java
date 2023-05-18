@@ -24,4 +24,7 @@ public class CustomerService {
     public void editCustomer(String customer_name, int customer_id) {
         customerRepo.editCustomer(customer_name, customer_id);
     }
+    public Customer getCustomer(int customer_id){
+        return customerRepo.getCustomer(customer_id);
+    }
 }

@@ -61,4 +61,13 @@ public class ContractService {
     public List<ContractDTO> getCustomerHistory(int customer_id){
         return contractRepo.getCustomerHistory(customer_id);
     }
+
+
+    public List<ContractDTO> editContract(int contract_id){
+        return contractRepo.editContract(contract_id);
+    }
+
+    public void updateStartAndEndDate(int contract_id, String contract_start_date, String contract_end_date){
+        contractRepo.updateStartAndEndDate(contract_id, contract_start_date, contract_end_date);
+    }
 }
