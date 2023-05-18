@@ -6,8 +6,8 @@ body,html{
 }
 
 body {
-    background-color: #222;
-    color: #fff;
+    background-color: #F8F8F8;
+    color: white;
     font-size: 14px;
     font-weight: 200;
 }
@@ -18,14 +18,14 @@ body {
 }
 
 h1 {
-    color: #fff;
+    color: black;
     text-align: center;
     margin: 0;
     padding: 10px 0;
 }
 
 h5 {
-    color: #fff;
+    color: white;
     font-size: 16px;
     margin: 0;
     padding: 0 0 10px 0;
@@ -53,8 +53,8 @@ h5 {
 }
 
 .card-box {
-    background-color: #333;
-    border: 1px solid #444;
+    background-color: grey;
+    border: 1px solid darkgrey;
     border-radius: 5px;
     padding: 10px;
     margin: 0 0 20px 0;

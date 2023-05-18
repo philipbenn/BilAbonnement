@@ -84,7 +84,7 @@
                         <th style="border: 1px solid #ccc; padding: 8px;">End Date</th>
                     </tr>
                     </thead>
-                    <tr th:each="contract : ${expiringContracts}" style="color: #ccc;">
+                    <tr th:each="contract : ${expiringContracts}" style="color: white;">
                         <td style="border: 1px solid white;" th:text="${contract.contract_id}"></td>
                         <td style="border: 1px solid white;" th:text="${contract.customer_name}"></td>
                         <td style="border: 1px solid white;" th:text="${contract.car_model}"></td>
@@ -169,7 +169,13 @@
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        fontColor: 'white'
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: 'white'
                     }
                 }]
             },
@@ -189,6 +195,7 @@ var udlejet = document.getElementById('nrOfRentedCars').value;
         type: 'pie',
         data: {
             labels: ["Værksted", "Ledige", "Udlejet"],
+
             datasets: [{
                 data: [værksted, ledige, udlejet],
                 backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
@@ -201,7 +208,8 @@ var udlejet = document.getElementById('nrOfRentedCars').value;
                 position: 'bottom',
                 labels: {
                     padding: 20,
-                    boxWidth: 10
+                    boxWidth: 10,
+                    fontColor: 'white'
                 }
             }
         }

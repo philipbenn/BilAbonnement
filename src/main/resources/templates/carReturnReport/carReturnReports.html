@@ -3,27 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Car Return Reports</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/navbar.css}" type="text/css">
-    <style>
-        body {
-            padding: 2rem;
-            background-color: #f8f9fa;
-        }
-        .table {
-            margin-top: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
 </head>
 <body>
 
 <header th:replace="navbarfragment :: navbar"></header>
 
+    <h2 class="title">Car Return Reports</h2>
 
-<div class="container">
-    <h2 class="text-center my-4">Car Return Reports</h2>
-
-    <table class="table table-striped table-hover">
+    <table class="overview-table">
         <thead>
         <tr>
             <th scope="col">Car Return Report ID</th>
@@ -40,11 +29,11 @@
                 <td><input type="text" name="carId" th:value="${carReturnReports.car_id}" readonly class="form-control"></td>
                 <td><input type="text" name="kmDriven" th:value="${carReturnReports.km_driven}" readonly class="form-control"></td>
                 <td><input type="text" name="contractId" th:value="${carReturnReports.contract_id}" readonly class="form-control"></td>
-                <td><a class="btn btn-primary" th:href="${'/OpenDamageReport/' + carReturnReports.car_return_report_id}">Open/Edit</a></td>
+                <td><a class="btn btn-primary" th:href="${'/OpenDamageReport/' + carReturnReports.car_return_report_id}">
+                    <button class="btn-submit">Rediger</button></a></td>
 
         </tr>
         </tbody>
     </table>
-</div>
 </body>
 </html>
