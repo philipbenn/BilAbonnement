@@ -78,7 +78,7 @@ public class ContractRepo {
                 "WHERE \n" +
                 "    contract.start_date >= CURDATE() AND contract.end_date > CURDATE()\n" +
                 "ORDER BY \n" +
-                "    contract.end_date ASC LIMIT 4;\n";
+                "    contract.end_date ASC LIMIT 10;\n";
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
     }

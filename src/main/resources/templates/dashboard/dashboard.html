@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.20.0/css/mdb.min.css"
           integrity="sha512-hj9rznBPdFg9A4fACbJcp4ttzdinMDtPrtZ3gBD11DiY3O1xJfn0r1U5so/J0zwfGOzq9teIaH5rFmjFAFw8SA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/dashboard.css">
 </head>
 
 <body>
@@ -86,12 +86,12 @@
                     </tr>
                     </thead>
                     <tr th:each="contract : ${expiringContracts}" style="color: #ccc;">
-                        <td style="border: 1px solid white;" th:text="${contract.contract_id}"></td>
-                        <td style="border: 1px solid white;" th:text="${contract.customer_name}"></td>
-                        <td style="border: 1px solid white;" th:text="${contract.car_model}"></td>
-                        <td style="border: 1px solid white;" th:text="${contract.vognnummer}"></td>
-                        <td style="border: 1px solid white;" th:text="${contract.total_price_per_month}"></td>
-                        <td style="border: 1px solid white;" th:text="${contract.end_date}"></td>
+                        <td style="border: 1px solid white; color: white" th:text="${contract.contract_id}"></td>
+                        <td style="border: 1px solid white; color: white; overflow: hidden" th:text="${contract.customer_name}"></td>
+                        <td style="border: 1px solid white; color: white" th:text="${contract.car_model}"></td>
+                        <td style="border: 1px solid white; color: white" th:text="${contract.vognnummer}"></td>
+                        <td style="border: 1px solid white; color: white" th:text="${contract.total_price_per_month}"></td>
+                        <td style="border: 1px solid white; color: white" th:text="${contract.end_date}"></td>
                     </tr>
                 </table>
             </div>
