@@ -54,6 +54,7 @@
             <td th:text="${contract.max_km}"></td>
             <td th:text="${contract.km_plan_price}" ></td>
 
+            @RequestParam String contract_start_date, @RequestParam String contract_end_date, @RequestParam int contract_id
 
             <td>
                <input type="date" name="contract_start_date" th:value="${contract.start_date}">
