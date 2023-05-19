@@ -27,13 +27,14 @@ public class CarReturnReportRepo {
 
     public List <Car_Return_Report_DTO> getAllPendingCarReturnReports(){
         String sql = """
-                SELECT car_return_report.car_return_report_id, car_return_report.contract_id, car.vognnummer, car_model.car_model_name, COUNT(car_return_damage.car_return_damage_id) AS nrOfDamages
+                SELECT car_return_report.car_return_report_id, car_return_report.contract_id, car.vognnummer, car_model.car_model_name, 
+                COUNT(car_return_damage.car_return_damage_id) AS nrOfDamages
                 FROM car_return_report
                 JOIN car_return_damage
                 ON car_return_report.car_return_report_id = car_return_damage.car_return_report_id
-                JOIN car\s
+                JOIN car
                 ON car_return_report.car_id = car.car_id
-                JOIN car_model\s
+                JOIN car_model
                 ON car.car_model_id = car_model.car_model_id
                 WHERE car_return_damage.isFixed = 0
                 GROUP BY car_return_report.car_return_report_id, car_return_report.contract_id, car.vognnummer, car_model.car_model_name;""";
@@ -43,16 +44,31 @@ public class CarReturnReportRepo {
 
     public List <Car_Return_Report_DTO> getAllClosedCarReturnReports(){
         String sql = """
-                SELECT car_return_report.car_return_report_id, car_return_report.contract_id, car.vognnummer, car_model.car_model_name, COUNT(car_return_damage.car_return_damage_id) AS nrOfDamages
-                FROM car_return_report
-                JOIN car_return_damage
-                ON car_return_report.car_return_report_id = car_return_damage.car_return_report_id
-                JOIN car\s
-                ON car_return_report.car_id = car.car_id
-                JOIN car_model\s
-                ON car.car_model_id = car_model.car_model_id
-                WHERE car_return_damage.isFixed = 1
-                GROUP BY car_return_report.car_return_report_id, car_return_report.contract_id, car.vognnummer, car_model.car_model_name;""";
+                    SELECT
+                      cr.car_return_report_id AS "car_return_report_id",
+                      cr.contract_id AS "contract_id",
+                      c.vognnummer AS "vognnummer",
+                      cm.car_model_name AS "car_model_name"
+                    FROM
+                      car_return_report cr
+                      INNER JOIN contract ct ON cr.contract_id = ct.contract_id
+                      INNER JOIN car c ON ct.car_id = c.car_id
+                      INNER JOIN car_model cm ON c.car_model_id = cm.car_model_id
+                    WHERE
+                      NOT EXISTS (
+                        SELECT
+                          crd.car_return_damage_id
+                        FROM
+                          car_return_damage crd
+                        WHERE
+                          crd.car_return_report_id = cr.car_return_report_id
+                          AND crd.isFixed = 0
+                      );
+                       
+                
+              
+                
+                """;
         return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Car_Return_Report_DTO.class));
 
     }
