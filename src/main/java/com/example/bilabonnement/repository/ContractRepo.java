@@ -16,6 +16,7 @@ public class ContractRepo {
     public ContractRepo() {
     }
 
+    //ContractDTO Lists
     public List<ContractDTO> getActiveContracts() {
         //Find sql query under stored procedures
         String sql = """
@@ -193,6 +194,7 @@ public class ContractRepo {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
     }
 
+
     // Other Lists
     public List<ContractTypeCount> contractTypeCounts() {
         String sql = """
@@ -204,6 +206,7 @@ public class ContractRepo {
                 """;
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractTypeCount.class));
     }
+
 
     // Update methods
     public void setEndDateToToday(int contract_id){
@@ -229,6 +232,7 @@ public class ContractRepo {
         jdbcTemplate.update(sql, car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan, start_date, employee_id);
         updateEndDate();
     }
+
 
     // Key values
     public Double monthlyIncome(){

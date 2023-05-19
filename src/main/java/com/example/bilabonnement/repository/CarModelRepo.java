@@ -67,4 +67,5 @@ public class CarModelRepo {
         String sql = "INSERT INTO car_model (car_model_name) VALUES (?)";
         jdbcTemplate.update(sql, car_model);
     }
+
 }

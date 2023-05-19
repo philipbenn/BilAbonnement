@@ -1,7 +1,6 @@
 package com.example.bilabonnement.repository;
 
 import com.example.bilabonnement.model.car.Car;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,7 +17,8 @@ public class CarRepo {
         jdbcTemplate.update(sql, car_model_id, vognnummer);
     }
     public List<Car> getAvailableCars(int car_model_id) {
-        String sql = """
+        String sql =
+            """
             SELECT car.car_id, car.car_model_id, car.vognnummer
             FROM car
             WHERE car.car_model_id = ? AND NOT EXISTS (
@@ -37,6 +37,4 @@ public class CarRepo {
             """;
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Car.class), car_model_id);
     }
-
-
 }

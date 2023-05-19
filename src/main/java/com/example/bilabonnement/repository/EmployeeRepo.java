@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 public class EmployeeRepo {
     @Autowired
     JdbcTemplate template;
+
     public Employee logIn(int employee_id, String password) {
         String sql = "SELECT * FROM employee WHERE employee_id = ? AND password = ?";
         try {
