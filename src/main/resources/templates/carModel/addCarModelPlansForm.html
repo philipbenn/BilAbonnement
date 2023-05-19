@@ -35,8 +35,8 @@
 
 <div style="display: flex; justify-content: space-evenly; height: 75%; width: 100%;">
 
-    <div style="margin-top: 60px; border: 2px solid white; padding: 10px; border-radius: 10px">
-        <h1 style="text-align: center">Tilføj Max Km Plan</h1>
+    <div style="margin-top: 60px; border: 1px solid black; padding: 10px; border-radius: 10px">
+        <h1 class="title">TILFØJ MAX KM PLAN</h1>
 
         <form method="post" th:action="@{/addCarModelKmPlan}">
             <input name="car_model_id" th:value="${car_model_id}" type="hidden">
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <div style="margin-top: 60px; border: 2px solid white; padding: 10px; border-radius: 10px">
+    <div style="margin-top: 60px; border: 1px solid black; padding: 10px; border-radius: 10px">
         <h1 style="text-align: center">Tilføj Leasing Periode Planer</h1>
         <form class="form-group" method="post" th:action="@{/addCarLeasePlan}">
             <input name="car_model_id" th:value="${car_model_id}" type="hidden">

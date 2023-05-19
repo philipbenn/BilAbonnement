@@ -19,7 +19,7 @@
 <header th:replace="navbarfragment :: navbar"></header>
 
 <main style="width: 100vw; height: 84vh; overflow: auto;">
-    <h1 class="title">Bil oversigt</h1>
+    <h1 class="title">BIL OVERSIGT</h1>
 
     <table class="overview-table">
         <thead>
@@ -68,7 +68,7 @@
             <td class="options-td">
                 <a class="btn btn-primary" th:href="${'/addCarForm/'+ carInfo.car_model.car_model_id}">Registrer Bil</a>
                 <a class="btn btn-secondary" th:href="${'/addCarModelPlansForm/' + carInfo.car_model.car_model_id}">Rediger Priser</a>
-                <a class="btn btn-info">Vis registrede biler</a>
+                <a class="btn btn-info" style="color: white; margin-top: 5px">Vis registrede biler</a>
             </td>
         </tr>
         </tbody>
