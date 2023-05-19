@@ -105,7 +105,7 @@ public class ContractController {
         car_return_damage.setPrice(0);
         carReturnReportRepo.addCarReturnDamage(car_return_damage);
         //Open the CarReturnDamageReport in the browser
-        return "redirect:/openDamageReport/" + carReturnReportRepo.getMaxCarReturnReportId();
+        return "redirect:/carReturnReports/pending";
     }
     @PostMapping("/addContract")
     public String addContract(@RequestParam int customer_id, @RequestParam int car_id, @RequestParam int car_model_lease_period_plan_id, @RequestParam int car_model_max_km_plan_id, @RequestParam String start_date, @RequestParam int employee_id){

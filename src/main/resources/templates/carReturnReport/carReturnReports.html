@@ -20,6 +20,7 @@
         <thead>
         <tr>
             <th scope="col">Car Return Report ID</th>
+            <th scope="col">Contract ID</th>
             <th scope="col">Vognnummer</th>
             <th scope="col">Bil Model</th>
             <th>Åben</th>
@@ -29,8 +30,11 @@
         <tr>
 
             <td th:text="${carReturnReport.car_return_report_id}"></td>
+            <td th:text="${carReturnReport.contract_id}"></td>
             <td th:text="${carReturnReport.vognnummer}"></td>
             <td th:text="${carReturnReport.car_model_name}"></td>
+
+
             <td><a class="btn btn-primary" th:href="${'/openDamageReport/' + carReturnReport.car_return_report_id}">Åben/Rediger skades-rapport</a>
 
         </tr>
