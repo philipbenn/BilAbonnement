@@ -80,6 +80,7 @@ public class ContractController {
     @GetMapping("/customerContractHistory/{customer_id}")
     public String watchCustomerHistory(@PathVariable int customer_id, Model model){
         model.addAttribute("getCustomerHistory", contractService.getCustomerHistory(customer_id));
+        model.addAttribute("customer", contractService.getCustomerHistory(customer_id));
         return "customer/watchSpecificCustomerHistory";
     }
 

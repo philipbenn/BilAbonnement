@@ -14,9 +14,9 @@
 <h1 class="title">TILFØJ BIL</h1>
 
 <form style="display: flex; justify-content: center; margin-top: 200px;" method="post" action="/addNewCar">
-    <input name="car_model_id" th:value="${car_model_id}">
-    <input name="vognnummer" type="text">
-    <button class="btn-submit" type="submit">Submit</button>
+    <input name="car_model_id" th:value="${car_model_id}" type="hidden">
+    <input name="vognnummer" type="text" placeholder="Vognnummer" required>
+    <button class="btn-submit" type="submit">Tilføj</button>
 
 </form>
 

@@ -131,15 +131,17 @@ public class ContractRepo {
     }
     public List<ContractDTO> getCustomerHistory(int customer_id){
         String sql = """
-                SELECT  car.car_id, car.car_model_id, car.vognnummer, car_model.car_model_name, car_model_lease_period_plan.type,contract.contract_id, contract.start_date, contract.end_date, contract.employee_id, contract.customer_id
+                SELECT  car.car_id, car.car_model_id, car.vognnummer, car_model.car_model_name, car_model_lease_period_plan.type,contract.contract_id, contract.start_date, contract.end_date, contract.employee_id, contract.customer_id, customer.customer_name
                 FROM contract
-                JOIN car\s
+                JOIN car
                 ON contract.car_id = car.car_id
+                JOIN customer 
+                ON customer.customer_id = contract.customer_id
                 JOIN car_model
                 ON car.car_model_id = car_model.car_model_id
-                JOIN car_model_lease_period_plan\s
+                JOIN car_model_lease_period_plan
                 ON car_model_lease_period_plan.car_model_lease_period_plan_id = contract.car_model_lease_period_plan_id
-                WHERE customer_id = ? ORDER BY contract_id;""";
+                WHERE customer.customer_id = ? ORDER BY contract_id;""";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), customer_id);
     }
     public List<ContractDTO> editContract(int contract_id){
