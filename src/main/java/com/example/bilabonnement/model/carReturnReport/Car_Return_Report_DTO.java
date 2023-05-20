@@ -2,12 +2,13 @@ package com.example.bilabonnement.model.carReturnReport;
 
 public class Car_Return_Report_DTO {
 
+    Car_Return_Report_DTO(){}
     private int car_return_report_id;
     private int contract_id;
     private String vognnummer;
     private String car_model_name;
     private int nrOfDamages;
-    Car_Return_Report_DTO(){}
+
 
     public int getCar_return_report_id() {
         return car_return_report_id;

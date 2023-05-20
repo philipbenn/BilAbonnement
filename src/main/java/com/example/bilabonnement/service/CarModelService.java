@@ -15,7 +15,17 @@ public class CarModelService {
 @Autowired
 CarModelRepo carModelRepo;
 
-    // Lists
+// Lists
+
+    // Henter bilinformation for alle bilmodeller.
+    // For hver bilmodel hentes følgende information:
+    // - Bilmodelobjektet selv.
+    // - Liste over lejeperiodeplaner for bilmodellen.
+    // - Liste over maksimal kilometerplaner for bilmodellen.
+    // - Antallet af udlejede biler af bilmodellen.
+    // - Antallet af biler i reparation af bilmodellen.
+    // - Antallet af biler på lager af bilmodellen.
+    // Alle disse oplysninger samles i en liste af CarModelDTO-objekter
     public List<CarModelDTO> getCarInfo() {
         List<Car_Model> carModels = carModelRepo.getCarModels();
 
@@ -31,13 +41,13 @@ CarModelRepo carModelRepo;
             List<Car_Model_Max_Km_Plan> carModelMaxKmPlans = carModelRepo.getCarModelMaxKmPlans(carModel.getCar_model_id());
             carInfo.setCar_model_max_km_plans(carModelMaxKmPlans);
 
-            int carsLeasedOut = carModelRepo.getCarsLeasedOutCount(carModel.getCar_model_id());
+            int carsLeasedOut = carModelRepo.getCarsLeasedOutCountByModelId(carModel.getCar_model_id());
             carInfo.setCarsLeasedOut(carsLeasedOut);
 
-            int carsInRepair = carModelRepo.getCarsInRepairCount(carModel.getCar_model_id());
+            int carsInRepair = carModelRepo.getCarsInRepairCountByModelId(carModel.getCar_model_id());
             carInfo.setCarsInRepair(carsInRepair);
 
-            int carsInStock = carModelRepo.getAllCarsCount(carModel.getCar_model_id());
+            int carsInStock = carModelRepo.getCarCountByModelId(carModel.getCar_model_id());
             carsInStock = carsInStock - carsLeasedOut - carsInRepair;
 
             carInfo.setCarsInStock(carsInStock);

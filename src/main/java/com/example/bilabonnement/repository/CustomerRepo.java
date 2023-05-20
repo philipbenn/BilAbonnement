@@ -14,25 +14,27 @@ public class CustomerRepo {
     @Autowired
     JdbcTemplate template;
 
-    // Lists
+
+    //  Henter alle customers fra databasen
     public List<Customer> getAllCustomer(){
         String sql = "SELECT * FROM customer";
         return template.query(sql, new BeanPropertyRowMapper<>(Customer.class));
     }
 
-    // Insert methods
+
+    // Opretter en customer
     public void createCustomer(String customer_name) {
         String sql = "INSERT INTO customer (customer_name) VALUES (?)";
         template.update(sql, customer_name);
     }
 
-    // Update methods
+    // Opdaterer en customers navn
     public void editCustomer(String customer_name, int customer_id) {
         String sql = "UPDATE customer SET customer_name = ? WHERE customer_id = ?";
         template.update(sql, customer_name, customer_id);
     }
 
-    // Get methods
+    // Henter en customer fra databasen
     public Customer getCustomer(int customer_id) {
         String sql = "SELECT * FROM customer WHERE customer_id = ?";
         return template.queryForObject(sql, new BeanPropertyRowMapper<>(Customer.class), customer_id);

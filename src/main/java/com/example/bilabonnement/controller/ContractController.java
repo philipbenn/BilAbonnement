@@ -1,7 +1,7 @@
 package com.example.bilabonnement.controller;
 
 import com.example.bilabonnement.model.carReturnReport.Car_Return_Damage;
-import com.example.bilabonnement.repository.CarReturnReportRepo;
+import com.example.bilabonnement.service.CarReturnReportService;
 import com.example.bilabonnement.service.CarModelService;
 import com.example.bilabonnement.service.CarService;
 import com.example.bilabonnement.service.ContractService;
@@ -22,7 +22,7 @@ public class ContractController {
     @Autowired
     CarService carService;
     @Autowired
-    CarReturnReportRepo carReturnReportRepo;
+    CarReturnReportService carReturnReportService;
 
     // Contract Overviews
     @GetMapping("/contractsOverview/active")
@@ -72,7 +72,7 @@ public class ContractController {
     // Edit Contract Form
     @GetMapping("/editContractForm/{contract_id}")
     public String editContract(Model model, @PathVariable int contract_id ){
-        model.addAttribute("getContractInfo", contractService.editContract(contract_id));
+        model.addAttribute("contractInfo", contractService.getContractInfo(contract_id));
         return "contract/editContract";
     }
 
@@ -80,12 +80,12 @@ public class ContractController {
     @GetMapping("/customerContractHistory/{customer_id}")
     public String watchCustomerHistory(@PathVariable int customer_id, Model model){
         model.addAttribute("getCustomerHistory", contractService.getCustomerHistory(customer_id));
-        return "customer/watchSpecificCustomerHistory";
+        return "customer/customerContractHistory";
     }
 
     // Post Methods
     @PostMapping("/editContract")
-    public String editSpecificContract(@RequestParam String contract_start_date, @RequestParam String contract_end_date, @RequestParam int contract_id){
+    public String editContract(@RequestParam String contract_start_date, @RequestParam String contract_end_date, @RequestParam int contract_id){
         contractService.updateStartAndEndDate(contract_id, contract_start_date, contract_end_date);
         return ("redirect:/editContractForm/" + contract_id);
     }
@@ -96,14 +96,14 @@ public class ContractController {
         //Set end date of contract to today
         contractService.setEndDateToToday(contract_id);
         //Create new CarReturnDamageReport with this contract_id
-        carReturnReportRepo.addCarReturnReport(contract_id, car_id);
+        carReturnReportService.addCarReturnReport(contract_id, car_id);
         //Add an empty CarReturnDamage to the CarReturnDamageReport
         Car_Return_Damage car_return_damage = new Car_Return_Damage();
         car_return_damage.setDamage_description("Test damage. Please edit.");
-        car_return_damage.setCar_return_report_id(carReturnReportRepo.getMaxCarReturnReportId());
+        car_return_damage.setCar_return_report_id(carReturnReportService.getMaxCarReturnReportId());
         car_return_damage.setIsFixed(0);
         car_return_damage.setPrice(0);
-        carReturnReportRepo.addCarReturnDamage(car_return_damage);
+        carReturnReportService.addCarReturnDamage(car_return_damage);
         //Open the CarReturnDamageReport in the browser
         return "redirect:/carReturnReports/pending";
     }

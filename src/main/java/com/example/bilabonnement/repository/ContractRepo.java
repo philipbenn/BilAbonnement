@@ -16,7 +16,13 @@ public class ContractRepo {
     public ContractRepo() {
     }
 
-    //ContractDTO Lists
+/////////////////////
+//ContractDTO Lists//
+/////////////////////
+
+    // Henter en liste over alle aktive kontrakter fra databasen.
+    // En kontrakt betragtes som aktiv, hvis den aktuelle dato og
+    // tid er inden for kontraktens start- og slutdato.
     public List<ContractDTO> getActiveContracts() {
         //Find sql query under stored procedures
         String sql = """
@@ -58,6 +64,9 @@ public class ContractRepo {
                 ;
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
     }
+
+    // Henter en liste over alle afsluttede kontrakter fra databasen.
+    // En kontrakt betragtes som afsluttet, hvis dens slutdato er tidligere end den aktuelle dato og tid.
     public List<ContractDTO> getEndedContracts() {
         //Find sql query under stored procedures
         String sql = """
@@ -94,6 +103,9 @@ public class ContractRepo {
                     ORDER BY end_date;""";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
     }
+
+    // Henter en liste over alle fremtidige kontrakter fra databasen.
+    // En kontrakt betragtes som fremtidig, hvis dens startdato er senere end den aktuelle dato og tid.
     public List<ContractDTO> getFutureContracts(){
         String sql = """
                 SELECT
@@ -129,6 +141,9 @@ public class ContractRepo {
                     ORDER BY start_date;""";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
     }
+
+    // Henter en liste over alle kontrakter for en specifik kunde fra databasen.
+    // Denne liste indeholder alle kontrakter, uanset om de er aktive, fremtidige eller afsluttede.
     public List<ContractDTO> getCustomerHistory(int customer_id){
         String sql = """
                 SELECT  car.car_id, car.car_model_id, car.vognnummer, car_model.car_model_name, car_model_lease_period_plan.type,contract.contract_id, contract.start_date, contract.end_date, contract.employee_id, contract.customer_id
@@ -142,7 +157,64 @@ public class ContractRepo {
                 WHERE customer_id = ? ORDER BY contract_id;""";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), customer_id);
     }
-    public List<ContractDTO> editContract(int contract_id){
+
+    // Henter en liste over kontrakter, der snart udløber.
+    // Max 8 kontrakter bliver returneret
+    public List<ContractDTO> expiringContracts(){
+
+        String sql = """
+                SELECT
+                    car.vognnummer,
+                    car_model.car_model_name,
+                    customer.customer_name,
+                    (car_model_lease_period_plan.price_per_month + car_model_max_km_plan.km_price_per_month) AS total_price_per_month,
+                    contract_id,
+                    end_date
+                FROM
+                    contract
+                JOIN
+                    car ON contract.car_id = car.car_id
+                JOIN
+                    car_model ON car.car_model_id = car_model.car_model_id
+                JOIN
+                    customer ON contract.customer_id = customer.customer_id
+                JOIN
+                    car_model_lease_period_plan ON contract.car_model_lease_period_plan_id = car_model_lease_period_plan.car_model_lease_period_plan_id
+                JOIN
+                    car_model_max_km_plan ON contract.car_model_max_km_plan = car_model_max_km_plan.car_model_max_km_plan_id
+                WHERE
+                    contract.start_date >= NOW() + INTERVAL 1 HOUR AND contract.end_date > NOW() + INTERVAL 1 HOUR
+                ORDER BY
+                    contract.end_date LIMIT 8;
+                """;
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
+    }
+
+
+/////////////////
+// Other Lists //
+/////////////////
+
+    // Henter en liste der viser hvor mange kontrakter der er af hver type.
+    // Listen indeholder antallet af kontrakter for hver type, samt typenavnet.
+    public List<ContractTypeCount> contractTypeCounts() {
+        String sql = """
+                SELECT clpp.type, COUNT(*) as count
+                FROM contract c
+                JOIN car_model_lease_period_plan clpp
+                ON c.car_model_lease_period_plan_id = clpp.car_model_lease_period_plan_id
+                GROUP BY clpp.type;
+                """;
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractTypeCount.class));
+    }
+
+//////////////////////
+// QueryForObjects //
+////////////////////
+
+    // Henter informationen for en specifik kontrakt baseret på kontraktens id.
+    public ContractDTO getContractInfo(int contract_id){
         String sql = "SELECT c.contract_id, cu.customer_id, cu.customer_name, ca.car_id, cm.car_model_id, cm.car_model_name, " +
                 "ca.vognnummer, clp.car_model_lease_period_plan_id, clp.type AS lease_type," +
                 " clp.price_per_month AS lease_price," +
@@ -159,60 +231,23 @@ public class ContractRepo {
                 "ON c.car_model_lease_period_plan_id = clp.car_model_lease_period_plan_id " +
                 "JOIN car_model_max_km_plan ckp " +
                 "ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id " +
-                "WHERE contract_id = ? ORDER BY contract_id;";
+                "WHERE contract_id = ?";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), contract_id);
-    }
-    public List<ContractDTO> expiringContracts(){
-
-        String sql = """
-                SELECT\s
-                    car.vognnummer,\s
-                    car_model.car_model_name,\s
-                    customer.customer_name,\s
-                    (car_model_lease_period_plan.price_per_month + car_model_max_km_plan.km_price_per_month) AS total_price_per_month,\s
-                    contract_id,
-                    end_date
-                FROM\s
-                    contract
-                JOIN\s
-                    car ON contract.car_id = car.car_id
-                JOIN\s
-                    car_model ON car.car_model_id = car_model.car_model_id
-                JOIN\s
-                    customer ON contract.customer_id = customer.customer_id
-                JOIN\s
-                    car_model_lease_period_plan ON contract.car_model_lease_period_plan_id = car_model_lease_period_plan.car_model_lease_period_plan_id
-                JOIN\s
-                    car_model_max_km_plan ON contract.car_model_max_km_plan = car_model_max_km_plan.car_model_max_km_plan_id
-                WHERE\s
-                    contract.start_date >= NOW() + INTERVAL 1 HOUR AND contract.end_date > NOW() + INTERVAL 1 HOUR
-                ORDER BY\s
-                    contract.end_date LIMIT 8;
-                """;
-
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(ContractDTO.class), contract_id);
     }
 
+/////////////////////
+// Update methods //
+///////////////////
 
-    // Other Lists
-    public List<ContractTypeCount> contractTypeCounts() {
-        String sql = """
-                SELECT clpp.type, COUNT(*) as count
-                FROM contract c
-                JOIN car_model_lease_period_plan clpp
-                ON c.car_model_lease_period_plan_id = clpp.car_model_lease_period_plan_id
-                GROUP BY clpp.type;
-                """;
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractTypeCount.class));
-    }
-
-
-    // Update methods
+    // Ændrer slutdatoen for en specifik kontrakt til den aktuelle dato
     public void setEndDateToToday(int contract_id){
         String sql = "UPDATE contract SET end_date = NOW() + INTERVAL 1 HOUR WHERE contract_id = ?";
         jdbcTemplate.update(sql, contract_id);
     }
+
+    // Opdaterer slutdatoen for en specifik kontrakt baseret på startdatoen og
+    // lejeperioden for den pågældende kontrakt.
     public void updateEndDate(){
         String sql = """
                 UPDATE contract c
@@ -221,20 +256,32 @@ public class ContractRepo {
                 WHERE c.contract_id = ?;""";
         jdbcTemplate.update(sql, getNewestContractId());
     }
+
+// Opdaterer startdatoen og slutdatoen for en specifik kontrakt.
     public void updateStartAndEndDate(int contract_id, String contract_start_date, String contract_end_date){
         String sql = "UPDATE contract SET start_date = ?, end_date= ? WHERE contract_id = ?";
         jdbcTemplate.update(sql, contract_start_date, contract_end_date, contract_id);
     }
 
-    // Insert methods
+/////////////////////
+// Insert methods //
+///////////////////
+
+    // Tilføjer en ny kontrakt til databasen med de angivne oplysninger.
+    // Slutdatoen for kontrakten sættes til en standardværdi ('2001-01-01')
+    // i starten og opdateres derefter.
     public void addContract(int car_id, int customer_id, int car_model_lease_period_plan_id, int car_model_max_km_plan, String start_date, int employee_id){
         String sql = "INSERT INTO contract (car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan, start_date, employee_id, end_date) VALUES (?, ?, ?, ?, ?, ?, '2001-01-01')";
         jdbcTemplate.update(sql, car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan, start_date, employee_id);
         updateEndDate();
     }
 
+/////////////////
+// Key values //
+///////////////
 
-    // Key values
+    // Beregner den månedlige indtægt baseret fra aktive kontrakter.
+    // Indtægten er summen af lejeprisen per måned og kilometerprisen per måned for hver kontrakt.
     public Double monthlyIncome(){
         String sql = """
                 SELECT SUM(cpp.price_per_month + cmkp.km_price_per_month) AS total_monthly_income
@@ -245,14 +292,21 @@ public class ContractRepo {
                 """;
         return jdbcTemplate.queryForObject(sql, Double.class);
     }
+
+    // Henter det nyeste kontrakt_id fra databasen.
     public int getNewestContractId(){
         String sql = "SELECT MAX(contract_id) FROM contract";
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
+
+    // Tæller hvor mange specifikke biler der er i alt fra databasen
     public int countAllCars(){
         String sql = "SELECT COUNT(*) FROM car";
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
+
+    // Tæller hvor mange aktive kontrakter der er. En kontrakt er aktiv
+    // når den nuværende dato er indenfor start- og slutdatoen for kontrakten.
     public int activeContracts(){
         String sql = """
                 SELECT COUNT(*)
@@ -261,6 +315,8 @@ public class ContractRepo {
                 """;
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
+
+    // Tæller hvor mange biler der er i reparation.
     public int nrOfCarsInRepair(){
         String sql= """
                 SELECT COUNT(DISTINCT car_return_report_id) AS 'Number of Cars in Repair'

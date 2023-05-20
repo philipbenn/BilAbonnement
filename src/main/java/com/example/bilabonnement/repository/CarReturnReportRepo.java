@@ -15,16 +15,24 @@ public class CarReturnReportRepo {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    // Lists
+////////////
+// Lists //
+//////////
+
+
+    // Henter en liste af alle CarReturnReport fra databasen.
     public List<Car_Return_Report> getAllCarReturnReports (){
         String sql = "SELECT * from car_return_report";
         return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Car_Return_Report.class));
     }
+
+    // Henter en liste af alle skader fra en CarReturnReport.
     public List<Car_Return_Damage> carReturnDamageFromReport (int car_return_report_id){
         String sql = "SELECT * from car_return_damage WHERE car_return_report_id = ?";
         return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Car_Return_Damage.class),car_return_report_id);
     }
 
+    // Henter en liste af alle CarReturnReport'er, der har ventende skader til reparation.
     public List <Car_Return_Report_DTO> getAllPendingCarReturnReports(){
         String sql = """
                 SELECT car_return_report.car_return_report_id, car_return_report.contract_id, car.vognnummer, car_model.car_model_name, 
@@ -42,6 +50,7 @@ public class CarReturnReportRepo {
 
     }
 
+    // Henter en liste af alle CarReturnReport'er, hvor alle skader er blevet repareret.
     public List <Car_Return_Report_DTO> getAllClosedCarReturnReports(){
         String sql = """
                     SELECT
@@ -73,28 +82,45 @@ public class CarReturnReportRepo {
 
     }
 
-    // Insert methods
+
+/////////////////////
+// Insert methods //
+///////////////////
+
+    // Tilføjer en ny CarReturnReport til databasen med det givne kontrakt_id og bil_id.
+    // Kilometer kørt er indstillet til 0 som standard.
     public void addCarReturnReport (int contract_id, int car_id){
         String sql = "INSERT INTO car_return_report (contract_id, car_id, km_driven) VALUES (?, ?, 0)";
         jdbcTemplate.update(sql,contract_id,car_id);
     }
+
+    // Tilføjer en ny skaderegistrering til en CarReturnReport i databasen.
     public void addCarReturnDamage (Car_Return_Damage car_return_damage){
         String sql = "INSERT INTO car_return_damage (car_return_report_id, damage_description, isFixed, price) VALUES (?,?,?,?)";
         jdbcTemplate.update(sql,car_return_damage.getCar_return_report_id(),car_return_damage.getDamage_description(),car_return_damage.getIsFixed(),car_return_damage.getPrice());
     }
 
-    // Update Methods
+
+/////////////////////
+// Update Methods //
+///////////////////
+
+
+    // Opdaterer informationen for en eksisterende skade i en bilreturrapport i databasen.
     public void editCarReturnDamage (Car_Return_Damage car_return_damage){
        String sql = "UPDATE car_return_damage SET damage_description = ?, isFixed = ?, price = ? WHERE car_return_damage_id = ?";
          jdbcTemplate.update(sql,car_return_damage.getDamage_description(),car_return_damage.getIsFixed(),car_return_damage.getPrice(),car_return_damage.getCar_return_damage_id());
 
           }
 
-    // Key Values
+/////////////////
+// Key Values //
+///////////////
+
+    // Henter det højeste 'car_return_report_id' fra databasen, altså den nyeste bilreturrapport.
     public int getMaxCarReturnReportId (){
         String sql = "SELECT MAX(car_return_report_id) FROM car_return_report";
         return jdbcTemplate.queryForObject(sql,Integer.class);
     }
-
 
 }

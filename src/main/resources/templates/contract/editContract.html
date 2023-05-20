@@ -36,31 +36,31 @@
             <th>Handlinger</th>
         </tr>
         </thead>
-        <tbody th:each="contract : ${getContractInfo}">
+        <tbody>
         <form action="/editContract" method="post">
         <tr>
             <td>
-                <input name="contract_id" readonly th:value="${contract.contract_id}">
+                <input name="contract_id" readonly th:value="${contractInfo.contract_id}">
             </td>
-            <td th:text="${contract.customer_id}"></td>
-            <td th:text="${contract.customer_name}"></td>
-            <td th:text="${contract.car_model_name}"></td>
-            <td th:text="${contract.vognnummer}"></td>
-            <td th:text="${contract.lease_type}"></td>
-            <td th:text="${contract.lease_price}"></td>
-            <td th:text="${contract.max_km}"></td>
-            <td th:text="${contract.km_plan_price}" ></td>
+            <td th:text="${contractInfo.customer_id}"></td>
+            <td th:text="${contractInfo.customer_name}"></td>
+            <td th:text="${contractInfo.car_model_name}"></td>
+            <td th:text="${contractInfo.vognnummer}"></td>
+            <td th:text="${contractInfo.lease_type}"></td>
+            <td th:text="${contractInfo.lease_price}"></td>
+            <td th:text="${contractInfo.max_km}"></td>
+            <td th:text="${contractInfo.km_plan_price}" ></td>
 
             <td>
-               <input type="date" name="contract_start_date" th:value="${contract.start_date}">
+               <input type="date" name="contract_start_date" th:value="${contractInfo.start_date}">
             </td>
 
             <td>
-                <input type="date" name="contract_end_date" th:value="${contract.end_date}">
+                <input type="date" name="contract_end_date" th:value="${contractInfo.end_date}">
             </td>
 
 
-            <td th:text="${contract.total_price_per_month}"></td>
+            <td th:text="${contractInfo.total_price_per_month}"></td>
 
             <td>
                 <button class="btn-submit" type="submit">Tilføj</button>

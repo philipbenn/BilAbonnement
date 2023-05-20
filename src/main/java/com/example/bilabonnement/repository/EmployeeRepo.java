@@ -13,6 +13,7 @@ public class EmployeeRepo {
     @Autowired
     JdbcTemplate template;
 
+    // Login til en employee
     public Employee logIn(int employee_id, String password) {
         String sql = "SELECT * FROM employee WHERE employee_id = ? AND password = ?";
         try {
@@ -22,6 +23,8 @@ public class EmployeeRepo {
             return null;
         }
     }
+
+    // Opretter en employee
     public void addEmployee(Employee employee){
         String sql = "INSERT INTO employee (name, password) VALUES (?, ?)";
         template.update(sql, employee.getName(), employee.getPassword());

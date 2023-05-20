@@ -12,10 +12,15 @@ import java.util.List;
 public class CarRepo {
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    // Registrerer en ny bil med en given model id og vognnummer i databasen.
     public void registerCar(int car_model_id, String vognnummer){
         String sql = "INSERT INTO car (car_model_id, vognnummer) VALUES (?, ?)";
         jdbcTemplate.update(sql, car_model_id, vognnummer);
     }
+
+    // Henter en liste af tilgængelige biler for en given bilmodel,
+    // der hverken er i reparation eller udlejet.
     public List<Car> getAvailableCars(int car_model_id) {
         String sql =
             """
