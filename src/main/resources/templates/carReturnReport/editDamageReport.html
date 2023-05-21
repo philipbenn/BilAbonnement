@@ -42,11 +42,12 @@
         </tr>
         </tbody>
     </table>
-<h1 th:text="${'Total Price: ' + totalPrice}"></h1>
+<h1 style="margin-left: 10%" th:text="${'Total Pris: ' + totalPrice}"></h1>
 
 <form method="post" action="/addCarReturnDamage">
     <input type="hidden" name="car_return_report_id" th:value="${id}">
-    <input type="submit" value="Add New Damage" style="position: fixed; bottom: 0; right: 25px;" class="btn btn-primary">
+    <input type="submit" value="Tilføj nu skade" style="position: fixed; bottom: 0; right: 25px; height: 30px; width: 100px;
+    background: #0d6efd; color: #F8F8F8; border-radius: 5px; border: white; cursor: pointer" >
 </form>
 </body>
 </html>

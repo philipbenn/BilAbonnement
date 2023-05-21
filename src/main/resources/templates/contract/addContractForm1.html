@@ -25,11 +25,11 @@
             </div>
 
             <div style="width: 100%; height: 45px; display: flex; align-items: center; justify-content: center">
-                <label for="car_model_id">Choose car model</label><select id="car_model_id" name="car_model_id" style="margin-right: 10px">
+                <label for="car_model_id"></label><select id="car_model_id" name="car_model_id" style="margin-right: 10px">
                     <option th:each="car_model : ${car_model_list}" th:value="${car_model.car_model_id}"
                             th:text="${car_model.car_model_name}"></option>
                 </select>
-                <input type="submit" value="Next" class="btn-submit" style="padding: 5px 10px">
+                <input type="submit" value="Næste" class="btn-submit" style="padding: 5px 10px">
             </div>
 
         </form>

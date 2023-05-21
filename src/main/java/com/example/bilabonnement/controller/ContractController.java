@@ -5,6 +5,7 @@ import com.example.bilabonnement.repository.CarReturnReportRepo;
 import com.example.bilabonnement.service.CarModelService;
 import com.example.bilabonnement.service.CarService;
 import com.example.bilabonnement.service.ContractService;
+import com.example.bilabonnement.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,8 @@ public class ContractController {
     CarService carService;
     @Autowired
     CarReturnReportRepo carReturnReportRepo;
+    @Autowired
+    CustomerService customerService;
 
     // Contract Overviews
     @GetMapping("/contractsOverview/active")
@@ -80,7 +83,7 @@ public class ContractController {
     @GetMapping("/customerContractHistory/{customer_id}")
     public String watchCustomerHistory(@PathVariable int customer_id, Model model){
         model.addAttribute("getCustomerHistory", contractService.getCustomerHistory(customer_id));
-        model.addAttribute("customer", contractService.getCustomerHistory(customer_id));
+        model.addAttribute("customer", customerService.getCustomer(customer_id).getCustomer_name());
         return "customer/watchSpecificCustomerHistory";
     }
 
