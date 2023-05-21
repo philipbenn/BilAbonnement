@@ -23,65 +23,59 @@
             <h1 style="text-align: center; margin-bottom: 5px;" th:text="${info}" class="title"></h1>
 
             <div style="width: 100%; display: flex; justify-content: center; margin-bottom: 5px;">
-            <a href="/contractsOverview/ended" style="color: white; background: darkcyan; margin: 2px; padding: 10px; border-radius: 5px;">Vis udløbede kontrakter</a>
-            <a href="/contractsOverview/future" style="color: white; background: darkcyan; margin: 2px; padding: 10px; border-radius: 5px;">Vis fremtidige kontrakter</a>
-            <a href="/contractsOverview/active" style="color: white; background: darkcyan; margin: 2px; padding: 10px; border-radius: 5px;">Vis Aktive Kontrakter</a>
+                <a href="/contractsOverview/ended" style="color: white; background: darkcyan; margin: 2px; padding: 10px; border-radius: 5px;">Vis udløbede kontrakter</a>
+                <a href="/contractsOverview/future" style="color: white; background: darkcyan; margin: 2px; padding: 10px; border-radius: 5px;">Vis fremtidige kontrakter</a>
+                <a href="/contractsOverview/active" style="color: white; background: darkcyan; margin: 2px; padding: 10px; border-radius: 5px;">Vis Aktive Kontrakter</a>
             </div>
 
-    <table style="width: 80vw;" class="overview-table">
-        <thead>
-        <tr>
-            <th>Kontrakt ID</th>
-            <th>Kunde ID</th>
-            <th>Employee ID</th>
-            <th>Kunde Navn</th>
-            <th>Bil Model</th>
-            <th>Vognnummer</th>
-            <th>Leasing Type</th>
-            <th>Leasing Pris</th>
-            <th>Max Km. Pr. Måned</th>
-            <th>Max Km Pris</th>
-            <th>Start Dato</th>
-            <th>Slut Dato</th>
-            <th>Total Pris Pr. måned</th>
-            <th>Handlinger</th>
-        </tr>
-        </thead>
-        <tbody th:each="contract : ${getContractInfo}">
+            <table style="width: 90vw;" class="overview-table">
+                <thead>
+                    <tr>
+                        <th>Kontrakt ID</th>
+                        <th>Kunde Navn</th>
+                        <th>Bil Model</th>
+                        <th>Vognnummer</th>
+                        <th>Leasing Type</th>
+                        <th>Leasing Pris</th>
+                        <th>Max Km. Pr. Måned</th>
+                        <th>Max Km Pris</th>
+                        <th>Start Dato</th>
+                        <th>Slut Dato</th>
+                        <th>Total Pris Pr. måned</th>
+                        <th style="width: 180px">Handlinger</th>
+                    </tr>
+                </thead>
+                <tbody th:each="contract : ${getContractInfo}">
+                    <tr>
+                        <td th:text="${contract.contract_id}"></td>
+                        <td th:text="${contract.customer_name}"></td>
+                        <td th:text="${contract.car_model_name}"></td>
+                        <td th:text="${contract.vognnummer}"></td>
+                        <td th:text="${contract.lease_type}"></td>
+                        <td th:text="${contract.lease_price}"></td>
+                        <td th:text="${contract.max_km}"></td>
+                        <td th:text="${contract.km_plan_price}"></td>
+                        <td th:text="${contract.start_date}"></td>
+                        <td th:text="${contract.end_date}"></td>
+                        <td th:text="${contract.total_price_per_month}"></td>
+                        <td>
+                            <a th:href="${'/editContractForm/' + contract.contract_id}">Rediger</a>
+                            <form action="/endContract" method="post">
+                                <input name="contract_id" th:value="${contract.contract_id}" type="hidden">
+                                <input name="car_id" th:value="${contract.car_id}" type="hidden">
+                                <a style="background-color: #6c757d;" type="submit">Afslut aftale</a>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <tr>
-            <td th:text="${contract.contract_id}"></td>
-            <td th:text="${contract.customer_id}"></td>
-            <td th:text="${contract.employee_id}"></td>
-            <td th:text="${contract.customer_name}"></td>
-            <td th:text="${contract.car_model_name}"></td>
-            <td th:text="${contract.vognnummer}"></td>
-            <td th:text="${contract.lease_type}"></td>
-            <td th:text="${contract.lease_price}"></td>
-            <td th:text="${contract.max_km}"></td>
-            <td th:text="${contract.km_plan_price}"></td>
-            <td th:text="${contract.start_date}"></td>
-            <td th:text="${contract.end_date}"></td>
-            <td th:text="${contract.total_price_per_month}"></td>
-            <td>
-                <a th:href="${'/editContractForm/' + contract.contract_id}"><button style="background-color: #0d6efd;
-                 margin-bottom: 3px">Rediger</button></a>
-                <form action="/endContract" method="post">
-                    <input name="contract_id" th:value="${contract.contract_id}" type="hidden">
-                    <input name="car_id" th:value="${contract.car_id}" type="hidden">
-                    <a>
-                        <button style="background-color: #6c757d;" type="submit">Afslut aftale</button>
-                    </a>
-                </form>
-            </td>
-        </tr>
+            <div style="width: 90vw; margin: 0 auto;">
+                <a class="action-button" href="/customersOverview">Tilføj ny kontrakt</a>
+            </div>
 
-        </tbody>
-    </table>
         </div>
-</main>
+    </main>
 
-<a style="height: 15px; width: 25px; padding: 10px; background-color: #0d6efd; color: white; border-radius: 5px"
-   href="/customersOverview">Tilføj ny kontrakt</a>
 </body>
 </html>

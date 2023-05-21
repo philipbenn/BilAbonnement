@@ -42,7 +42,10 @@
         </tr>
         </tbody>
     </table>
-<h1 th:text="${'Total Price: ' + totalPrice}"></h1>
+
+    <div style="width: 60vw; margin: 0 auto;">
+        <h1 th:text="${'Total Price: ' + totalPrice}"></h1>
+    </div>
 
 <form method="post" action="/addCarReturnDamage">
     <input type="hidden" name="car_return_report_id" th:value="${id}">

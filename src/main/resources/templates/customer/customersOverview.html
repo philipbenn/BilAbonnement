@@ -23,9 +23,9 @@
         <table class="overview-table">
             <thead>
             <tr>
-                <th>Kunde ID</th>
+                <th style="width: 90px">Kunde ID</th>
                 <th>Kunde Navn</th>
-                <th>Handlinger</th>
+                <th style="width: 280px">Handlinger</th>
             </tr>
             </thead>
             <tbody th:each="customer : ${getCustomers}">
@@ -34,21 +34,20 @@
                 <td th:text="${customer.customer_id}"></td>
                 <td th:text="${customer.customer_name}"></td>
                 <td>
-
-                    <a th:href="${'/addContractForm1/' + customer.customer_id}"><button
-                            style="background-color: #0d6efd">Opret ny kontrakt</button></a>
-                    <a th:href="'editCustomerForm/' + ${customer.customer_id}"><button
-                            style="background-color: #6c757d;">Rediger</button></a>
-                    <a th:href="${'/customerContractHistory/' + customer.customer_id}"><button style="background-color: green">Vis
-                        info</button></a>
-
+                    <a th:href="${'/addContractForm1/' + customer.customer_id}" style="background-color: #0d6efd">Opret ny kontrakt</a>
+                    <a th:href="'editCustomerForm/' + ${customer.customer_id}" style="background-color: #6c757d;">Rediger</a>
+                    <a th:href="${'/customerContractHistory/' + customer.customer_id}" style="background-color: green">Vis info</a>
                 </td>
             </tr>
 
             </tbody>
         </table>
+
+        <div style="width: 60vw; margin: 0 auto;">
+            <a href="/addCustomerForm" class="action-button">Opret Ny kunde</a>
+        </div>
     </main>
-        <a href="/addCustomerForm"><button class="btn-submit">Opret Ny kunde</button></a>
+
 
 </body>
 

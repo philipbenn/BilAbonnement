@@ -141,48 +141,81 @@ a {
 }
 
 .overview-table {
-    width: 80vw;
-    margin: auto;
+    width: 60vw;
+    margin: 10px auto auto auto;
     color: black;
-    border: 1px solid black;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 5px;
-    margin-top: 10px;
     text-align: center;
-    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 .overview-table th {
     background-color: grey;
     color: white;
+    white-space: nowrap;
 }
 
 .overview-table th, td, tr {
-
-    border: 1px solid black;
-    border-left: none; /* Remove the left vertical border */
-    border-right: none; /* Remove the right vertical border */
+    border-bottom: 1px solid #ddd;
     padding: 8px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.overview-table th:first-child {
+    border-radius: 5px 0 0 0;
+}
+
+.overview-table th:last-child {
+    border-radius: 0 5px 0 0;
 }
 
 .overview-table tbody tr {
     transition: background-color 0.3s ease;
+    vertical-align: top;
 }
 
 .overview-table tbody tr:hover {
     background-color: lightgrey;
 }
 
-.overview-table button {
-    padding: 5px;
+.overview-table button, .overview-table a {
+    padding: 5px 8px;
     border-radius: 5px;
     color: white;
     transition: filter 0.3s ease;
     border: none;
-    max-width: 65px;
+    display: inline-block;
+    white-space: nowrap;
+}
+.overview-table a {
+    background-color: #0d6efd;
 }
 
-.overview-table button:hover {
+.overview-table td form {
+   display: inline-block;
+    margin-left: 5px;
+}
+
+.overview-table .table-dark {
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    padding: 1px;
+    margin: 0 0 20px 0;
+    box-shadow: rgb(0 0 0 / 20%) 0 2px 8px 0;
+    border-spacing: 0;
+}
+.overview-table .table-dark td {
+    white-space: nowrap;
+}
+
+.overview-table .table-dark tbody tr:hover {
+    background-color: white;
+}
+
+
+.overview-table button:hover, .overview-table a:hover {
     filter: brightness(80%);
 }
 
@@ -215,6 +248,7 @@ a {
     cursor: pointer;
     transition: filter 0.3s ease;
     border: none;
+    margin-left: 5px;
 }
 
 .btn-submit:hover {
@@ -229,5 +263,20 @@ a {
     font-weight: 500;
 }
 
+.card {
+    background-color: grey;
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 0 20px 0;
+    box-shadow: rgb(0 0 0 / 20%) 0 2px 8px 0;
+}
 
-
+.action-button {
+    padding: 10px;
+    background-color: #0d6efd;
+    color: white;
+    border-radius: 5px;
+    float: right;
+    margin-top: 10px;
+}
