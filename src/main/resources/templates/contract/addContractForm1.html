@@ -3,40 +3,29 @@
 
 <head>
     <title>Kontrakt</title>
-    <link rel="stylesheet" th:href="@{/navbar.css}" />
+    <link rel="stylesheet" th:href="@{/navbar.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
-    <style>*{color: black}</style>
+    <style>* {
+        color: black
+    }</style>
 </head>
 
 <body>
 <header th:replace="navbarfragment :: navbar"></header>
-<div style="height: 800px; width: 100%; display: flex; align-items: center; justify-content: center">
-    <div style="height: 350px; width: 380px; border: 1px solid black; border-radius: 6px; margin-bottom: 180px">
 
-        <div style="width: 100%; height: 70px; display: flex; align-items: center; justify-content: center">
-            <span style="color: black; font-size: 28px">Tilføj Kontrakt</span>
-        </div>
 
-        <form action="/addContractForm2" method="GET">
-            <input name="customer_id" th:value="${customer_id}" type="hidden">
-
-            <div style="width: 100%; height: 45px; display: flex; align-items: center; justify-content: center">
-                <span style="color: black; margin-left: 10px">Vælg Bil Model</span>
-            </div>
-
-            <div style="width: 100%; height: 45px; display: flex; align-items: center; justify-content: center">
-                <label for="car_model_id">Choose car model</label><select id="car_model_id" name="car_model_id" style="margin-right: 10px">
-                    <option th:each="car_model : ${car_model_list}" th:value="${car_model.car_model_id}"
-                            th:text="${car_model.car_model_name}"></option>
-                </select>
-                <input type="submit" value="Next" class="btn-submit" style="padding: 5px 10px">
-            </div>
-
-        </form>
-
-    </div>
+<div class="card" style="height: 30vh; width: 25vw; margin: 100px auto">
+    <h1 class="title" style="color: white">Bil model</h1>
+    <form  style="display: flex; justify-content: center; margin-top: 40px; align-items: center" action="/addContractForm2" method="GET">
+        <input name="customer_id" th:value="${customer_id}" type="hidden">
+        <label style="color: white; padding: 0 7px" for="car_model_id">Vælg Bilmodel</label><select id="car_model_id" name="car_model_id"
+                                                               style="margin-right: 10px">
+        <option th:each="car_model : ${car_model_list}" th:value="${car_model.car_model_id}"
+                th:text="${car_model.car_model_name}"></option>
+    </select>
+        <input type="submit" value="Next" class="btn-submit" style="padding: 5px 10px">
+    </form>
 </div>
-
 </body>
 
 </html>
