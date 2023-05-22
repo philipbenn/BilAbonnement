@@ -23,6 +23,7 @@ public class ContractRepo {
                     SELECT
                         c.contract_id,
                         cu.customer_id,
+                        c.employee_id,
                         cu.customer_name,
                         ca.car_id,
                         cm.car_model_id,
