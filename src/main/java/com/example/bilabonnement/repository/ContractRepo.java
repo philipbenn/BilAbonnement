@@ -188,10 +188,8 @@ public class ContractRepo {
                     car_model_lease_period_plan ON contract.car_model_lease_period_plan_id = car_model_lease_period_plan.car_model_lease_period_plan_id
                 JOIN\s
                     car_model_max_km_plan ON contract.car_model_max_km_plan = car_model_max_km_plan.car_model_max_km_plan_id
-                WHERE\s
-                    contract.start_date >= NOW() + INTERVAL 1 HOUR AND contract.end_date > NOW() + INTERVAL 1 HOUR
                 ORDER BY\s
-                    contract.end_date LIMIT 8;
+                    contract.end_date LIMIT 5;
                 """;
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
