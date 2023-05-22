@@ -60,6 +60,7 @@ public class ContractService {
 
         contractRepo.addContract(car_id, customer_id, car_model_lease_period_plan_id,
                 car_model_max_km_plan, start_date, employee_id);
+        updateEndDate();
     }
 
     public void updateEndDate(){

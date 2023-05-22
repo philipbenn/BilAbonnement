@@ -231,7 +231,6 @@ public class ContractRepo {
     public void addContract(int car_id, int customer_id, int car_model_lease_period_plan_id, int car_model_max_km_plan, String start_date, int employee_id){
         String sql = "INSERT INTO contract (car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan, start_date, employee_id, end_date) VALUES (?, ?, ?, ?, ?, ?, '2001-01-01')";
         jdbcTemplate.update(sql, car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan, start_date, employee_id);
-        updateEndDate();
     }
 
 
