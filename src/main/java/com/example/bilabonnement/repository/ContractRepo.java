@@ -182,8 +182,6 @@ public class ContractRepo {
                     car_model_lease_period_plan ON contract.car_model_lease_period_plan_id = car_model_lease_period_plan.car_model_lease_period_plan_id
                 JOIN
                     car_model_max_km_plan ON contract.car_model_max_km_plan = car_model_max_km_plan.car_model_max_km_plan_id
-                WHERE
-                    contract.start_date >= NOW() + INTERVAL 1 HOUR AND contract.end_date > NOW() + INTERVAL 1 HOUR
                 ORDER BY
                     contract.end_date LIMIT 8;
                 """;

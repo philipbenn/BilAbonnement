@@ -41,7 +41,7 @@ public class CarModelRepo {
 // Get Methods //
 ////////////////
 
-    // Henter en specifik bilmodel fra databasen udfra på dens id.
+    // Henter en specifik bilmodel fra databasen ud fra på dens id.
     public Car_Model getCarModel(int car_model_id) {
         String sql = "SELECT * FROM car_model WHERE car_model_id = ?";
         return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Car_Model.class), car_model_id);

@@ -27,34 +27,35 @@ CarModelRepo carModelRepo;
     // - Antallet af biler på lager af bilmodellen.
     // Alle disse oplysninger samles i en liste af CarModelDTO-objekter
     public List<CarModelDTO> getCarInfo() {
+
         List<Car_Model> carModels = carModelRepo.getCarModels();
 
-        List<CarModelDTO> carInfoList = new ArrayList<>();
+        List<CarModelDTO> carModelDTOList = new ArrayList<>();
 
         for (Car_Model carModel : carModels) {
-            CarModelDTO carInfo = new CarModelDTO();
-            carInfo.setCar_model(carModel);
+            CarModelDTO carModelDTO = new CarModelDTO();
+            carModelDTO.setCar_model(carModel);
 
             List<Car_Model_Lease_Period_Plan> carModelLeasePeriodPlans = carModelRepo.getCarModelLeasePeriodPlans(carModel.getCar_model_id());
-            carInfo.setCar_model_lease_period_plans(carModelLeasePeriodPlans);
+            carModelDTO.setCar_model_lease_period_plans(carModelLeasePeriodPlans);
 
             List<Car_Model_Max_Km_Plan> carModelMaxKmPlans = carModelRepo.getCarModelMaxKmPlans(carModel.getCar_model_id());
-            carInfo.setCar_model_max_km_plans(carModelMaxKmPlans);
+            carModelDTO.setCar_model_max_km_plans(carModelMaxKmPlans);
 
             int carsLeasedOut = carModelRepo.getCarsLeasedOutCountByModelId(carModel.getCar_model_id());
-            carInfo.setCarsLeasedOut(carsLeasedOut);
+            carModelDTO.setCarsLeasedOut(carsLeasedOut);
 
             int carsInRepair = carModelRepo.getCarsInRepairCountByModelId(carModel.getCar_model_id());
-            carInfo.setCarsInRepair(carsInRepair);
+            carModelDTO.setCarsInRepair(carsInRepair);
 
             int carsInStock = carModelRepo.getCarCountByModelId(carModel.getCar_model_id());
             carsInStock = carsInStock - carsLeasedOut - carsInRepair;
 
-            carInfo.setCarsInStock(carsInStock);
+            carModelDTO.setCarsInStock(carsInStock);
 
-            carInfoList.add(carInfo);
+            carModelDTOList.add(carModelDTO);
         }
-        return carInfoList;
+        return carModelDTOList;
     }
 
 

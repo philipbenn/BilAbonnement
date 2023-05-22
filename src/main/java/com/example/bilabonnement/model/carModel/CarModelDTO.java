@@ -11,8 +11,8 @@ public class CarModelDTO {
     private List<Car_Model_Max_Km_Plan> car_model_max_km_plans;
     private int carsLeasedOut;
     private int carsInStock;
-    private int getCarsLeasedOut;
     private int carsInRepair;
+
     public int getCarsLeasedOut() {
         return carsLeasedOut;
     }
@@ -51,14 +51,6 @@ public class CarModelDTO {
 
     public void setCarsInStock(int carsInStock) {
         this.carsInStock = carsInStock;
-    }
-
-    public int getGetCarsLeasedOut() {
-        return getCarsLeasedOut;
-    }
-
-    public void setGetCarsLeasedOut(int getCarsLeasedOut) {
-        this.getCarsLeasedOut = getCarsLeasedOut;
     }
 
     public int getCarsInRepair() {
