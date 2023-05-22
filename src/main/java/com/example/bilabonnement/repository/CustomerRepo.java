@@ -27,13 +27,13 @@ public class CustomerRepo {
     }
 
     // Update methods
-    public void editCustomer(String customer_name, int customer_id) {
+    public void editCustomer(String customer_name, Integer customer_id) {
         String sql = "UPDATE customer SET customer_name = ? WHERE customer_id = ?";
         template.update(sql, customer_name, customer_id);
     }
 
     // Get methods
-    public Customer getCustomer(int customer_id) {
+    public Customer getCustomer(Integer customer_id) {
         String sql = "SELECT * FROM customer WHERE customer_id = ?";
         return template.queryForObject(sql, new BeanPropertyRowMapper<>(Customer.class), customer_id);
     }

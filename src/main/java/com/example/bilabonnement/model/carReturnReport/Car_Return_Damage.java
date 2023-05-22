@@ -2,28 +2,28 @@ package com.example.bilabonnement.model.carReturnReport;
 
 public class Car_Return_Damage {
 
-    private int car_return_damage_id;
-    private int car_return_report_id;
+    private Integer car_return_damage_id;
+    private Integer car_return_report_id;
     private String damage_description;
-    private int isFixed;
+    private Integer isFixed;
     private double price;
 
     public Car_Return_Damage() {
     }
 
-    public int getCar_return_damage_id() {
+    public Integer getCar_return_damage_id() {
         return car_return_damage_id;
     }
 
-    public void setCar_return_damage_id(int car_return_damage_id) {
+    public void setCar_return_damage_id(Integer car_return_damage_id) {
         this.car_return_damage_id = car_return_damage_id;
     }
 
-    public int getCar_return_report_id() {
+    public Integer getCar_return_report_id() {
         return car_return_report_id;
     }
 
-    public void setCar_return_report_id(int car_return_report_id) {
+    public void setCar_return_report_id(Integer car_return_report_id) {
         this.car_return_report_id = car_return_report_id;
     }
 
@@ -35,11 +35,11 @@ public class Car_Return_Damage {
         this.damage_description = damage_description;
     }
 
-    public int getIsFixed() {
+    public Integer getIsFixed() {
         return isFixed;
     }
 
-    public void setIsFixed(int isFixed) {
+    public void setIsFixed(Integer isFixed) {
         this.isFixed = isFixed;
     }
 

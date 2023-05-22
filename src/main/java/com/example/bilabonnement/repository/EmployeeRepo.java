@@ -13,7 +13,7 @@ public class EmployeeRepo {
     @Autowired
     JdbcTemplate template;
 
-    public Employee logIn(int employee_id, String password) {
+    public Employee logIn(Integer employee_id, String password) {
         String sql = "SELECT * FROM employee WHERE employee_id = ? AND password = ?";
         try {
             RowMapper<Employee> rowMapper = new BeanPropertyRowMapper<>(Employee.class);

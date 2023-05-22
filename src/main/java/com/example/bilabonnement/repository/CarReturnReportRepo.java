@@ -1,7 +1,6 @@
 package com.example.bilabonnement.repository;
 
 import com.example.bilabonnement.model.carReturnReport.Car_Return_Damage;
-import com.example.bilabonnement.model.carReturnReport.Car_Return_Report;
 import com.example.bilabonnement.model.carReturnReport.Car_Return_Report_DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -15,19 +14,14 @@ public class CarReturnReportRepo {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    // Lists
-    public List<Car_Return_Report> getAllCarReturnReports (){
-        String sql = "SELECT * from car_return_report";
-        return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Car_Return_Report.class));
-    }
-    public List<Car_Return_Damage> carReturnDamageFromReport (int car_return_report_id){
+    public List<Car_Return_Damage> carReturnDamageFromReport (Integer car_return_report_id){
         String sql = "SELECT * from car_return_damage WHERE car_return_report_id = ?";
         return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Car_Return_Damage.class),car_return_report_id);
     }
 
     public List <Car_Return_Report_DTO> getAllPendingCarReturnReports(){
         String sql = """
-                SELECT car_return_report.car_return_report_id, car_return_report.contract_id, car.vognnummer, car_model.car_model_name, 
+                SELECT car_return_report.car_return_report_id, car_return_report.contract_id, car.vognnummer, car_model.car_model_name,
                 COUNT(car_return_damage.car_return_damage_id) AS nrOfDamages
                 FROM car_return_report
                 JOIN car_return_damage
@@ -74,7 +68,7 @@ public class CarReturnReportRepo {
     }
 
     // Insert methods
-    public void addCarReturnReport (int contract_id, int car_id){
+    public void addCarReturnReport (Integer contract_id, Integer car_id){
         String sql = "INSERT INTO car_return_report (contract_id, car_id, km_driven) VALUES (?, ?, 0)";
         jdbcTemplate.update(sql,contract_id,car_id);
     }
@@ -91,7 +85,7 @@ public class CarReturnReportRepo {
           }
 
     // Key Values
-    public int getMaxCarReturnReportId (){
+    public Integer getMaxCarReturnReportId (){
         String sql = "SELECT MAX(car_return_report_id) FROM car_return_report";
         return jdbcTemplate.queryForObject(sql,Integer.class);
     }

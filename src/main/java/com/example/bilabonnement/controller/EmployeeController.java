@@ -29,7 +29,7 @@ public class EmployeeController {
 
     // Post Methods
     @PostMapping("/login")
-    public String logIn(@RequestParam int employee_id, @RequestParam String password, HttpSession session, Model model) {
+    public String logIn(@RequestParam Integer employee_id, @RequestParam String password, HttpSession session, Model model) {
         Employee employee = employeeService.logIn(employee_id, password);
         if (employee != null) {
             session.setAttribute("employee", employee);

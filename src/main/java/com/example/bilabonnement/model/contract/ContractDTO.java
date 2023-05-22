@@ -3,45 +3,45 @@ package com.example.bilabonnement.model.contract;
 public class ContractDTO {
 
     public ContractDTO(){}
-    private int contract_id;
-    private int customer_id;
-    private int employee_id;
+    private Integer contract_id;
+    private Integer customer_id;
+    private Integer employee_id;
     private String customer_name;
-    private int car_id;
-    private int car_model_id;
+    private Integer car_id;
+    private Integer car_model_id;
     private String car_model_name;
     private String vognnummer;
-    private int car_model_lease_period_plan_id;
+    private Integer car_model_lease_period_plan_id;
     private String lease_type;
     private double lease_price;
-    private int car_model_max_km_plan_id;
-    private int max_km;
+    private Integer car_model_max_km_plan_id;
+    private Integer max_km;
     private double km_plan_price;
     private String start_date;
     private String end_date;
     private double total_price_per_month;
 
-    public int getEmployee_id() {
+    public Integer getEmployee_id() {
         return employee_id;
     }
 
-    public void setEmployee_id(int employee_id) {
+    public void setEmployee_id(Integer employee_id) {
         this.employee_id = employee_id;
     }
 
-    public int getContract_id() {
+    public Integer getContract_id() {
         return contract_id;
     }
 
-    public void setContract_id(int contract_id) {
+    public void setContract_id(Integer contract_id) {
         this.contract_id = contract_id;
     }
 
-    public int getCustomer_id() {
+    public Integer getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(int customer_id) {
+    public void setCustomer_id(Integer customer_id) {
         this.customer_id = customer_id;
     }
 
@@ -53,19 +53,19 @@ public class ContractDTO {
         this.customer_name = customer_name;
     }
 
-    public int getCar_id() {
+    public Integer getCar_id() {
         return car_id;
     }
 
-    public void setCar_id(int car_id) {
+    public void setCar_id(Integer car_id) {
         this.car_id = car_id;
     }
 
-    public int getCar_model_id() {
+    public Integer getCar_model_id() {
         return car_model_id;
     }
 
-    public void setCar_model_id(int car_model_id) {
+    public void setCar_model_id(Integer car_model_id) {
         this.car_model_id = car_model_id;
     }
 
@@ -85,11 +85,11 @@ public class ContractDTO {
         this.vognnummer = vognnummer;
     }
 
-    public int getCar_model_lease_period_plan_id() {
+    public Integer getCar_model_lease_period_plan_id() {
         return car_model_lease_period_plan_id;
     }
 
-    public void setCar_model_lease_period_plan_id(int car_model_lease_period_plan_id) {
+    public void setCar_model_lease_period_plan_id(Integer car_model_lease_period_plan_id) {
         this.car_model_lease_period_plan_id = car_model_lease_period_plan_id;
     }
 
@@ -109,19 +109,19 @@ public class ContractDTO {
         this.lease_price = lease_price;
     }
 
-    public int getCar_model_max_km_plan_id() {
+    public Integer getCar_model_max_km_plan_id() {
         return car_model_max_km_plan_id;
     }
 
-    public void setCar_model_max_km_plan_id(int car_model_max_km_plan_id) {
+    public void setCar_model_max_km_plan_id(Integer car_model_max_km_plan_id) {
         this.car_model_max_km_plan_id = car_model_max_km_plan_id;
     }
 
-    public int getMax_km() {
+    public Integer getMax_km() {
         return max_km;
     }
 
-    public void setMax_km(int max_km) {
+    public void setMax_km(Integer max_km) {
         this.max_km = max_km;
     }
 

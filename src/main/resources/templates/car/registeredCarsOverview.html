@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" th:href="@{/navbar.css}" type="text/css">
+  <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+
+<header th:replace="navbarfragment :: navbar"></header>
+
+<h1 th:text="${'Viser all registrede biler for: ' + car_model_name}"></h1>
+<table th:each="car : ${registeredCars}">
+    <tr>
+        <td th:text="${car.car_id}"></td>
+        <td th:text="${car.vognnummer}"></td>
+    </tr>
+</table>
+</body>
+</html>

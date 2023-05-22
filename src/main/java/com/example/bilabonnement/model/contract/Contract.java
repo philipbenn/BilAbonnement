@@ -4,61 +4,61 @@ public class Contract {
 
     public Contract(){}
 
-    private int contract_id;
-    private int customer_id;
-    private int employee_id;
-    private int car_id;
-    private int car_model_lease_period_plan_id;
-    private int car_model_max_km_plan;
+    private Integer contract_id;
+    private Integer customer_id;
+    private Integer employee_id;
+    private Integer car_id;
+    private Integer car_model_lease_period_plan_id;
+    private Integer car_model_max_km_plan_id;
     private String start_date;
     private String end_date;
 
-    public int getEmployee_id() {
+    public Integer getEmployee_id() {
         return employee_id;
     }
 
-    public void setEmployee_id(int employee_id) {
+    public void setEmployee_id(Integer employee_id) {
         this.employee_id = employee_id;
     }
 
-    public int getContract_id() {
+    public Integer getContract_id() {
         return contract_id;
     }
 
-    public void setContract_id(int contract_id) {
+    public void setContract_id(Integer contract_id) {
         this.contract_id = contract_id;
     }
 
-    public int getCustomer_id() {
+    public Integer getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(int customer_id) {
+    public void setCustomer_id(Integer customer_id) {
         this.customer_id = customer_id;
     }
 
-    public int getCar_id() {
+    public Integer getCar_id() {
         return car_id;
     }
 
-    public void setCar_id(int car_id) {
+    public void setCar_id(Integer car_id) {
         this.car_id = car_id;
     }
 
-    public int getCar_model_lease_period_plan_id() {
+    public Integer getCar_model_lease_period_plan_id() {
         return car_model_lease_period_plan_id;
     }
 
-    public void setCar_model_lease_period_plan_id(int car_model_lease_period_plan_id) {
+    public void setCar_model_lease_period_plan_id(Integer car_model_lease_period_plan_id) {
         this.car_model_lease_period_plan_id = car_model_lease_period_plan_id;
     }
 
-    public int getCar_model_max_km_plan() {
-        return car_model_max_km_plan;
+    public Integer getCar_model_max_km_plan_id() {
+        return car_model_max_km_plan_id;
     }
 
-    public void setCar_model_max_km_plan(int car_model_max_km_plan) {
-        this.car_model_max_km_plan = car_model_max_km_plan;
+    public void setCar_model_max_km_plan_id(Integer car_model_max_km_plan_id) {
+        this.car_model_max_km_plan_id = car_model_max_km_plan_id;
     }
 
     public String getStart_date() {

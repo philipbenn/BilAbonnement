@@ -5,18 +5,18 @@ public class ContractTypeCount {
     ContractTypeCount() {
     }
     private String type;
-    private int count;
+    private Integer count;
     public String getType() {
         return type;
     }
     public void setType(String type) {
         this.type = type;
     }
-    public int getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 }

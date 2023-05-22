@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Return Reports</title>
+    <link rel="stylesheet" th:href="@{/navbar.css}" type="text/css">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+
+<header th:replace="navbarfragment :: navbar"></header>
+
+    <h2 th:text="${info}" class="title"></h2>
+
+<div style="width: 100%; display: flex; justify-content: center; margin-bottom: 5px;">
+    <a href="/carReturnReports/pending" style="color: white; background: darkcyan; margin: 2px; padding: 10px; border-radius: 5px;">Vis skadesrapporter der skal behandles</a>
+    <a href="/carReturnReports/closed" style="color: white; background: darkcyan; margin: 2px; padding: 10px; border-radius: 5px;">Vis skadesrapporter der er afsluttede</a>
+</div>
+    <table class="overview-table">
+        <thead>
+        <tr>
+            <th scope="col">Car Return Report ID</th>
+            <th scope="col">Contract ID</th>
+            <th scope="col">Vognnummer</th>
+            <th scope="col">Bil Model</th>
+            <th>Åben</th>
+        </tr>
+        </thead>
+        <tbody th:each="carReturnReport: ${carReturnReports}">
+        <tr>
+
+            <td th:text="${carReturnReport.car_return_report_id}"></td>
+            <td th:text="${carReturnReport.contract_id}"></td>
+            <td th:text="${carReturnReport.vognnummer}"></td>
+            <td th:text="${carReturnReport.car_model_name}"></td>
+
+
+            <td><a class="btn btn-primary" th:href="${'/openDamageReportNoEdit/' + carReturnReport.car_return_report_id}">Åben skades-rapport</a>
+
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

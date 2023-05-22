@@ -15,7 +15,7 @@ public class DashboardController {
     public String getDashboard(Model model) {
         model.addAttribute("expiringContracts", contractService.expiringContracts());
         // total number of cars - number of cars in repair - number of active contracts = number of available cars
-        int nrOfAvailableCars = contractService.countAllCars() - contractService.nrOfCarsInRepair() - contractService.activeContracts();
+        Integer nrOfAvailableCars = contractService.countAllCars() - contractService.nrOfCarsInRepair() - contractService.activeContracts();
         model.addAttribute("nrOfAvailableCars", nrOfAvailableCars);
         model.addAttribute("activeContracts", contractService.activeContracts());
         model.addAttribute("monthlyIncome", contractService.monthlyIncome());

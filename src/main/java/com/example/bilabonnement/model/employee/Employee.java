@@ -2,17 +2,17 @@ package com.example.bilabonnement.model.employee;
 
 public class Employee {
 
-    private int employee_id;
+    private Integer employee_id;
     private String password;
     private String name;
 
     public Employee() {
     }
-    public int getEmployee_id() {
+    public Integer getEmployee_id() {
         return employee_id;
     }
 
-    public void setEmployee_id(int employee_id) {
+    public void setEmployee_id(Integer employee_id) {
         this.employee_id = employee_id;
     }
 

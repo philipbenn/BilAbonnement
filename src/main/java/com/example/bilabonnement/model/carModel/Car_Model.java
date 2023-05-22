@@ -4,7 +4,7 @@ public class Car_Model {
 
 public Car_Model(){}
 
-    private int car_model_id;
+    private Integer car_model_id;
     private String car_model_name;
 
     public int getCar_model_id() {

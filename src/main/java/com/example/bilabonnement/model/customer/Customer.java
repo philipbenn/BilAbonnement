@@ -2,26 +2,26 @@ package com.example.bilabonnement.model.customer;
 
 
 public class Customer {
-    private int customer_id;
+    private Integer customer_id;
     private String customer_name;
-    private int number_of_contracts;
+    private Integer number_of_contracts;
     Customer(){
 
     }
 
-    public int getNumber_of_contracts() {
+    public Integer getNumber_of_contracts() {
         return number_of_contracts;
     }
 
-    public void setNumber_of_contracts(int number_of_contracts) {
+    public void setNumber_of_contracts(Integer number_of_contracts) {
         this.number_of_contracts = number_of_contracts;
     }
 
-    public int getCustomer_id() {
+    public Integer getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(int customer_id) {
+    public void setCustomer_id(Integer customer_id) {
         this.customer_id = customer_id;
     }
 

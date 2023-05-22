@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/navbar.css}">
+    <title>Edit Car Return Report</title>
+</head>
+<body>
+
+<header th:replace="navbarfragment :: navbar"></header>
+
+    <h1 class="title">Edit Car Return Report</h1>
+    <p th:text="${info}"></p>
+
+    <table class="overview-table">
+        <thead>
+        <tr>
+            <th scope="col">Car Return Damage Id</th>
+            <th scope="col">Car Return Report Id</th>
+            <th scope="col">Damage Description</th>
+            <th scope="col">Is Fixed</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="carReturnDamage : ${carReturnDamages}">
+                <td><input type="text"  th:value="${carReturnDamage.car_return_damage_id}" readonly class="form-control"></td>
+                <td><input type="text"  th:value="${carReturnDamage.car_return_report_id}" readonly class="form-control"></td>
+                <td><input type="text"  th:value="${carReturnDamage.damage_description}" class="form-control"></td>
+                <td><input type="text"  th:value="${carReturnDamage.isFixed}" readonly class="form-control"></td>
+                <td><input type="text" th:value="${carReturnDamage.price}" class="form-control"></td>
+        </tr>
+        </tbody>
+    </table>
+<h1 th:text="${'Total Price: ' + totalPrice}"></h1>
+
+<form method="post" action="/addCarReturnDamage">
+    <input type="hidden" name="car_return_report_id" th:value="${id}">
+    <input type="submit" value="Add New Damage" style="position: fixed; bottom: 0; right: 25px;" class="btn btn-primary">
+</form>
+</body>
+</html>

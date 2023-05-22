@@ -19,12 +19,16 @@ JdbcTemplate jdbcTemplate;
 CarRepo carRepo;
 
     // Lists
-    public List<Car> getCarsByCarModelId(int car_model_id) {
-       return carRepo.getAvailableCars(car_model_id);
+    public List<Car> getAvailableCarsByCarModelId(Integer car_model_id) {
+       return carRepo.getAvailableCarsByCarModelId(car_model_id);
+    }
+
+    public List <Car> getCarsByCarModelId(Integer car_model_id) {
+        return carRepo.getCarsByCarModelId(car_model_id);
     }
 
     // Insert Methods
-    public void registerCar(int car_model_id, String vognnummer){
+    public void registerCar(Integer car_model_id, String vognnummer){
         carRepo.registerCar(car_model_id, vognnummer);
     }
 }

@@ -46,22 +46,20 @@ public class ContractController {
         model.addAttribute( "getContractInfo", contractService.getFutureContracts());
         return "/contract/contractsOverview";
     }
-
-
     // Add Contract Forms
     @GetMapping ("/addContractForm1/{customer_id}")
-    public String addContractForm(Model model, @PathVariable int customer_id){
+    public String addContractForm(Model model, @PathVariable Integer customer_id){
        model.addAttribute("customer_id", customer_id);
        model.addAttribute("car_model_list", carModelService.getCarModels());
         return "contract/addContractForm1";
     }
     @GetMapping ("/addContractForm2")
-    public String test(Model model, @RequestParam int customer_id, @RequestParam int car_model_id){
+    public String test(Model model, @RequestParam Integer customer_id, @RequestParam Integer car_model_id){
         model.addAttribute("car_model_id", car_model_id);
         model.addAttribute("customer_id" , customer_id);
         model.addAttribute("km_plans", carModelService.getCarModelMaxKmPlans(car_model_id));
         model.addAttribute("lease_plans", carModelService.getCarModelLeasePeriodPlans(car_model_id));
-        model.addAttribute("cars", carService.getCarsByCarModelId(car_model_id));
+        model.addAttribute("cars", carService.getAvailableCarsByCarModelId(car_model_id));
 
         //TODO calculate end date by adding lease period to start date
         //TODO filter out cars that are already in a contract
@@ -71,26 +69,26 @@ public class ContractController {
 
     // Edit Contract Form
     @GetMapping("/editContractForm/{contract_id}")
-    public String editContract(Model model, @PathVariable int contract_id ){
+    public String editContract(Model model, @PathVariable Integer contract_id ){
         model.addAttribute("getContractInfo", contractService.editContract(contract_id));
         return "contract/editContract";
     }
 
     // Customer Contract History
     @GetMapping("/customerContractHistory/{customer_id}")
-    public String watchCustomerHistory(@PathVariable int customer_id, Model model){
+    public String watchCustomerHistory(@PathVariable Integer customer_id, Model model){
         model.addAttribute("getCustomerHistory", contractService.getCustomerHistory(customer_id));
         return "customer/watchSpecificCustomerHistory";
     }
 
     // Post Methods
     @PostMapping("/editContract")
-    public String editSpecificContract(@RequestParam String contract_start_date, @RequestParam String contract_end_date, @RequestParam int contract_id){
+    public String editSpecificContract(@RequestParam String contract_start_date, @RequestParam String contract_end_date, @RequestParam Integer contract_id){
         contractService.updateStartAndEndDate(contract_id, contract_start_date, contract_end_date);
         return ("redirect:/editContractForm/" + contract_id);
     }
     @PostMapping ("/endContract")
-    public String endContract(@RequestParam int contract_id, @RequestParam int car_id){
+    public String endContract(@RequestParam Integer contract_id, @RequestParam Integer car_id){
 
 
         //Set end date of contract to today
@@ -108,7 +106,7 @@ public class ContractController {
         return "redirect:/carReturnReports/pending";
     }
     @PostMapping("/addContract")
-    public String addContract(@RequestParam int customer_id, @RequestParam int car_id, @RequestParam int car_model_lease_period_plan_id, @RequestParam int car_model_max_km_plan_id, @RequestParam String start_date, @RequestParam int employee_id){
+    public String addContract(@RequestParam Integer customer_id, @RequestParam Integer car_id, @RequestParam Integer car_model_lease_period_plan_id, @RequestParam Integer car_model_max_km_plan_id, @RequestParam String start_date, @RequestParam Integer employee_id){
 
         contractService.addContract(car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan_id,
                 start_date, employee_id);

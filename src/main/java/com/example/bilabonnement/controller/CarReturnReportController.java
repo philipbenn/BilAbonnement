@@ -42,11 +42,12 @@ public class CarReturnReportController {
 
 
         model.addAttribute("info", info);
+
         model.addAttribute("carReturnReports", carReturnReports);
-        return "/carReturnReport/carReturnReports";
+        return "/carReturnReport/carReturnReportsClosed";
     }
     @GetMapping("/openDamageReport/{id}")
-    public String editDamageReport(@PathVariable int id, Model model) {
+    public String editDamageReport(@PathVariable Integer id, Model model) {
 
         model.addAttribute("id", id);
         List<Car_Return_Damage> carReturnDamages = carReturnReportRepo.carReturnDamageFromReport(id);
@@ -64,9 +65,30 @@ public class CarReturnReportController {
         return "/carReturnReport/editDamageReport";
     }
 
+
+    @GetMapping("/openDamageReportNoEdit/{id}")
+    public String editDamageReportNoEdit(@PathVariable Integer id, Model model) {
+
+        model.addAttribute("id", id);
+        List<Car_Return_Damage> carReturnDamages = carReturnReportRepo.carReturnDamageFromReport(id);
+
+        model.addAttribute("carReturnDamages", carReturnDamages);
+
+        double totalPrice = 0;
+
+        for (Car_Return_Damage carReturnDamage : carReturnDamages) {
+            totalPrice += carReturnDamage.getPrice();
+        }
+
+        model.addAttribute("totalPrice", totalPrice);
+
+        return "/carReturnReport/editDamageReportNoEdit";
+    }
+
+
     // Post Methods
     @PostMapping("/editDamageReport")
-    public String editDamageReport(@RequestParam int carReturnDamageId, @RequestParam int carReturnReportId, @RequestParam String damage_description, @RequestParam int is_fixed, @RequestParam double price) {
+    public String editDamageReport(@RequestParam Integer carReturnDamageId, @RequestParam Integer carReturnReportId, @RequestParam String damage_description, @RequestParam Integer is_fixed, @RequestParam double price) {
 
         Car_Return_Damage carReturnDamage = new Car_Return_Damage();
 
@@ -81,7 +103,7 @@ public class CarReturnReportController {
         return "redirect:/openDamageReport/" + carReturnReportId;
     }
     @PostMapping("/addCarReturnDamage")
-    String addCarReturnDamage(@RequestParam int car_return_report_id) {
+    String addCarReturnDamage(@RequestParam Integer car_return_report_id) {
 
         Car_Return_Damage carReturnDamage = new Car_Return_Damage();
         carReturnDamage.setCar_return_report_id(car_return_report_id);

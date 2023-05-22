@@ -9,11 +9,11 @@ public class CarModelDTO {
     private Car_Model car_model;
     private List<Car_Model_Lease_Period_Plan> car_model_lease_period_plans;
     private List<Car_Model_Max_Km_Plan> car_model_max_km_plans;
-    private int carsLeasedOut;
-    private int carsInStock;
-    private int getCarsLeasedOut;
-    private int carsInRepair;
-    public int getCarsLeasedOut() {
+    private Integer carsLeasedOut;
+    private Integer carsInStock;
+    private Integer getCarsLeasedOut;
+    private Integer carsInRepair;
+    public Integer getCarsLeasedOut() {
         return carsLeasedOut;
     }
 
@@ -41,31 +41,31 @@ public class CarModelDTO {
         this.car_model_max_km_plans = car_model_max_km_plans;
     }
 
-    public void setCarsLeasedOut(int carsLeasedOut) {
+    public void setCarsLeasedOut(Integer carsLeasedOut) {
         this.carsLeasedOut = carsLeasedOut;
     }
 
-    public int getCarsInStock() {
+    public Integer getCarsInStock() {
         return carsInStock;
     }
 
-    public void setCarsInStock(int carsInStock) {
+    public void setCarsInStock(Integer carsInStock) {
         this.carsInStock = carsInStock;
     }
 
-    public int getGetCarsLeasedOut() {
+    public Integer getGetCarsLeasedOut() {
         return getCarsLeasedOut;
     }
 
-    public void setGetCarsLeasedOut(int getCarsLeasedOut) {
+    public void setGetCarsLeasedOut(Integer getCarsLeasedOut) {
         this.getCarsLeasedOut = getCarsLeasedOut;
     }
 
-    public int getCarsInRepair() {
+    public Integer getCarsInRepair() {
         return carsInRepair;
     }
 
-    public void setCarsInRepair(int carsInRepair) {
+    public void setCarsInRepair(Integer carsInRepair) {
         this.carsInRepair = carsInRepair;
     }
 }

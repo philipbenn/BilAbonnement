@@ -19,13 +19,13 @@ public class ContractService {
         return contractRepo.expiringContracts();
     }
 
-    public List<ContractDTO> getCustomerHistory(int customer_id){
+    public List<ContractDTO> getCustomerHistory(Integer customer_id){
         return contractRepo.getCustomerHistory(customer_id);
     }
     public List<ContractDTO> getActiveContracts() {
         return contractRepo.getActiveContracts();
     }
-    public List<ContractDTO> editContract(int contract_id){
+    public List<ContractDTO> editContract(Integer contract_id){
         return contractRepo.editContract(contract_id);
     }
     public List<ContractDTO> getEndedContracts() {
@@ -41,13 +41,13 @@ public class ContractService {
     }
 
     // Key values
-    public int countAllCars(){
+    public Integer countAllCars(){
          return contractRepo.countAllCars();
     }
-    public int activeContracts(){
+    public Integer activeContracts(){
         return contractRepo.activeContracts();
     }
-    public int nrOfCarsInRepair(){
+    public Integer nrOfCarsInRepair(){
         return contractRepo.nrOfCarsInRepair();
     }
     public Double monthlyIncome(){
@@ -55,8 +55,8 @@ public class ContractService {
     }
 
     // Insert methods
-    public void addContract(int car_id, int customer_id, int car_model_lease_period_plan_id,
-                            int car_model_max_km_plan, String start_date, int employee_id){
+    public void addContract(Integer car_id, Integer customer_id, Integer car_model_lease_period_plan_id,
+                            Integer car_model_max_km_plan, String start_date, Integer employee_id){
 
         contractRepo.addContract(car_id, customer_id, car_model_lease_period_plan_id,
                 car_model_max_km_plan, start_date, employee_id);
@@ -67,10 +67,10 @@ public class ContractService {
     }
 
     // Update methods
-    public void setEndDateToToday(int contract_id){
+    public void setEndDateToToday(Integer contract_id){
         contractRepo.setEndDateToToday(contract_id);
     }
-    public void updateStartAndEndDate(int contract_id, String contract_start_date, String contract_end_date){
+    public void updateStartAndEndDate(Integer contract_id, String contract_start_date, String contract_end_date){
         contractRepo.updateStartAndEndDate(contract_id, contract_start_date, contract_end_date);
     }
 }

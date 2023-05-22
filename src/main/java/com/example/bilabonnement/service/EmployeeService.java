@@ -10,7 +10,7 @@ public class EmployeeService {
     @Autowired
     EmployeeRepo employeeRepo;
 
-    public Employee logIn(int employee_id, String password){
+    public Employee logIn(Integer employee_id, String password){
         return employeeRepo.logIn(employee_id, password);
     }
 

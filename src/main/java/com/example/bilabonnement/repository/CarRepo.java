@@ -12,11 +12,11 @@ import java.util.List;
 public class CarRepo {
     @Autowired
     JdbcTemplate jdbcTemplate;
-    public void registerCar(int car_model_id, String vognnummer){
+    public void registerCar(Integer car_model_id, String vognnummer){
         String sql = "INSERT INTO car (car_model_id, vognnummer) VALUES (?, ?)";
         jdbcTemplate.update(sql, car_model_id, vognnummer);
     }
-    public List<Car> getAvailableCars(int car_model_id) {
+    public List<Car> getAvailableCarsByCarModelId(Integer car_model_id) {
         String sql =
             """
             SELECT car.car_id, car.car_model_id, car.vognnummer
@@ -35,6 +35,11 @@ public class CarRepo {
                 AND NOW() + INTERVAL 1 HOUR BETWEEN contract.start_date AND contract.end_date
             );
             """;
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Car.class), car_model_id);
+    }
+    
+    public List<Car> getCarsByCarModelId (Integer car_model_id) {
+        String sql = "SELECT * FROM car WHERE car_model_id = ?";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Car.class), car_model_id);
     }
 }

@@ -24,12 +24,12 @@ public class CustomerService {
     }
 
     // Update methods
-    public void editCustomer(String customer_name, int customer_id) {
+    public void editCustomer(String customer_name, Integer customer_id) {
         customerRepo.editCustomer(customer_name, customer_id);
     }
 
     // Get methods
-    public Customer getCustomer(int customer_id){
+    public Customer getCustomer(Integer customer_id){
         return customerRepo.getCustomer(customer_id);
     }
 }

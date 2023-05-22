@@ -22,7 +22,7 @@ public class CustomerController {
         return "customer/customersOverview";
     }
     @GetMapping("/editCustomerForm/{customer_id}")
-    public String editCustomerForm(@PathVariable int customer_id, Model model) {
+    public String editCustomerForm(@PathVariable Integer customer_id, Model model) {
         model.addAttribute("customer_id", customer_id);
         model.addAttribute("customer_name", customerService.getCustomer(customer_id).getCustomer_name());
         return "customer/editCustomerForm";
@@ -30,7 +30,7 @@ public class CustomerController {
 
     // Post Methods
     @PostMapping("/editCustomer")
-    public String editCustomer(@RequestParam int customer_id, @RequestParam String customer_name) {
+    public String editCustomer(@RequestParam Integer customer_id, @RequestParam String customer_name) {
         customerService.editCustomer(customer_name, customer_id);
         return "redirect:/customersOverview";
     }

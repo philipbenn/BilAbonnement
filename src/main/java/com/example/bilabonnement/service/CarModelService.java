@@ -31,13 +31,13 @@ CarModelRepo carModelRepo;
             List<Car_Model_Max_Km_Plan> carModelMaxKmPlans = carModelRepo.getCarModelMaxKmPlans(carModel.getCar_model_id());
             carInfo.setCar_model_max_km_plans(carModelMaxKmPlans);
 
-            int carsLeasedOut = carModelRepo.getCarsLeasedOutCount(carModel.getCar_model_id());
+            Integer carsLeasedOut = carModelRepo.getCarsLeasedOutCount(carModel.getCar_model_id());
             carInfo.setCarsLeasedOut(carsLeasedOut);
 
-            int carsInRepair = carModelRepo.getCarsInRepairCount(carModel.getCar_model_id());
+            Integer carsInRepair = carModelRepo.getCarsInRepairCount(carModel.getCar_model_id());
             carInfo.setCarsInRepair(carsInRepair);
 
-            int carsInStock = carModelRepo.getAllCarsCount(carModel.getCar_model_id());
+            Integer carsInStock = carModelRepo.getAllCarsCount(carModel.getCar_model_id());
             carsInStock = carsInStock - carsLeasedOut - carsInRepair;
 
             carInfo.setCarsInStock(carsInStock);
@@ -52,10 +52,10 @@ CarModelRepo carModelRepo;
      return carModelRepo.getCarModels();
     }
 
-    public List<Car_Model_Max_Km_Plan> getCarModelMaxKmPlans(int carModelId) {
+    public List<Car_Model_Max_Km_Plan> getCarModelMaxKmPlans(Integer carModelId) {
         return carModelRepo.getCarModelMaxKmPlans(carModelId);
     }
-    public List<Car_Model_Lease_Period_Plan> getCarModelLeasePeriodPlans(int carModelId) {
+    public List<Car_Model_Lease_Period_Plan> getCarModelLeasePeriodPlans(Integer carModelId) {
         return carModelRepo.getCarModelLeasePeriodPlans(carModelId);
     }
 
@@ -64,21 +64,21 @@ CarModelRepo carModelRepo;
         carModelRepo.addCarModel(car_model);
     }
 
-    public void addNewCarModelMaxKmPlan(int car_model_id, int max_km, int km_price_per_month){
+    public void addNewCarModelMaxKmPlan(Integer car_model_id, Integer max_km, Integer km_price_per_month){
         carModelRepo.addCarModelMaxKmPlan(car_model_id, max_km, km_price_per_month);
     }
-    public void addCarModelLeasePlan(int car_model_id, String type, int price_per_month, int nrOfMonths){
+    public void addCarModelLeasePlan(Integer car_model_id, String type, Integer price_per_month, Integer nrOfMonths){
         carModelRepo.addCarModelLeasePlan(car_model_id, type, price_per_month, nrOfMonths);
     }
 
     // Key values
-    public int maxModelId() {
+    public Integer maxModelId() {
        return carModelRepo.maxModelId();
     }
 
 
     // Get methods
-    public Car_Model getCarModel(int car_model_id){
+    public Car_Model getCarModel(Integer car_model_id){
         return carModelRepo.getCarModel(car_model_id);
     }
 }

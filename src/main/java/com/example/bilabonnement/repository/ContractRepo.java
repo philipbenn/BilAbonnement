@@ -48,7 +48,7 @@ public class ContractRepo {
                     JOIN
                         car_model_lease_period_plan clp ON c.car_model_lease_period_plan_id = clp.car_model_lease_period_plan_id
                     JOIN
-                        car_model_max_km_plan ckp ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id
+                        car_model_max_km_plan ckp ON c.car_model_max_km_plan_id = ckp.car_model_max_km_plan_id
                        
                         WHERE NOW() + INTERVAL 1 HOUR BETWEEN start_date AND end_date
                        
@@ -89,7 +89,7 @@ public class ContractRepo {
                 JOIN
                     car_model_lease_period_plan clp ON c.car_model_lease_period_plan_id = clp.car_model_lease_period_plan_id
                 JOIN
-                    car_model_max_km_plan ckp ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id
+                    car_model_max_km_plan ckp ON c.car_model_max_km_plan_id = ckp.car_model_max_km_plan_id
                     WHERE end_date <= NOW() + INTERVAL 1 HOUR
                     ORDER BY end_date;""";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
@@ -124,12 +124,12 @@ public class ContractRepo {
                 JOIN
                     car_model_lease_period_plan clp ON c.car_model_lease_period_plan_id = clp.car_model_lease_period_plan_id
                 JOIN
-                    car_model_max_km_plan ckp ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id
+                    car_model_max_km_plan ckp ON c.car_model_max_km_plan_id = ckp.car_model_max_km_plan_id
                     WHERE start_date > NOW() + INTERVAL 1 HOUR
                     ORDER BY start_date;""";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
     }
-    public List<ContractDTO> getCustomerHistory(int customer_id){
+    public List<ContractDTO> getCustomerHistory(Integer customer_id){
         String sql = """
                 SELECT  car.car_id, car.car_model_id, car.vognnummer, car_model.car_model_name, car_model_lease_period_plan.type,contract.contract_id, contract.start_date, contract.end_date, contract.employee_id, contract.customer_id
                 FROM contract
@@ -142,7 +142,7 @@ public class ContractRepo {
                 WHERE customer_id = ? ORDER BY contract_id;""";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), customer_id);
     }
-    public List<ContractDTO> editContract(int contract_id){
+    public List<ContractDTO> editContract(Integer contract_id){
         String sql = "SELECT c.contract_id, cu.customer_id, cu.customer_name, ca.car_id, cm.car_model_id, cm.car_model_name, " +
                 "ca.vognnummer, clp.car_model_lease_period_plan_id, clp.type AS lease_type," +
                 " clp.price_per_month AS lease_price," +
@@ -158,7 +158,7 @@ public class ContractRepo {
                 "JOIN car_model_lease_period_plan clp " +
                 "ON c.car_model_lease_period_plan_id = clp.car_model_lease_period_plan_id " +
                 "JOIN car_model_max_km_plan ckp " +
-                "ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id " +
+                "ON c.car_model_max_km_plan_id = ckp.car_model_max_km_plan_id " +
                 "WHERE contract_id = ? ORDER BY contract_id;";
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), contract_id);
@@ -184,7 +184,7 @@ public class ContractRepo {
                 JOIN\s
                     car_model_lease_period_plan ON contract.car_model_lease_period_plan_id = car_model_lease_period_plan.car_model_lease_period_plan_id
                 JOIN\s
-                    car_model_max_km_plan ON contract.car_model_max_km_plan = car_model_max_km_plan.car_model_max_km_plan_id
+                    car_model_max_km_plan ON contract.car_model_max_km_plan_id = car_model_max_km_plan.car_model_max_km_plan_id
                 WHERE\s
                     contract.start_date >= NOW() + INTERVAL 1 HOUR AND contract.end_date > NOW() + INTERVAL 1 HOUR
                 ORDER BY\s
@@ -209,7 +209,7 @@ public class ContractRepo {
 
 
     // Update methods
-    public void setEndDateToToday(int contract_id){
+    public void setEndDateToToday(Integer contract_id){
         String sql = "UPDATE contract SET end_date = NOW() + INTERVAL 1 HOUR WHERE contract_id = ?";
         jdbcTemplate.update(sql, contract_id);
     }
@@ -221,14 +221,14 @@ public class ContractRepo {
                 WHERE c.contract_id = ?;""";
         jdbcTemplate.update(sql, getNewestContractId());
     }
-    public void updateStartAndEndDate(int contract_id, String contract_start_date, String contract_end_date){
+    public void updateStartAndEndDate(Integer contract_id, String contract_start_date, String contract_end_date){
         String sql = "UPDATE contract SET start_date = ?, end_date= ? WHERE contract_id = ?";
         jdbcTemplate.update(sql, contract_start_date, contract_end_date, contract_id);
     }
 
     // Insert methods
-    public void addContract(int car_id, int customer_id, int car_model_lease_period_plan_id, int car_model_max_km_plan, String start_date, int employee_id){
-        String sql = "INSERT INTO contract (car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan, start_date, employee_id, end_date) VALUES (?, ?, ?, ?, ?, ?, '2001-01-01')";
+    public void addContract(Integer car_id, Integer customer_id, Integer car_model_lease_period_plan_id, Integer car_model_max_km_plan, String start_date, Integer employee_id){
+        String sql = "INSERT INTO contract (car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan_id, start_date, employee_id, end_date) VALUES (?, ?, ?, ?, ?, ?, '2001-01-01')";
         jdbcTemplate.update(sql, car_id, customer_id, car_model_lease_period_plan_id, car_model_max_km_plan, start_date, employee_id);
         updateEndDate();
     }
@@ -240,20 +240,20 @@ public class ContractRepo {
                 SELECT SUM(cpp.price_per_month + cmkp.km_price_per_month) AS total_monthly_income
                 FROM contract AS c
                 JOIN car_model_lease_period_plan AS cpp ON c.car_model_lease_period_plan_id = cpp.car_model_lease_period_plan_id
-                JOIN car_model_max_km_plan AS cmkp ON c.car_model_max_km_plan = cmkp.car_model_max_km_plan_id
+                JOIN car_model_max_km_plan AS cmkp ON c.car_model_max_km_plan_id = cmkp.car_model_max_km_plan_id
                 WHERE c.start_date <= NOW() + INTERVAL 1 HOUR AND (c.end_date > NOW() + INTERVAL 1 HOUR)
                 """;
         return jdbcTemplate.queryForObject(sql, Double.class);
     }
-    public int getNewestContractId(){
+    public Integer getNewestContractId(){
         String sql = "SELECT MAX(contract_id) FROM contract";
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
-    public int countAllCars(){
+    public Integer countAllCars(){
         String sql = "SELECT COUNT(*) FROM car";
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
-    public int activeContracts(){
+    public Integer activeContracts(){
         String sql = """
                 SELECT COUNT(*)
                 FROM contract
@@ -261,7 +261,7 @@ public class ContractRepo {
                 """;
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
-    public int nrOfCarsInRepair(){
+    public Integer nrOfCarsInRepair(){
         String sql= """
                 SELECT COUNT(DISTINCT car_return_report_id) AS 'Number of Cars in Repair'
                 FROM car_return_damage
