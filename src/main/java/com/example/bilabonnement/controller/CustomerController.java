@@ -28,6 +28,7 @@ public class CustomerController {
         return "customer/editCustomerForm";
     }
 
+
     // Post Methods
     @PostMapping("/editCustomer")
     public String editCustomer(@RequestParam int customer_id, @RequestParam String customer_name) {
