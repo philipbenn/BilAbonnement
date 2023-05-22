@@ -25,8 +25,8 @@ public class ContractService {
     public List<ContractDTO> getActiveContracts() {
         return contractRepo.getActiveContracts();
     }
-    public List<ContractDTO> editContract(int contract_id){
-        return contractRepo.editContract(contract_id);
+    public ContractDTO getContract(int contract_id){
+        return contractRepo.getContract(contract_id);
     }
     public List<ContractDTO> getEndedContracts() {
         return contractRepo.getEndedContracts();

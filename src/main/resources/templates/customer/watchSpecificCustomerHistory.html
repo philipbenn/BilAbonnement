@@ -36,7 +36,7 @@
             <th>Kontrakt Slut</th>
         </tr>
         </thead>
-        <tbody th:each="contract : ${getCustomerHistory}">
+        <tbody th:each="contract : ${contract}">
 
         <tr>
             <td th:text="${contract.employee_id}"></td>

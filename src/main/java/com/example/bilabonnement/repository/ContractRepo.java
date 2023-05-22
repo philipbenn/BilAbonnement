@@ -144,7 +144,7 @@ public class ContractRepo {
                 WHERE customer.customer_id = ? ORDER BY contract_id;""";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), customer_id);
     }
-    public List<ContractDTO> editContract(int contract_id){
+    public ContractDTO getContract(int contract_id){
         String sql = "SELECT c.contract_id, cu.customer_id, cu.customer_name, ca.car_id, cm.car_model_id, cm.car_model_name, " +
                 "ca.vognnummer, clp.car_model_lease_period_plan_id, clp.type AS lease_type," +
                 " clp.price_per_month AS lease_price," +
@@ -163,7 +163,7 @@ public class ContractRepo {
                 "ON c.car_model_max_km_plan = ckp.car_model_max_km_plan_id " +
                 "WHERE contract_id = ? ORDER BY contract_id;";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), contract_id);
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(ContractDTO.class), contract_id);
     }
     public List<ContractDTO> expiringContracts(){
 

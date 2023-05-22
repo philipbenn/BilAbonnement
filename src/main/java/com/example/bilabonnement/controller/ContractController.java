@@ -75,14 +75,14 @@ public class ContractController {
     // Edit Contract Form
     @GetMapping("/editContractForm/{contract_id}")
     public String editContract(Model model, @PathVariable int contract_id ){
-        model.addAttribute("getContractInfo", contractService.editContract(contract_id));
+        model.addAttribute("getContractInfo", contractService.getContract(contract_id));
         return "contract/editContract";
     }
 
     // Customer Contract History
     @GetMapping("/customerContractHistory/{customer_id}")
     public String watchCustomerHistory(@PathVariable int customer_id, Model model){
-        model.addAttribute("getCustomerHistory", contractService.getCustomerHistory(customer_id));
+        model.addAttribute("contract", contractService.getCustomerHistory(customer_id));
         model.addAttribute("customer", customerService.getCustomer(customer_id).getCustomer_name());
         return "customer/watchSpecificCustomerHistory";
     }
