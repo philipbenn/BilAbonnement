@@ -53,13 +53,13 @@ public class ContractController {
 
     // Add Contract Forms
     @GetMapping ("/addContractForm1/{customer_id}")
-    public String addContractForm(Model model, @PathVariable int customer_id){
+    public String addContractForm1(Model model, @PathVariable int customer_id){
        model.addAttribute("customer_id", customer_id);
        model.addAttribute("car_model_list", carModelService.getCarModels());
         return "contract/addContractForm1";
     }
     @GetMapping ("/addContractForm2")
-    public String test(Model model, @RequestParam int customer_id, @RequestParam int car_model_id){
+    public String addContractForm2(Model model, @RequestParam int customer_id, @RequestParam int car_model_id){
         model.addAttribute("car_model_id", car_model_id);
         model.addAttribute("customer_id" , customer_id);
         model.addAttribute("km_plans", carModelService.getCarModelMaxKmPlans(car_model_id));
