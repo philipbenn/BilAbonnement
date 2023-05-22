@@ -1,6 +1,6 @@
 package com.example.bilabonnement.service;
 
-import com.example.bilabonnement.model.carModel.CarModelDTO;
+import com.example.bilabonnement.model.carModel.Car_Model_DTO;
 import com.example.bilabonnement.model.carModel.Car_Model_Lease_Period_Plan;
 import com.example.bilabonnement.model.carModel.Car_Model_Max_Km_Plan;
 import com.example.bilabonnement.model.carModel.Car_Model;
@@ -16,13 +16,13 @@ public class CarModelService {
 CarModelRepo carModelRepo;
 
     // Lists
-    public List<CarModelDTO> getCarInfo() {
+    public List<Car_Model_DTO> getCarInfo() {
         List<Car_Model> carModels = carModelRepo.getCarModels();
 
-        List<CarModelDTO> carInfoList = new ArrayList<>();
+        List<Car_Model_DTO> carInfoList = new ArrayList<>();
 
         for (Car_Model carModel : carModels) {
-            CarModelDTO carInfo = new CarModelDTO();
+            Car_Model_DTO carInfo = new Car_Model_DTO();
             carInfo.setCar_model(carModel);
 
             List<Car_Model_Lease_Period_Plan> carModelLeasePeriodPlans = carModelRepo.getCarModelLeasePeriodPlans(carModel.getCar_model_id());

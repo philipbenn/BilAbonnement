@@ -12,8 +12,7 @@ import java.util.List;
 @Service
 public class CarService {
 
-@Autowired
-JdbcTemplate jdbcTemplate;
+
 
 @Autowired
 CarRepo carRepo;
