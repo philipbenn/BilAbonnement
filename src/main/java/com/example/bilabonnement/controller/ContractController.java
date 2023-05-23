@@ -97,7 +97,7 @@ public class ContractController {
         carReturnReportRepo.addCarReturnReport(contract_id, car_id);
         //Add an empty CarReturnDamage to the CarReturnDamageReport
         Car_Return_Damage car_return_damage = new Car_Return_Damage();
-        car_return_damage.setDamage_description("Test damage. Please edit.");
+        car_return_damage.setDamage_description("Sæt denne til 'fixed' når skadesrapporten er færdig");
         car_return_damage.setCar_return_report_id(carReturnReportRepo.getMaxCarReturnReportId());
         car_return_damage.setIsFixed(0);
         car_return_damage.setPrice(0);
