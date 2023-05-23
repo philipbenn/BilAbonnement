@@ -28,7 +28,7 @@
                 <a href="/contractsOverview/active" style="color: white; background: darkcyan; margin: 2px; padding: 10px; border-radius: 5px;">Vis Aktive Kontrakter</a>
             </div>
 
-            <table style="width: 93vw;" class="overview-table">
+            <table style="width: 95vw;" class="overview-table">
                 <thead>
                     <tr>
                         <th>Kontrakt ID</th>
@@ -44,7 +44,7 @@
                         <th>Start Dato</th>
                         <th>Slut Dato</th>
                         <th>Total Pris Pr. måned</th>
-                        <th style="width: 180px">Handlinger</th>
+                        <th style="width: 200px">Handlinger</th>
                     </tr>
                 </thead>
                 <tbody th:each="contract : ${getContractInfo}">
@@ -67,14 +67,16 @@
                             <form action="/endContract" method="post">
                                 <input name="contract_id" th:value="${contract.contract_id}" type="hidden">
                                 <input name="car_id" th:value="${contract.car_id}" type="hidden">
-                                <a style="background-color: #6c757d;" type="submit">Afslut aftale</a>
+                                <a style="background-color: transparent;">
+                                    <button style="background-color: #6c757d; cursor: pointer;" type="submit">Afslut aftale</button>
+                                </a>
                             </form>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <div style="width: 93vw; margin: 0 auto;">
+            <div style="width: 95vw; margin: 0 auto;">
                 <a class="action-button" href="/customersOverview">Tilføj ny kontrakt</a>
             </div>
 
