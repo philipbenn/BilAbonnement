@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/navbar.css}">
-    <title>Edit Car Return Report</title>
+    <title>Rediger Rapport</title>
 </head>
 <body>
 
 <header th:replace="navbarfragment :: navbar"></header>
 
-    <h1 class="title">Edit Car Return Report</h1>
+    <h1 class="title">REDIGER RAPPORT</h1>
     <p th:text="${info}"></p>
 
     <table class="overview-table">
         <thead>
         <tr>
-            <th scope="col">Car Return Damage Id</th>
-            <th scope="col">Car Return Report Id</th>
-            <th scope="col">Damage Description</th>
-            <th scope="col">Is Fixed</th>
-            <th scope="col">Price</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Skade rapport ID</th>
+            <th scope="col">Rapport ID</th>
+            <th scope="col">Skade beskrivelse</th>
+            <th scope="col">Bilens tilstand</th>
+            <th scope="col">Pris</th>
+            <th scope="col">Handlinger</th>
         </tr>
         </thead>
         <tbody>
@@ -42,7 +42,10 @@
         </tr>
         </tbody>
     </table>
-<h1 th:text="${'Total Price: ' + totalPrice}"></h1>
+
+    <div style="width: 60vw; margin: 0 auto;">
+        <h1 th:text="${'Total Pris: ' + totalPrice}"></h1>
+    </div>
 
 <form method="post" action="/addCarReturnDamage">
     <input type="hidden" name="car_return_report_id" th:value="${id}">

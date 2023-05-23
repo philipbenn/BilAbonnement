@@ -2,9 +2,9 @@ package com.example.bilabonnement.model.carModel;
 
 import java.util.List;
 
-public class CarModelDTO {
+public class Car_Model_DTO {
 
-    public CarModelDTO() {
+    public Car_Model_DTO() {
     }
     private Car_Model car_model;
     private List<Car_Model_Lease_Period_Plan> car_model_lease_period_plans;

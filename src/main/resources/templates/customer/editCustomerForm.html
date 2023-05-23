@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <link rel="icon"
@@ -10,18 +9,18 @@
     <link rel="stylesheet" type="text/css" th:href="@{/navbar.css}">
     <title>Rediger Kunde</title>
 </head>
-
-<header th:replace="navbarfragment :: navbar"></header>
-
 <body>
+    <header th:replace="navbarfragment :: navbar"></header>
 
-<h1 class="title">Rediger Kunde</h1>
-<form style="display: flex; justify-content: center; margin-top: 200px;" method="post" th:action="@{/editCustomer}">
-    <input name="customer_id" type="hidden" th:value="${customer_id}">
-    <input name="customer_name" type="text" th:value="${customer_name}">
-    <button class="btn-submit" type="submit">Submit</button>
-</form>
+    <h1 class="title">REDIGER KUNDE</h1>
 
+    <div class="card" style="height: 30vh; width: 25vw; margin: 100px auto">
+        <h1 class="title" style="color: white">Kunde navn</h1>
+        <form style="display: flex; justify-content: center; margin-top: 40px" method="post" th:action="@{/editCustomer}">
+            <input name="customer_id" type="hidden" th:value="${customer_id}">
+            <input name="customer_name" type="text" th:value="${customer_name}">
+            <button class="btn-submit" type="submit">Submit</button>
+        </form>
+    </div>
 </body>
-
 </html>

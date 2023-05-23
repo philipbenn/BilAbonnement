@@ -13,15 +13,15 @@
   <title>Opret kunde</title>
 </head>
 
-<body style="margin: 0; padding: 0; overflow: hidden">
+<body style="margin: 0; padding: 0; overflow: hidden; background: #F8F8F8;">
 
 <header th:replace="navbarfragment :: navbar"></header>
 
-<section style="background-color: #222" class="login-section">
+<section class="login-section">
   <div class="form-box">
     <form method="post" th:action="@{/newCustomer}">
       <h2 class="login-header">Kunde oprettelse</h2>
-      <div class="inputBox">
+      <div class="inputbox">
         <ion-icon name="person-outline"></ion-icon>
         <input style="margin-left: 15px" type="text" name="customer_name" required>
         <label>Navn :</label>

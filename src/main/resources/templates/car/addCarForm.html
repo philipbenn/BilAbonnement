@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Tilføj Bil</title>
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <link rel="stylesheet" th:href="@{/navbar.css}" />
 </head>
@@ -13,12 +13,14 @@
 
 <h1 class="title">TILFØJ BIL</h1>
 
-<form style="display: flex; justify-content: center; margin-top: 200px;" method="post" action="/addNewCar">
-    <input name="car_model_id" th:value="${car_model_id}">
-    <input name="vognnummer" type="text">
-    <button class="btn-submit" type="submit">Submit</button>
-
+<div class="card" style="height: 30vh; width: 25vw; margin: 100px auto">
+    <h1 class="title" style="color: white">Bilens Vognnummer</h1>
+<form style="display: flex; justify-content: center; margin-top: 40px;" method="post" action="/addNewCar">
+    <input name="car_model_id" th:value="${car_model_id}" type="hidden">
+    <input name="vognnummer" type="text" placeholder="Vognnummer" required>
+    <button class="btn-submit" type="submit">Tilføj</button>
 </form>
+</div>
 
 </body>
 
