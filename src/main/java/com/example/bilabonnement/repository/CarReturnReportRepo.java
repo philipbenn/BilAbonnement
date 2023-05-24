@@ -1,6 +1,7 @@
 package com.example.bilabonnement.repository;
 
 import com.example.bilabonnement.model.carReturnReport.Car_Return_Damage;
+import com.example.bilabonnement.model.carReturnReport.Car_Return_Report;
 import com.example.bilabonnement.model.carReturnReport.Car_Return_Report_DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -13,6 +14,16 @@ import java.util.List;
 public class CarReturnReportRepo {
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    public Car_Return_Report carReturnReport(Integer car_return_report_id){
+        String sql = "SELECT * FROM car_return_report where car_return_report_id = ?";
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Car_Return_Report.class), car_return_report_id);
+    }
+
+    public void updateKmDriven(Integer carReturnReportId, Integer kmDriven) {
+        String sql = "UPDATE car_return_report set km_driven = ? WHERE car_return_report_id = ?";
+        jdbcTemplate.update(sql, kmDriven, carReturnReportId);
+    }
 
     public List<Car_Return_Damage> carReturnDamageFromReport (Integer car_return_report_id){
         String sql = "SELECT * from car_return_damage WHERE car_return_report_id = ?";

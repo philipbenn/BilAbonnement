@@ -1,9 +1,12 @@
 package com.example.bilabonnement.service;
 
+import com.example.bilabonnement.model.carReturnReport.Car_Return_Report;
+import com.example.bilabonnement.model.contract.Contract;
 import com.example.bilabonnement.model.contract.ContractDTO;
 import com.example.bilabonnement.model.contract.ContractTypeCount;
 import com.example.bilabonnement.repository.ContractRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -73,4 +76,14 @@ public class ContractService {
     public void updateStartAndEndDate(Integer contract_id, String contract_start_date, String contract_end_date){
         contractRepo.updateStartAndEndDate(contract_id, contract_start_date, contract_end_date);
     }
+
+    public Contract getContract(Integer id){
+        return contractRepo.getContract(id);
+    }
+
+    public Integer getStartDateEndDateDiff(Integer contract_id){
+        return contractRepo.getStartDateEndDateDiff(contract_id);
+    }
+
+
 }

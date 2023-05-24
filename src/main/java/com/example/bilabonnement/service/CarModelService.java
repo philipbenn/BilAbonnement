@@ -6,6 +6,7 @@ import com.example.bilabonnement.model.carModel.Car_Model_Max_Km_Plan;
 import com.example.bilabonnement.model.carModel.Car_Model;
 import com.example.bilabonnement.repository.CarModelRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -81,4 +82,13 @@ CarModelRepo carModelRepo;
     public Car_Model getCarModel(Integer car_model_id){
         return carModelRepo.getCarModel(car_model_id);
     }
+
+    public Car_Model_Lease_Period_Plan carModelLeasePeriodPlan(Integer id){
+    return carModelRepo.carModelLeasePeriodPlan(id);
+    }
+
+    public Car_Model_Max_Km_Plan carModelMaxKmPlan(Integer id){
+    return carModelRepo.carModelMaxKmPlan(id);
+    }
+
 }

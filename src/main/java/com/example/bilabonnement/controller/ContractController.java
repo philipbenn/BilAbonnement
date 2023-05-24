@@ -1,8 +1,10 @@
 package com.example.bilabonnement.controller;
 
 import com.example.bilabonnement.model.carReturnReport.Car_Return_Damage;
-import com.example.bilabonnement.repository.CarReturnReportRepo;
+import com.example.bilabonnement.model.carReturnReport.Car_Return_Report;
+import com.example.bilabonnement.model.contract.Contract;
 import com.example.bilabonnement.service.CarModelService;
+import com.example.bilabonnement.service.CarReturnReportService;
 import com.example.bilabonnement.service.CarService;
 import com.example.bilabonnement.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ public class ContractController {
     @Autowired
     CarService carService;
     @Autowired
-    CarReturnReportRepo carReturnReportRepo;
+    CarReturnReportService carReturnReportService;
 
     // Contract Overviews
     @GetMapping("/contractsOverview/active")
@@ -90,20 +92,21 @@ public class ContractController {
     @PostMapping ("/endContract")
     public String endContract(@RequestParam Integer contract_id, @RequestParam Integer car_id){
 
-
         //Set end date of contract to today
         contractService.setEndDateToToday(contract_id);
         //Create new CarReturnDamageReport with this contract_id
-        carReturnReportRepo.addCarReturnReport(contract_id, car_id);
+        carReturnReportService.addCarReturnReport(contract_id, car_id);
         //Add an empty CarReturnDamage to the CarReturnDamageReport
         Car_Return_Damage car_return_damage = new Car_Return_Damage();
         car_return_damage.setDamage_description("Sæt denne til 'fixed' når skadesrapporten er færdig");
-        car_return_damage.setCar_return_report_id(carReturnReportRepo.getMaxCarReturnReportId());
+        car_return_damage.setCar_return_report_id(carReturnReportService.getMaxCarReturnReportId());
         car_return_damage.setIsFixed(0);
         car_return_damage.setPrice(0);
-        carReturnReportRepo.addCarReturnDamage(car_return_damage);
+        carReturnReportService.addCarReturnDamage(car_return_damage);
+
         //Open the CarReturnDamageReport in the browser
         return "redirect:/carReturnReports/pending";
+
     }
     @PostMapping("/addContract")
     public String addContract(@RequestParam Integer customer_id, @RequestParam Integer car_id, @RequestParam Integer car_model_lease_period_plan_id, @RequestParam Integer car_model_max_km_plan_id, @RequestParam String start_date, @RequestParam Integer employee_id){
@@ -115,5 +118,4 @@ public class ContractController {
 
         return "redirect:/contractsOverview/active";
     }
-
 }

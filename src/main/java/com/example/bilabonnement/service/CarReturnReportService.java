@@ -1,6 +1,7 @@
 package com.example.bilabonnement.service;
 
 import com.example.bilabonnement.model.carReturnReport.Car_Return_Damage;
+import com.example.bilabonnement.model.carReturnReport.Car_Return_Report;
 import com.example.bilabonnement.model.carReturnReport.Car_Return_Report_DTO;
 import com.example.bilabonnement.repository.CarReturnReportRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,19 @@ public class CarReturnReportService {
 @Autowired
     CarReturnReportRepo carReturnReportRepo;
 
+    // Get methods
+
+    public Car_Return_Report getCarReturnReport (Integer car_return_report_id){
+        return carReturnReportRepo.carReturnReport(car_return_report_id);
+    }
+
     public List<Car_Return_Damage> carReturnDamageFromReport (Integer car_return_report_id){
         return carReturnReportRepo.carReturnDamageFromReport(car_return_report_id);
       }
+
+    public void updateKmDriven(Integer carReturnReportId, Integer kmDriven) {
+        carReturnReportRepo.updateKmDriven(carReturnReportId,kmDriven);
+    }
 
     public List <Car_Return_Report_DTO> getAllPendingCarReturnReports(){
        return carReturnReportRepo.getAllPendingCarReturnReports();

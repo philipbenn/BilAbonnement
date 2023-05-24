@@ -43,7 +43,18 @@
         </tbody>
     </table>
 
+<form method="post" action="/updateKmDriven">
+    <input type="hidden" name="car_return_report_id" th:value="${carReturnReport.car_return_report_id}" readonly>
+    <input type="number" name="km_driven" placeholder="Indtast km kørt" required>
+    <button type="submit">Opdater km kørt</button>
+</form>
+
     <div style="width: 60vw; margin: 0 auto;">
+        <h1 th:text="${'Total km kørt tilladt:' + totalKmAllowed}"></h1>
+        <h1 th:text="${'Total km kørt:' + totalKmDriven}"></h1>
+        <h1 th:text="${'Total km over:' + totalKmOver}"></h1>
+        <h1 th:text="${'Total km over pris:' + totalKmOverPrice}"></h1>
+
         <h1 th:text="${'Total Pris: ' + totalPrice}"></h1>
     </div>
 
@@ -51,5 +62,6 @@
     <input type="hidden" name="car_return_report_id" th:value="${id}">
     <input type="submit" value="Add New Damage" style="position: fixed; bottom: 0; right: 25px;" class="btn btn-primary">
 </form>
+
 </body>
 </html>

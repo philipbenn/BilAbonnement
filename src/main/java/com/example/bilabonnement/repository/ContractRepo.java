@@ -1,5 +1,7 @@
 package com.example.bilabonnement.repository;
 
+import com.example.bilabonnement.model.carReturnReport.Car_Return_Report;
+import com.example.bilabonnement.model.contract.Contract;
 import com.example.bilabonnement.model.contract.ContractDTO;
 import com.example.bilabonnement.model.contract.ContractTypeCount;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -268,4 +270,24 @@ public class ContractRepo {
                 WHERE isFixed=0;""";
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
+
+    public Contract getContract(Integer id){
+        String sql = """
+                SELECT *
+                FROM contract
+                WHERE contract_id = ?;
+                """;
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Contract.class), id);
+    }
+
+    public Integer getStartDateEndDateDiff(Integer contract_id){
+        String sql = """
+                SELECT SUM(TIMESTAMPDIFF(MONTH, start_date, end_date)) AS total_months_difference
+                FROM contract where contract_id = ?;
+                """;
+        return jdbcTemplate.queryForObject(sql, Integer.class, contract_id);
+    }
+
+
+
 }
