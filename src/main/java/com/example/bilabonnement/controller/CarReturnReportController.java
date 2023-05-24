@@ -3,7 +3,7 @@ package com.example.bilabonnement.controller;
 import com.example.bilabonnement.model.carReturnReport.Car_Return_Damage;
 
 import com.example.bilabonnement.model.carReturnReport.Car_Return_Report_DTO;
-import com.example.bilabonnement.repository.*;
+import com.example.bilabonnement.service.CarReturnReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,15 +17,16 @@ import java.util.List;
 @Controller
 public class CarReturnReportController {
     @Autowired
-    CarReturnReportRepo carReturnReportRepo;
-
+    CarReturnReportService carReturnReportService;
+    
     // Views
+    
     @GetMapping("/carReturnReports/pending")
     String pendingCarReturnReports(Model model) {
 
         String info = "SKADESRAPPORTER DER SKAL BEHANDLES";
 
-        List<Car_Return_Report_DTO> carReturnReports = carReturnReportRepo.getAllPendingCarReturnReports();
+        List<Car_Return_Report_DTO> carReturnReports = carReturnReportService.getAllPendingCarReturnReports();
 
 
         model.addAttribute("info", info);
@@ -38,7 +39,7 @@ public class CarReturnReportController {
 
         String info = "AFSLUTTEDE SKADESRAPPORTER";
 
-        List<Car_Return_Report_DTO> carReturnReports = carReturnReportRepo.getAllClosedCarReturnReports();
+        List<Car_Return_Report_DTO> carReturnReports = carReturnReportService.getAllClosedCarReturnReports();
 
 
         model.addAttribute("info", info);
@@ -50,7 +51,7 @@ public class CarReturnReportController {
     public String editDamageReport(@PathVariable Integer id, Model model) {
 
         model.addAttribute("id", id);
-        List<Car_Return_Damage> carReturnDamages = carReturnReportRepo.carReturnDamageFromReport(id);
+        List<Car_Return_Damage> carReturnDamages = carReturnReportService.carReturnDamageFromReport(id);
 
         model.addAttribute("carReturnDamages", carReturnDamages);
 
@@ -65,12 +66,11 @@ public class CarReturnReportController {
         return "/carReturnReport/editDamageReport";
     }
 
-
     @GetMapping("/openDamageReportNoEdit/{id}")
     public String editDamageReportNoEdit(@PathVariable Integer id, Model model) {
 
         model.addAttribute("id", id);
-        List<Car_Return_Damage> carReturnDamages = carReturnReportRepo.carReturnDamageFromReport(id);
+        List<Car_Return_Damage> carReturnDamages = carReturnReportService.carReturnDamageFromReport(id);
 
         model.addAttribute("carReturnDamages", carReturnDamages);
 
@@ -85,7 +85,6 @@ public class CarReturnReportController {
         return "/carReturnReport/editDamageReportNoEdit";
     }
 
-
     // Post Methods
     @PostMapping("/editDamageReport")
     public String editDamageReport(@RequestParam Integer carReturnDamageId, @RequestParam Integer carReturnReportId, @RequestParam String damage_description, @RequestParam Integer is_fixed, @RequestParam double price) {
@@ -98,7 +97,7 @@ public class CarReturnReportController {
         carReturnDamage.setIsFixed(is_fixed);
         carReturnDamage.setPrice(price);
 
-        carReturnReportRepo.editCarReturnDamage(carReturnDamage);
+        carReturnReportService.editCarReturnDamage(carReturnDamage);
 
         return "redirect:/openDamageReport/" + carReturnReportId;
     }
@@ -110,7 +109,7 @@ public class CarReturnReportController {
         carReturnDamage.setIsFixed(0);
         carReturnDamage.setDamage_description("..");
 
-        carReturnReportRepo.addCarReturnDamage(carReturnDamage);
+        carReturnReportService.addCarReturnDamage(carReturnDamage);
 
         return "redirect:/openDamageReport/" + car_return_report_id;
 
