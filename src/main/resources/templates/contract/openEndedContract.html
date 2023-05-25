@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/v1578666243/favicon_1_npgufd.ico" class="next-head">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/navbar.css}">
+    <title>Kontrakter</title>
+
+</head>
+
+<body>
+
+<header th:replace="navbarfragment :: navbar"></header>
+
+<h1 class="title">REDIGER KONTRAKT</h1>
+
+<main>
+
+    <table class="overview-table">
+        <thead>
+        <tr>
+            <th>Kontrakt ID</th>
+            <th>Kunde ID</th>
+            <th>Kunde Navn</th>
+            <th>Bil Model</th>
+            <th>Vognnummer</th>
+            <th>Leasing Type</th>
+            <th>Leasing Pris</th>
+            <th>Max Km. Pr. Måned</th>
+            <th>Max Km Pris</th>
+            <th>Start Dato</th>
+            <th>Slut Dato</th>
+            <th>Total Pris Pr. måned</th>
+            <th>Handlinger</th>
+        </tr>
+        </thead>
+        <tbody th:each="contract : ${getContractInfo}">
+
+        <tr>
+            <td>
+                <input name="contract_id" readonly th:value="${contract.contract_id}">
+            </td>
+            <td th:text="${contract.customer_id}"></td>
+            <td th:text="${contract.customer_name}"></td>
+            <td th:text="${contract.car_model_name}"></td>
+            <td th:text="${contract.vognnummer}"></td>
+            <td th:text="${contract.lease_type}"></td>
+            <td th:text="${contract.lease_price}"></td>
+            <td th:text="${contract.max_km}"></td>
+            <td th:text="${contract.km_plan_price}" ></td>
+
+            <td>
+               <input type="date" name="contract_start_date" th:value="${contract.start_date}" readonly>
+            </td>
+
+            <td>
+                <input type="date" name="contract_end_date" th:value="${contract.end_date}" readonly>
+            </td>
+
+
+            <td th:text="${contract.total_price_per_month}"></td>
+
+            <td>
+
+            </td>
+
+        </tr>
+
+
+        </tbody>
+    </table>
+</main>
+</body>
+
+</html>

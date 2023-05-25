@@ -40,7 +40,7 @@ public class ContractController {
         String info = "UDLØBEDE KONTRAKTER";
         model.addAttribute("info", info);
         model.addAttribute( "getContractInfo", contractService.getEndedContracts());
-        return "/contract/contractsOverview";
+        return "/contract/contractsOverviewEnded";
     }
     @GetMapping("/contractsOverview/future")
     public String showFutureContracts(Model model){
@@ -82,6 +82,12 @@ public class ContractController {
         model.addAttribute("minDate", minDate);
         model.addAttribute("getContractInfo", contractService.editContract(contract_id));
         return "contract/editContract";
+    }
+
+    @GetMapping("/openEndedContract/{contract_id}")
+    public String openEndedContract(Model model, @PathVariable Integer contract_id ){
+        model.addAttribute("getContractInfo", contractService.editContract(contract_id));
+        return "contract/openEndedContract";
     }
 
     // Customer Contract History
