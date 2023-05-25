@@ -12,21 +12,23 @@
 <body>
 <header th:replace="navbarfragment :: navbar"></header>
 
+<h1 class="title">VÆLG PLAN</h1>
+
                 <div class="card" style="height: 30vh; width: 25vw; margin: 100px auto">
                 <form action="/addContract" method="post">
-                    <h1 class="title" style="font-size: 14px">Vælg plan</h1>
+                    <h1 class="title" style="font-size: 16px; color: white">Vælg plan</h1>
                         <select style="margin-left: 40px" name="car_model_lease_period_plan_id">
                             <option th:each="lease_plan : ${lease_plans}"
                                     th:text="${'Lease Type: ' + lease_plan.type + '. Nr. of months: ' + lease_plan.nr_of_months}"
                                     th:value="${lease_plan.car_model_lease_period_plan_id}"></option>
                         </select>
-                    <h1 class="title" style="font-size: 14px">Vælg km plan</h1>
+                    <h1 class="title" style="font-size: 16px; color: white">Vælg km plan</h1>
                         <select style="margin-left: 40px" name="car_model_max_km_plan_id">
                             <option th:each="km_plan: ${km_plans}"
                                     th:text="${'Km. per month: ' + km_plan.max_km + '. Price per month: ' + km_plan.km_price_per_month}"
                                     th:value="${km_plan.car_model_max_km_plan_id}"></option>
                         </select>
-                    <h1 class="title" style="font-size: 14px">Vælg bil (Hvis den er tom er der ingen ledige)</h1>
+                    <h1 class="title" style="font-size: 16px; color: white">Vælg bil (Hvis den er tom er der ingen ledige)</h1>
                         <select style="margin-left: 40px" name="car_id">
                             <option th:each="car : ${cars}" th:text="${'Vognnummer: ' + car.vognnummer}"
                                     th:value="${car.car_id}"></option>

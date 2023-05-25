@@ -41,7 +41,7 @@
                     <tbody>
                     <tr th:each="leasePlan : ${carInfo.car_model_lease_period_plans}">
                         <td th:text="${leasePlan.type}"></td>
-                        <td th:text="${leasePlan.price_per_month + ' kr/month'}"></td>
+                        <td th:text="${leasePlan.price_per_month + ' kr/måned'}"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -54,7 +54,7 @@
                     <tbody>
                     <tr th:each="carModelMaxKmPlan : ${carInfo.car_model_max_km_plans}">
                         <td th:text="${carModelMaxKmPlan.max_km + ' km'}"></td>
-                        <td th:text="${carModelMaxKmPlan.km_price_per_month + ' $/month'}"></td>
+                        <td th:text="${carModelMaxKmPlan.km_price_per_month + ' kr/måned'}"></td>
                     </tr>
                     </tbody>
                 </table>
