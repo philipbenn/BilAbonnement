@@ -78,6 +78,8 @@ public class ContractController {
     // Edit Contract Form
     @GetMapping("/editContractForm/{contract_id}")
     public String editContract(Model model, @PathVariable Integer contract_id ){
+        String minDate = LocalDate.now().toString();
+        model.addAttribute("minDate", minDate);
         model.addAttribute("getContractInfo", contractService.editContract(contract_id));
         return "contract/editContract";
     }

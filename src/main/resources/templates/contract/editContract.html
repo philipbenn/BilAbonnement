@@ -54,11 +54,11 @@
             <td th:text="${contract.km_plan_price}" ></td>
 
             <td>
-               <input type="date" name="contract_start_date" th:value="${contract.start_date}">
+               <input type="date" name="contract_start_date" th:value="${contract.start_date}" th:min="${minDate}">
             </td>
 
             <td>
-                <input type="date" name="contract_end_date" th:value="${contract.end_date}">
+                <input type="date" name="contract_end_date" th:value="${contract.end_date}" th:min="${minDate}">
             </td>
 
 
