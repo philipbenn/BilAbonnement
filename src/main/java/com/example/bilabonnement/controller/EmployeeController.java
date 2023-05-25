@@ -39,10 +39,10 @@ public class EmployeeController {
             return "employee/loginForm";
         }
     }
-    @PostMapping("/signUpCustomer")
+    @PostMapping("/signUpEmployee")
     public String customerSignUp(@ModelAttribute Employee employee){
         employeeService.addEmployee(employee);
-        return "dashboard/dashboard";
+        return "redirect:/dashboard";
     }
 
 

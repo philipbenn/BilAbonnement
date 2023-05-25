@@ -18,7 +18,7 @@
 
 <section class="login-section">
   <div class="form-box">
-    <form method="post" th:action="@{/signupcustomer}">
+    <form method="post" th:action="@{/signUpEmployee}">
       <h2 class="login-header">Opret medarbejder</h2>
       <div class="inputbox">
         <ion-icon name="person-outline"></ion-icon>
@@ -27,7 +27,7 @@
       </div>
       <div class="inputbox">
         <ion-icon name="lock-closed-outline"></ion-icon>
-        <input style="margin-left: 15px;" type="password" name="password" required>
+        <input style="margin-left: 15px; font-size: 25px" type="password" name="password" required>
         <label>Kode :</label>
       </div>
       <button style="background-color: #0d6efd" class="login-button" type="submit">Opret Medarbejder</button>
