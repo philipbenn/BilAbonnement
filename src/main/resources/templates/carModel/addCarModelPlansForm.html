@@ -31,12 +31,12 @@
 
 <span
         style="position: fixed; font-size: 18px; padding: 5px; border-radius: 5px; margin: 8px 3px 3px 3px; background-color: #0d6efd; color: white"
-        th:text="${'Ændre priser for ' + carModel.car_model_name}"></span>
+        th:text="${'Rediger priser for ' + carModel.car_model_name}"></span>
 
 <div style="display: flex; justify-content: space-evenly; height: 75%; width: 100%;">
 
     <div style="margin-top: 60px; border: 1px solid black; padding: 10px; border-radius: 10px">
-        <h1 style="text-align: center">TILFØJ MAX KM PLAN</h1>
+        <h1 style="text-align: center">Tilføj max km plan</h1>
 
         <form method="post" th:action="@{/addCarModelKmPlan}">
             <input name="car_model_id" th:value="${car_model_id}" type="hidden">

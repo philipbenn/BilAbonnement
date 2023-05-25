@@ -16,21 +16,21 @@
 
 <header th:replace="navbarfragment :: navbar"></header>
 
-<section style="background-color: #222;" class="login-section">
-  <div style="z-index: 1; backdrop-filter: blur(10px)" class="form-box">
+<section class="login-section">
+  <div class="form-box">
     <form method="post" th:action="@{/signupcustomer}">
-      <h2 class="login-header">Signup</h2>
+      <h2 class="login-header">Opret medarbejder</h2>
       <div class="inputbox">
         <ion-icon name="person-outline"></ion-icon>
-        <input style="margin-left: 30px;" name="name" type="text" required>
-        <label>Name :</label>
+        <input style="margin-left: 15px;" name="name" type="text" required>
+        <label>Navn :</label>
       </div>
       <div class="inputbox">
         <ion-icon name="lock-closed-outline"></ion-icon>
-        <input style="margin-left: 60px;" type="password" name="password" required>
-        <label>Password :</label>
+        <input style="margin-left: 15px;" type="password" name="password" required>
+        <label>Kode :</label>
       </div>
-      <button class="login-button" type="submit">Sign up</button>
+      <button style="background-color: #0d6efd" class="login-button" type="submit">Opret Medarbejder</button>
     </form>
   </div>
 </section>
