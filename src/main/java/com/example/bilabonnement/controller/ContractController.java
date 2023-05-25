@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.time.LocalDate;
 
 @Controller
 public class ContractController {
@@ -62,6 +63,11 @@ public class ContractController {
         model.addAttribute("km_plans", carModelService.getCarModelMaxKmPlans(car_model_id));
         model.addAttribute("lease_plans", carModelService.getCarModelLeasePeriodPlans(car_model_id));
         model.addAttribute("cars", carService.getAvailableCarsByCarModelId(car_model_id));
+
+        model.addAttribute("minDate", LocalDate.now().toString());
+        model.addAttribute("maxDate", LocalDate.now().plusMonths(1).toString());
+
+
 
         //TODO calculate end date by adding lease period to start date
         //TODO filter out cars that are already in a contract

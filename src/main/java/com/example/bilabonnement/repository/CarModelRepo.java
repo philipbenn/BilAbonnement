@@ -45,7 +45,8 @@ public class CarModelRepo {
         return template.queryForObject(sql, Integer.class, carModelId);
     }
     public Integer getAllCarsCount(Integer carModelId) {
-        String sql = "SELECT COUNT(*) FROM car WHERE car_model_id = ?";
+        String sql = "SELECT COUNT(car_id) FROM car \n" +
+                "WHERE car_id NOT IN (SELECT car_id FROM contract) AND car_model_id=?";
         return template.queryForObject(sql, Integer.class, carModelId);
     }
     public Integer getCarsInRepairCount(Integer carModelId) {

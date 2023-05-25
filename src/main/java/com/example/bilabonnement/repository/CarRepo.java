@@ -19,21 +19,8 @@ public class CarRepo {
     public List<Car> getAvailableCarsByCarModelId(Integer car_model_id) {
         String sql =
             """
-            SELECT car.car_id, car.car_model_id, car.vognnummer
-            FROM car
-            WHERE car.car_model_id = ? AND NOT EXISTS (
-                SELECT 1
-                FROM car_return_damage
-                JOIN car_return_report
-                ON car_return_damage.car_return_report_id = car_return_report.car_return_report_id
-                WHERE car_return_report.car_id = car.car_id
-                AND car_return_damage.isFixed = 0
-            ) AND NOT EXISTS (
-                SELECT 1
-                FROM contract
-                WHERE contract.car_id = car.car_id
-                AND NOW() + INTERVAL 1 HOUR BETWEEN contract.start_date AND contract.end_date
-            );
+                SELECT * FROM car
+                WHERE car_id NOT IN (SELECT car_id FROM contract) AND car_model_id = ?;
             """;
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Car.class), car_model_id);
     }

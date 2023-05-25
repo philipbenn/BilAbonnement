@@ -32,7 +32,7 @@
                                     th:value="${car.car_id}"></option>
                         </select>
                     <input name="customer_id" th:value="${customer_id}" type="hidden" />
-                        <input name="start_date" type="date">
+                        <input name="start_date" type="date" th:min="${minDate}" th:max="${maxDate}">
                     <input name="employee_id" th:value="${session.employee.employee_id}" type="hidden" />
                     <input style="margin: 20px 120px" type="submit" value="Tilføj kontrakt" class="btn-submit">
                 </form>
