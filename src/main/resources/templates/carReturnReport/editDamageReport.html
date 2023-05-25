@@ -43,25 +43,29 @@
         </tbody>
     </table>
 
-<form method="post" action="/updateKmDriven">
-    <input type="hidden" name="car_return_report_id" th:value="${carReturnReport.car_return_report_id}" readonly>
-    <input type="number" name="km_driven" placeholder="Indtast km kørt" required>
-    <button type="submit">Opdater km kørt</button>
-</form>
+<div style="width: 62vw; margin: 0 auto;">
+    <form method="post" action="/addCarReturnDamage">
+        <a class="action-button">
+            <input type="hidden" name="car_return_report_id" th:value="${id}">
+            <input style="background-color: #0d6efd; border: none; color: white;" type="submit" value="Tilføj Ny Skade">
+        </a>
+    </form>
+</div>
 
-    <div style="width: 60vw; margin: 0 auto;">
+    <div style="color: white; margin: 20px auto; width: 63vw">
+        <div class="card">
+            <form method="post" action="/updateKmDriven">
+                <input type="hidden" name="car_return_report_id" th:value="${carReturnReport.car_return_report_id}" readonly>
+                <input style="margin-bottom: 5px" type="number" name="km_driven" placeholder="Indtast km kørt" required>
+                <button style="padding: 5px 10px; margin-bottom: 5px" class="btn-submit" type="submit">Opdater km kørt</button>
+            </form>
         <h1 th:text="${'Total km kørt tilladt:' + totalKmAllowed}"></h1>
         <h1 th:text="${'Total km kørt:' + totalKmDriven}"></h1>
         <h1 th:text="${'Total km over:' + totalKmOver}"></h1>
         <h1 th:text="${'Total km over pris:' + totalKmOverPrice}"></h1>
-
-        <h1 th:text="${'Total Pris: ' + totalPrice}"></h1>
+        <h1 style="text-decoration: underline; font-size: 14px" th:text="${'Total Pris: ' + totalPrice}"></h1>
+        </div>
     </div>
-
-<form method="post" action="/addCarReturnDamage">
-    <input type="hidden" name="car_return_report_id" th:value="${id}">
-    <input type="submit" value="Add New Damage" style="position: fixed; bottom: 0; right: 25px;" class="btn btn-primary">
-</form>
 
 </body>
 </html>

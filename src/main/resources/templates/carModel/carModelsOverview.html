@@ -41,7 +41,7 @@
                     <tbody>
                     <tr th:each="leasePlan : ${carInfo.car_model_lease_period_plans}">
                         <td th:text="${leasePlan.type}"></td>
-                        <td th:text="${leasePlan.price_per_month + ' $/month'}"></td>
+                        <td th:text="${leasePlan.price_per_month + ' kr/month'}"></td>
                     </tr>
                     </tbody>
                 </table>

@@ -263,6 +263,7 @@ a {
 }
 
 .card {
+    width: 200px;
     background-color: grey;
     border: 1px solid darkgrey;
     border-radius: 5px;
