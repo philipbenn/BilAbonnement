@@ -6,7 +6,6 @@ import com.example.bilabonnement.model.carModel.Car_Model_Max_Km_Plan;
 import com.example.bilabonnement.model.carModel.Car_Model;
 import com.example.bilabonnement.repository.CarModelRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,8 +37,7 @@ CarModelRepo carModelRepo;
             Integer carsInRepair = carModelRepo.getCarsInRepairCount(carModel.getCar_model_id());
             carInfo.setCarsInRepair(carsInRepair);
 
-            Integer carsInStock = carModelRepo.getAllCarsCount(carModel.getCar_model_id());
-            carsInStock = carsInStock - carsLeasedOut - carsInRepair;
+            Integer carsInStock = carModelRepo.getAvailableCarsCount(carModel.getCar_model_id());
 
             carInfo.setCarsInStock(carsInStock);
 

@@ -44,7 +44,7 @@ public class CarModelRepo {
         String sql = "SELECT COUNT(*) FROM contract JOIN car ON contract.car_id = car.car_id INNER JOIN car_model ON car.car_model_id = car_model.car_model_id WHERE car_model.car_model_id = ? AND NOW() + INTERVAL 1 HOUR BETWEEN start_date AND end_date";
         return template.queryForObject(sql, Integer.class, carModelId);
     }
-    public Integer getAllCarsCount(Integer carModelId) {
+    public Integer getAvailableCarsCount(Integer carModelId) {
         String sql = "SELECT COUNT(car_id) FROM car \n" +
                 "WHERE car_id NOT IN (SELECT car_id FROM contract) AND car_model_id=?";
         return template.queryForObject(sql, Integer.class, carModelId);
