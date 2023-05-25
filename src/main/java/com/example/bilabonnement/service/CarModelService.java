@@ -46,7 +46,6 @@ CarModelRepo carModelRepo;
         return carInfoList;
     }
 
-
     public List<Car_Model> getCarModels() {
      return carModelRepo.getCarModels();
     }
