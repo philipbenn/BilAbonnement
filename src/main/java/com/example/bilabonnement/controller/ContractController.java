@@ -1,8 +1,6 @@
 package com.example.bilabonnement.controller;
 
 import com.example.bilabonnement.model.carReturnReport.Car_Return_Damage;
-import com.example.bilabonnement.model.carReturnReport.Car_Return_Report;
-import com.example.bilabonnement.model.contract.Contract;
 import com.example.bilabonnement.service.CarModelService;
 import com.example.bilabonnement.service.CarReturnReportService;
 import com.example.bilabonnement.service.CarService;
@@ -35,6 +33,7 @@ public class ContractController {
         model.addAttribute( "getContractInfo", contractService.getActiveContracts());
         return "/contract/contractsOverview";
     }
+
     @GetMapping("/contractsOverview/ended")
     public String showEndedContracts(Model model){
         String info = "UDLØBEDE KONTRAKTER";
@@ -57,7 +56,7 @@ public class ContractController {
         return "contract/addContractForm1";
     }
     @GetMapping ("/addContractForm2")
-    public String test(Model model, @RequestParam Integer customer_id, @RequestParam Integer car_model_id){
+    public String addContractForm2(Model model, @RequestParam Integer customer_id, @RequestParam Integer car_model_id){
         model.addAttribute("car_model_id", car_model_id);
         model.addAttribute("customer_id" , customer_id);
         model.addAttribute("km_plans", carModelService.getCarModelMaxKmPlans(car_model_id));
