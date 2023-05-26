@@ -17,7 +17,7 @@ public class CustomerController {
         return "customer/addCustomerForm";
     }
     @GetMapping("/customersOverview")
-    public String addContract(Model model){
+    public String getAllCustomers(Model model){
         model.addAttribute("getCustomers", customerService.getAllCustomer());
         return "customer/customersOverview";
     }
