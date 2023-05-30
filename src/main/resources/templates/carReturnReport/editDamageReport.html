@@ -32,8 +32,8 @@
                 <td><input type="text" name="damage_description" th:value="${carReturnDamage.damage_description}" class="form-control"></td>
                 <td>
                     <select name="is_fixed" class="form-control">
-                        <option th:selected="${carReturnDamage.isFixed == 0}" value="0">No</option>
-                        <option th:selected="${carReturnDamage.isFixed == 1}" value="1">Yes</option>
+                        <option th:selected="${carReturnDamage.isFixed == 0}" value="0">Ikke repareret</option>
+                        <option th:selected="${carReturnDamage.isFixed == 1}" value="1">Repareret</option>
                     </select>
                 </td>
                 <td><input type="text" name="price" th:value="${carReturnDamage.price}" class="form-control"></td>
