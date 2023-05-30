@@ -50,7 +50,7 @@ public class CarReturnReportController {
         model.addAttribute("carReturnReports", carReturnReports);
 
 
-        return "/carReturnReport/carReturnReports";
+        return "carReturnReport/carReturnReports";
     }
 
     @GetMapping("/carReturnReports/closed")
@@ -64,7 +64,7 @@ public class CarReturnReportController {
         model.addAttribute("info", info);
 
         model.addAttribute("carReturnReports", carReturnReports);
-        return "/carReturnReport/carReturnReportsClosed";
+        return "carReturnReport/carReturnReportsClosed";
     }
 
     @GetMapping("/openDamageReport/{id}")
@@ -116,7 +116,7 @@ public class CarReturnReportController {
 
         model.addAttribute("totalPrice", totalPrice);
 
-        return "/carReturnReport/editDamageReport";
+        return "carReturnReport/editDamageReport";
     }
 
     @GetMapping("/openDamageReportNoEdit/{id}")
@@ -135,7 +135,7 @@ public class CarReturnReportController {
 
         model.addAttribute("totalPrice", totalPrice);
 
-        return "/carReturnReport/editDamageReportNoEdit";
+        return "carReturnReport/editDamageReportNoEdit";
     }
 
     // Post Methods

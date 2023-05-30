@@ -30,7 +30,7 @@ public class ContractController {
         String info = "AKTIVE KONTRAKTER";
         model.addAttribute("info", info);
         model.addAttribute( "getContractInfo", contractService.getActiveContracts());
-        return "/contract/contractsOverview";
+        return "contract/contractsOverview";
     }
 
     @GetMapping("/contractsOverview/ended")
@@ -38,14 +38,14 @@ public class ContractController {
         String info = "UDLØBEDE KONTRAKTER";
         model.addAttribute("info", info);
         model.addAttribute( "getContractInfo", contractService.getEndedContracts());
-        return "/contract/contractsOverviewEnded";
+        return "contract/contractsOverviewEnded";
     }
     @GetMapping("/contractsOverview/future")
     public String showFutureContracts(Model model){
         String info = "FREMTIDIGE KONTRAKTER";
         model.addAttribute("info", info);
         model.addAttribute( "getContractInfo", contractService.getFutureContracts());
-        return "/contract/contractsOverview";
+        return "contract/contractsOverview";
     }
     // Add Contract Forms
     @GetMapping ("/addContractForm1/{customer_id}")
@@ -93,7 +93,7 @@ public class ContractController {
     public String watchCustomerHistory(@PathVariable Integer customer_id, Model model){
         model.addAttribute("customer", customerService.getCustomer(customer_id));
         model.addAttribute("getCustomerHistory", contractService.getCustomerHistory(customer_id));
-        return "/customer/watchSpecificCustomerHistory";
+        return "customer/watchSpecificCustomerHistory";
     }
 
     // Post Methods
