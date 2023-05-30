@@ -1,8 +1,8 @@
 package com.example.bilabonnement.model.contract;
 
-public class ContractTypeCount {
+public class Contract_Type_Count {
 
-    ContractTypeCount() {
+    Contract_Type_Count() {
     }
     private String type;
     private Integer count;

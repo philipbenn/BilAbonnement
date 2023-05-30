@@ -1,12 +1,10 @@
 package com.example.bilabonnement.service;
 
-import com.example.bilabonnement.model.carReturnReport.Car_Return_Report;
 import com.example.bilabonnement.model.contract.Contract;
-import com.example.bilabonnement.model.contract.ContractDTO;
-import com.example.bilabonnement.model.contract.ContractTypeCount;
+import com.example.bilabonnement.model.contract.Contract_DTO;
+import com.example.bilabonnement.model.contract.Contract_Type_Count;
 import com.example.bilabonnement.repository.ContractRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,29 +15,29 @@ public class ContractService {
     ContractRepo contractRepo;
 
     // ContractDTO lists
-    public List<ContractDTO> expiringContracts(){
+    public List<Contract_DTO> expiringContracts(){
 
         return contractRepo.expiringContracts();
     }
 
-    public List<ContractDTO> getCustomerHistory(Integer customer_id){
+    public List<Contract_DTO> getCustomerHistory(Integer customer_id){
         return contractRepo.getCustomerHistory(customer_id);
     }
-    public List<ContractDTO> getActiveContracts() {
+    public List<Contract_DTO> getActiveContracts() {
         return contractRepo.getActiveContracts();
     }
-    public List<ContractDTO> editContract(Integer contract_id){
+    public List<Contract_DTO> editContract(Integer contract_id){
         return contractRepo.editContract(contract_id);
     }
-    public List<ContractDTO> getEndedContracts() {
+    public List<Contract_DTO> getEndedContracts() {
         return contractRepo.getEndedContracts();
     }
-    public List<ContractDTO> getFutureContracts(){
+    public List<Contract_DTO> getFutureContracts(){
         return contractRepo.getFutureContracts();
     }
 
     // Other lists
-    public List<ContractTypeCount> contractTypeCountDTOS() {
+    public List<Contract_Type_Count> contractTypeCountDTOS() {
         return contractRepo.contractTypeCounts();
     }
 

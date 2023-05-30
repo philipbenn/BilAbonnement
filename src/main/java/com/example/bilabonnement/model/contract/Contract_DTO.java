@@ -1,8 +1,8 @@
 package com.example.bilabonnement.model.contract;
 
-public class ContractDTO {
+public class Contract_DTO {
 
-    public ContractDTO(){}
+    public Contract_DTO(){}
     private Integer contract_id;
     private Integer customer_id;
     private Integer employee_id;

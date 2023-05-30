@@ -1,9 +1,8 @@
 package com.example.bilabonnement.repository;
 
-import com.example.bilabonnement.model.carReturnReport.Car_Return_Report;
 import com.example.bilabonnement.model.contract.Contract;
-import com.example.bilabonnement.model.contract.ContractDTO;
-import com.example.bilabonnement.model.contract.ContractTypeCount;
+import com.example.bilabonnement.model.contract.Contract_DTO;
+import com.example.bilabonnement.model.contract.Contract_Type_Count;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,7 +18,7 @@ public class ContractRepo {
     }
 
     //ContractDTO Lists
-    public List<ContractDTO> getActiveContracts() {
+    public List<Contract_DTO> getActiveContracts() {
         //Find sql query under stored procedures
         String sql = """
                     SELECT
@@ -58,9 +57,9 @@ public class ContractRepo {
                        
                 """
                 ;
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Contract_DTO.class));
     }
-    public List<ContractDTO> getEndedContracts() {
+    public List<Contract_DTO> getEndedContracts() {
         //Find sql query under stored procedures
         String sql = """
                 SELECT
@@ -94,9 +93,9 @@ public class ContractRepo {
                     car_model_max_km_plan ckp ON c.car_model_max_km_plan_id = ckp.car_model_max_km_plan_id
                     WHERE end_date <= NOW() + INTERVAL 1 HOUR
                     ORDER BY end_date;""";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Contract_DTO.class));
     }
-    public List<ContractDTO> getFutureContracts(){
+    public List<Contract_DTO> getFutureContracts(){
         String sql = """
                 SELECT
                     c.contract_id,
@@ -129,9 +128,9 @@ public class ContractRepo {
                     car_model_max_km_plan ckp ON c.car_model_max_km_plan_id = ckp.car_model_max_km_plan_id
                     WHERE start_date > NOW() + INTERVAL 1 HOUR
                     ORDER BY start_date;""";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Contract_DTO.class));
     }
-    public List<ContractDTO> getCustomerHistory(Integer customer_id){
+    public List<Contract_DTO> getCustomerHistory(Integer customer_id){
         String sql = """
                 SELECT  car.car_id, car.car_model_id, car.vognnummer, car_model.car_model_name, car_model_lease_period_plan.type,contract.contract_id, contract.start_date, contract.end_date, contract.employee_id, contract.customer_id
                 FROM contract
@@ -142,9 +141,9 @@ public class ContractRepo {
                 JOIN car_model_lease_period_plan\s
                 ON car_model_lease_period_plan.car_model_lease_period_plan_id = contract.car_model_lease_period_plan_id
                 WHERE customer_id = ? ORDER BY contract_id;""";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), customer_id);
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Contract_DTO.class), customer_id);
     }
-    public List<ContractDTO> editContract(Integer contract_id){
+    public List<Contract_DTO> editContract(Integer contract_id){
         String sql = "SELECT c.contract_id, cu.customer_id, cu.customer_name, ca.car_id, cm.car_model_id, cm.car_model_name, " +
                 "ca.vognnummer, clp.car_model_lease_period_plan_id, clp.type AS lease_type," +
                 " clp.price_per_month AS lease_price," +
@@ -163,9 +162,9 @@ public class ContractRepo {
                 "ON c.car_model_max_km_plan_id = ckp.car_model_max_km_plan_id " +
                 "WHERE contract_id = ? ORDER BY contract_id;";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class), contract_id);
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Contract_DTO.class), contract_id);
     }
-    public List<ContractDTO> expiringContracts(){
+    public List<Contract_DTO> expiringContracts(){
 
         String sql = """
                 SELECT\s
@@ -193,12 +192,12 @@ public class ContractRepo {
                     contract.end_date LIMIT 8;
                 """;
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractDTO.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Contract_DTO.class));
     }
 
 
     // Other Lists
-    public List<ContractTypeCount> contractTypeCounts() {
+    public List<Contract_Type_Count> contractTypeCounts() {
         String sql = """
                 SELECT clpp.type, COUNT(*) as count
                 FROM contract c
@@ -206,7 +205,7 @@ public class ContractRepo {
                 ON c.car_model_lease_period_plan_id = clpp.car_model_lease_period_plan_id
                 GROUP BY clpp.type;
                 """;
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ContractTypeCount.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Contract_Type_Count.class));
     }
 
 
