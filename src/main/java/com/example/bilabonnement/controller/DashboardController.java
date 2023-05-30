@@ -21,6 +21,6 @@ public class DashboardController {
         model.addAttribute("monthlyIncome", contractService.monthlyIncome());
         model.addAttribute("contractTypeCounts", contractService.contractTypeCountDTOS());
         model.addAttribute("nrOfCarsOfInRepair", contractService.nrOfCarsInRepair());
-        return "/dashboard/dashboard";
+        return "dashboard/dashboard";
     }
 }
