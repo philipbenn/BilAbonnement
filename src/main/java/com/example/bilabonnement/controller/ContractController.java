@@ -1,10 +1,7 @@
 package com.example.bilabonnement.controller;
 
 import com.example.bilabonnement.model.carReturnReport.Car_Return_Damage;
-import com.example.bilabonnement.service.CarModelService;
-import com.example.bilabonnement.service.CarReturnReportService;
-import com.example.bilabonnement.service.CarService;
-import com.example.bilabonnement.service.ContractService;
+import com.example.bilabonnement.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +21,8 @@ public class ContractController {
     CarService carService;
     @Autowired
     CarReturnReportService carReturnReportService;
+    @Autowired
+    CustomerService customerService;
 
     // Contract Overviews
     @GetMapping("/contractsOverview/active")
@@ -92,8 +91,9 @@ public class ContractController {
     // Customer Contract History
     @GetMapping("/customerContractHistory/{customer_id}")
     public String watchCustomerHistory(@PathVariable Integer customer_id, Model model){
+        model.addAttribute("customer", customerService.getCustomer(customer_id));
         model.addAttribute("getCustomerHistory", contractService.getCustomerHistory(customer_id));
-        return "customer/watchSpecificCustomerHistory";
+        return "/customer/watchSpecificCustomerHistory";
     }
 
     // Post Methods

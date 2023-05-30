@@ -17,7 +17,7 @@
 
 <header th:replace="navbarfragment :: navbar"></header>
 
-<h1 class="title" th:text="${customer + 's kontrakter '}"></h1>
+<h1 class="title" th:text="${customer.customer_name + 's kontrakter '}"></h1>
 
 
 <main style="width: 100vw; height: 75vh; overflow: auto;">
@@ -36,7 +36,7 @@
             <th>Kontrakt Slut</th>
         </tr>
         </thead>
-        <tbody th:each="contract : ${contract}">
+        <tbody th:each="contract : ${getCustomerHistory}">
 
         <tr>
             <td th:text="${contract.employee_id}"></td>
